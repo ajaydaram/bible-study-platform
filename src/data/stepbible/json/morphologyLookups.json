@@ -1,0 +1,101 @@
+{
+  "partOfSpeech": {
+    "A": "Adjective",
+    "C": "Conjunction",
+    "D": "Adverb",
+    "I": "Interjection",
+    "N": "Noun",
+    "P": "Preposition",
+    "RA": "Aramaic",
+    "T": "Particle",
+    "V": "Verb",
+    "X": "Pronoun"
+  },
+  "case": {
+    "N": "Nominative",
+    "G": "Genitive",
+    "D": "Dative",
+    "A": "Accusative",
+    "V": "Vocative"
+  },
+  "number": {
+    "S": "Singular",
+    "P": "Plural",
+    "D": "Dual"
+  },
+  "gender": {
+    "M": "Masculine",
+    "F": "Feminine",
+    "N": "Neuter",
+    "C": "Common"
+  },
+  "tense": {
+    "P": "Present",
+    "I": "Imperfect",
+    "F": "Future",
+    "A": "Aorist",
+    "X": "Perfect",
+    "Y": "Pluperfect"
+  },
+  "voice": {
+    "A": "Active",
+    "M": "Middle",
+    "P": "Passive",
+    "E": "Middle/Passive (Either)",
+    "D": "Middle Deponent",
+    "O": "Passive Deponent",
+    "N": "Middle or Passive Deponent"
+  },
+  "mood": {
+    "I": "Indicative",
+    "S": "Subjunctive",
+    "O": "Optative",
+    "M": "Imperative",
+    "N": "Infinitive",
+    "P": "Participle",
+    "R": "Imperative-Sense Participle"
+  },
+  "person": {
+    "1": "1st Person",
+    "2": "2nd Person",
+    "3": "3rd Person"
+  },
+  "degree": {
+    "C": "Comparative",
+    "S": "Superlative"
+  },
+  "hebrewState": {
+    "a": "Absolute",
+    "c": "Construct",
+    "d": "Determined"
+  },
+  "hebrewStem": {
+    "q": "Qal",
+    "N": "Niphal",
+    "p": "Piel",
+    "P": "Pual",
+    "h": "Hiphil",
+    "H": "Hophal",
+    "t": "Hithpael",
+    "o": "Polel",
+    "O": "Polal",
+    "r": "Hithpolel",
+    "m": "Poel",
+    "M": "Poal",
+    "k": "Palel",
+    "K": "Pulal",
+    "Q": "Qal Passive",
+    "l": "Pilpel",
+    "L": "Polpal",
+    "f": "Hithpalpel",
+    "D": "Nithpael",
+    "j": "Pealal",
+    "i": "Pilel",
+    "u": "Hothpaal",
+    "c": "Tiphil",
+    "v": "Hishtaphel",
+    "w": "Nithpalel",
+    "y": "Nithpoel",
+    "z": "Hithpoel"
+  }
+}
