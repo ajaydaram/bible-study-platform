@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="24" fill="#1e40af"/>
+  <g fill="white">
+    <!-- Book/Bible icon -->
+    <path d="M48 40h96c4.4 0 8 3.6 8 8v96c0 4.4-3.6 8-8 8H48c-4.4 0-8-3.6-8-8V48c0-4.4 3.6-8 8-8z" fill="none" stroke="white" stroke-width="4"/>
+    <path d="M96 40v112M56 60h32M56 80h32M56 100h32M104 60h32M104 80h32M104 100h32"/>
+    <circle cx="96" cy="136" r="8"/>
+  </g>
+  <!-- Cross accent -->
+  <path d="M96 52v24M84 64h24" stroke="white" stroke-width="4" stroke-linecap="round"/>
+</svg>

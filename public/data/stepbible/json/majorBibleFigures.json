@@ -1,0 +1,1770 @@
+{
+  "Adam": {
+    "id": "Adam@Jos.3.16=H0121H",
+    "name": "Adam",
+    "strongs": "H0121H",
+    "firstReference": "Jos.3.16",
+    "description": "Adam",
+    "family": {
+      "parents": {
+        "father": null,
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [
+        {
+          "name": "https://www.google.com/maps/",
+          "strongs": null,
+          "firstRef": "32.09772014797369",
+          "raw": "https://www.google.com/maps/@32.09772014797369"
+        },
+        {
+          "name": "35.56469085401976",
+          "strongs": null,
+          "firstRef": null,
+          "raw": "35.56469085401976"
+        },
+        {
+          "name": "14z",
+          "strongs": null,
+          "firstRef": null,
+          "raw": "14z"
+        }
+      ],
+      "children": [
+        {
+          "name": "https://palopenmaps.org/view/9999/",
+          "strongs": null,
+          "firstRef": "32.09772014797369",
+          "raw": "https://palopenmaps.org/view/9999/@32.09772014797369"
+        },
+        {
+          "name": "35.56469085401976",
+          "strongs": null,
+          "firstRef": null,
+          "raw": "35.56469085401976"
+        }
+      ]
+    },
+    "tribe": ">",
+    "briefDescription": "A city near the Jordan River.",
+    "shortDescription": "Adam, a city beside the Jordan, where the river was stopped for Israel's crossing.",
+    "briefestDescription": ""
+  },
+  "Eve": {
+    "id": "Eve@Gen.3.20-1Ti=H2332",
+    "name": "Eve",
+    "strongs": "H2332",
+    "firstReference": "Gen.3.20",
+    "description": "Woman living at the time before the Flood",
+    "family": {
+      "parents": {
+        "father": null,
+        "mother": null
+      },
+      "siblings": [
+        {
+          "name": "Adam",
+          "strongs": null,
+          "firstRef": "Gen.2.19",
+          "raw": "Adam@Gen.2.19-Jud"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Adam",
+          "strongs": null,
+          "firstRef": "Gen.2.19",
+          "raw": "Adam@Gen.2.19-Jud"
+        }
+      ],
+      "children": [
+        {
+          "name": "Cain",
+          "strongs": null,
+          "firstRef": "Gen.4.1",
+          "raw": "Cain@Gen.4.1-Jud"
+        },
+        {
+          "name": "Abel",
+          "strongs": null,
+          "firstRef": "Gen.4.2",
+          "raw": "Abel@Gen.4.2-Heb"
+        },
+        {
+          "name": "Seth",
+          "strongs": null,
+          "firstRef": "Gen.4.25",
+          "raw": "Seth@Gen.4.25-Luk"
+        }
+      ]
+    },
+    "tribe": ">",
+    "briefDescription": "Midianite king killed in battle against Israel.",
+    "shortDescription": "Evi was one of the Midianite kings killed by the Israelites during the time of Moses.",
+    "briefestDescription": ""
+  },
+  "Noah": {
+    "id": "Noah@Num.26.33-Jos=H5270",
+    "name": "Noah",
+    "strongs": "H5270",
+    "firstReference": "Num.26.33",
+    "description": "Woman living at the time of Egypt and Wilderness",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Zelophehad",
+          "strongs": null,
+          "firstRef": "Num.26.33",
+          "raw": "Zelophehad@Num.26.33-1Ch"
+        },
+        "mother": null
+      },
+      "siblings": [
+        {
+          "name": "Mahlah",
+          "strongs": null,
+          "firstRef": "Num.26.33",
+          "raw": "Mahlah@Num.26.33-Jos"
+        },
+        {
+          "name": "Hoglah",
+          "strongs": null,
+          "firstRef": "Num.26.33",
+          "raw": "Hoglah@Num.26.33-Jos"
+        },
+        {
+          "name": "Milcah",
+          "strongs": null,
+          "firstRef": "Num.26.33",
+          "raw": "Milcah@Num.26.33-Jos"
+        },
+        {
+          "name": "Tirzah",
+          "strongs": null,
+          "firstRef": "Num.26.33",
+          "raw": "Tirzah@Num.26.33-Jos"
+        }
+      ],
+      "partners": [],
+      "children": []
+    },
+    "tribe": "Tribe of Manasseh",
+    "briefDescription": "Captured Kenath, renamed it Nobah",
+    "shortDescription": "Nobah was an Israelite who captured the town of Kenath and renamed it after himself.",
+    "briefestDescription": "David's son"
+  },
+  "Abraham": {
+    "id": "Abraham@Gen.11.26-1Pe=H0085",
+    "name": "Abraham",
+    "strongs": "H0085",
+    "firstReference": "Gen.11.26",
+    "description": "Man living at the time of the Patriarchs",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Terah",
+          "strongs": null,
+          "firstRef": "Gen.11.24",
+          "raw": "Terah@Gen.11.24-Luk"
+        },
+        "mother": null
+      },
+      "siblings": [
+        {
+          "name": "Nahor",
+          "strongs": null,
+          "firstRef": "Gen.11.26",
+          "raw": "Nahor@Gen.11.26-"
+        },
+        {
+          "name": "Haran",
+          "strongs": null,
+          "firstRef": "Gen.11.26",
+          "raw": "Haran@Gen.11.26-"
+        },
+        {
+          "name": "Sarah",
+          "strongs": null,
+          "firstRef": "Gen.11.29",
+          "raw": "Sarah@Gen.11.29-1Pe"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Sarah",
+          "strongs": null,
+          "firstRef": "Gen.11.29",
+          "raw": "Sarah@Gen.11.29-1Pe"
+        },
+        {
+          "name": "Hagar",
+          "strongs": null,
+          "firstRef": "Gen.16.1",
+          "raw": "Hagar@Gen.16.1-Gal"
+        },
+        {
+          "name": "Keturah",
+          "strongs": null,
+          "firstRef": "Gen.25.1",
+          "raw": "Keturah@Gen.25.1-1Ch"
+        }
+      ],
+      "children": [
+        {
+          "name": "Ishmael",
+          "strongs": null,
+          "firstRef": "Gen.16.11",
+          "raw": "Ishmael@Gen.16.11-Psa"
+        },
+        {
+          "name": "Isaac",
+          "strongs": null,
+          "firstRef": "Gen.17.19",
+          "raw": "Isaac@Gen.17.19-Jas"
+        },
+        {
+          "name": "Zimran",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Zimran@Gen.25.2-1Ch"
+        },
+        {
+          "name": "Jokshan",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Jokshan@Gen.25.2-1Ch"
+        },
+        {
+          "name": "Medan",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Medan@Gen.25.2-1Ch"
+        },
+        {
+          "name": "Midian",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Midian@Gen.25.2-1Ch"
+        },
+        {
+          "name": "Ishbak",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Ishbak@Gen.25.2-1Ch"
+        },
+        {
+          "name": "Shuah",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Shuah@Gen.25.2-1Ch"
+        }
+      ]
+    },
+    "tribe": "Early Patriarch",
+    "briefDescription": "David's rebellious son who tried to usurp the throne.",
+    "shortDescription": "Absalom was David's third son who led a revolt against his father's reign.",
+    "briefestDescription": "David's son"
+  },
+  "Sarah": {
+    "id": "Sarah@Gen.11.29-1Pe=H8283",
+    "name": "Sarah",
+    "strongs": "H8283",
+    "firstReference": "Gen.11.29",
+    "description": "Woman living at the time of the Patriarchs",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Terah",
+          "strongs": null,
+          "firstRef": "Gen.11.24",
+          "raw": "Terah@Gen.11.24-Luk"
+        },
+        "mother": null
+      },
+      "siblings": [
+        {
+          "name": "Abraham",
+          "strongs": null,
+          "firstRef": "Gen.11.26",
+          "raw": "Abraham@Gen.11.26-1Pe"
+        },
+        {
+          "name": "Nahor",
+          "strongs": null,
+          "firstRef": "Gen.11.26",
+          "raw": "Nahor@Gen.11.26-"
+        },
+        {
+          "name": "Haran",
+          "strongs": null,
+          "firstRef": "Gen.11.26",
+          "raw": "Haran@Gen.11.26-"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Abraham",
+          "strongs": null,
+          "firstRef": "Gen.11.26",
+          "raw": "Abraham@Gen.11.26-1Pe"
+        }
+      ],
+      "children": [
+        {
+          "name": "Isaac",
+          "strongs": null,
+          "firstRef": "Gen.17.19",
+          "raw": "Isaac@Gen.17.19-Jas"
+        }
+      ]
+    },
+    "tribe": "Early Patriarch",
+    "briefDescription": "Son of Shelah, descendant of Judah",
+    "shortDescription": "Saraph was a son of Shelah and a descendant of Judah, mentioned in the genealogy of Judah.",
+    "briefestDescription": "Son of Shelah"
+  },
+  "Isaac": {
+    "id": "Isaac@Gen.17.19-Jas=H3327",
+    "name": "Isaac",
+    "strongs": "H3327",
+    "firstReference": "Gen.17.19",
+    "description": "Man living at the time of the Patriarchs",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Abraham",
+          "strongs": null,
+          "firstRef": "Gen.11.26",
+          "raw": "Abraham@Gen.11.26-1Pe"
+        },
+        "mother": {
+          "name": "Sarah",
+          "strongs": null,
+          "firstRef": "Gen.11.29",
+          "raw": "Sarah@Gen.11.29-1Pe"
+        }
+      },
+      "siblings": [
+        {
+          "name": "Ishmael",
+          "strongs": null,
+          "firstRef": "Gen.16.11",
+          "raw": "Ishmael@Gen.16.11-Psa"
+        },
+        {
+          "name": "Zimran",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Zimran@Gen.25.2-1Ch"
+        },
+        {
+          "name": "Jokshan",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Jokshan@Gen.25.2-1Ch"
+        },
+        {
+          "name": "Medan",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Medan@Gen.25.2-1Ch"
+        },
+        {
+          "name": "Midian",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Midian@Gen.25.2-1Ch"
+        },
+        {
+          "name": "Ishbak",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Ishbak@Gen.25.2-1Ch"
+        },
+        {
+          "name": "Shuah",
+          "strongs": null,
+          "firstRef": "Gen.25.2",
+          "raw": "Shuah@Gen.25.2-1Ch"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Rebekah",
+          "strongs": null,
+          "firstRef": "Gen.22.23",
+          "raw": "Rebekah@Gen.22.23-Rom"
+        }
+      ],
+      "children": [
+        {
+          "name": "Esau",
+          "strongs": null,
+          "firstRef": "Gen.25.25",
+          "raw": "Esau@Gen.25.25-Heb"
+        },
+        {
+          "name": "Israel",
+          "strongs": null,
+          "firstRef": "Gen.25.26",
+          "raw": "Israel@Gen.25.26-Rev"
+        }
+      ]
+    },
+    "tribe": "Early Patriarch",
+    "briefDescription": "Prophet during reigns of Uzziah, Jotham, Ahaz, Hezekiah.",
+    "shortDescription": "Isaiah was a prophet in Judah during the reigns of Uzziah, Jotham, Ahaz, and Hezekiah. His prophecies are recorded in the biblical book bearing his name.",
+    "briefestDescription": "A prophet"
+  },
+  "Rebekah": {
+    "id": "Rebekah@Gen.22.23-Rom=H7259",
+    "name": "Rebekah",
+    "strongs": "H7259",
+    "firstReference": "Gen.22.23",
+    "description": "Woman living at the time of the Patriarchs",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Bethuel",
+          "strongs": null,
+          "firstRef": "Gen.22.22",
+          "raw": "Bethuel@Gen.22.22-"
+        },
+        "mother": null
+      },
+      "siblings": [
+        {
+          "name": "Laban",
+          "strongs": null,
+          "firstRef": "Gen.24.29",
+          "raw": "Laban@Gen.24.29-"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Isaac",
+          "strongs": null,
+          "firstRef": "Gen.17.19",
+          "raw": "Isaac@Gen.17.19-Jas"
+        }
+      ],
+      "children": [
+        {
+          "name": "Esau",
+          "strongs": null,
+          "firstRef": "Gen.25.25",
+          "raw": "Esau@Gen.25.25-Heb"
+        },
+        {
+          "name": "Israel",
+          "strongs": null,
+          "firstRef": "Gen.25.26",
+          "raw": "Israel@Gen.25.26-Rev"
+        }
+      ]
+    },
+    "tribe": "Early Patriarch",
+    "briefDescription": "Ancestor of the Rechabites, who were faithful to God",
+    "shortDescription": "Rechab was the ancestor of the Rechabites, a nomadic tribe known for their faithfulness to God's commands.",
+    "briefestDescription": "Son of Hammath"
+  },
+  "Israel": {
+    "id": "Israel@Gen.25.26-Rev=H3478",
+    "name": "Israel",
+    "strongs": "H3478",
+    "firstReference": "Gen.25.26",
+    "description": "Man living at the time of the Patriarchs",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Isaac",
+          "strongs": null,
+          "firstRef": "Gen.17.19",
+          "raw": "Isaac@Gen.17.19-Jas"
+        },
+        "mother": {
+          "name": "Rebekah",
+          "strongs": null,
+          "firstRef": "Gen.22.23",
+          "raw": "Rebekah@Gen.22.23-Rom"
+        }
+      },
+      "siblings": [
+        {
+          "name": "Esau",
+          "strongs": null,
+          "firstRef": "Gen.25.25",
+          "raw": "Esau@Gen.25.25-Heb"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Rachel",
+          "strongs": null,
+          "firstRef": "Gen.29.6",
+          "raw": "Rachel@Gen.29.6-Mat"
+        },
+        {
+          "name": "Leah",
+          "strongs": null,
+          "firstRef": "Gen.29.16",
+          "raw": "Leah@Gen.29.16-Rut"
+        },
+        {
+          "name": "Zilpah",
+          "strongs": null,
+          "firstRef": "Gen.29.24",
+          "raw": "Zilpah@Gen.29.24-"
+        },
+        {
+          "name": "Bilhah",
+          "strongs": null,
+          "firstRef": "Gen.29.29",
+          "raw": "Bilhah@Gen.29.29-1Ch"
+        }
+      ],
+      "children": [
+        {
+          "name": "Reuben",
+          "strongs": null,
+          "firstRef": "Gen.29.32",
+          "raw": "Reuben@Gen.29.32-Rev"
+        },
+        {
+          "name": "Simeon",
+          "strongs": null,
+          "firstRef": "Gen.29.33",
+          "raw": "Simeon@Gen.29.33-Rev"
+        },
+        {
+          "name": "Levi",
+          "strongs": null,
+          "firstRef": "Gen.29.34",
+          "raw": "Levi@Gen.29.34-Rev"
+        },
+        {
+          "name": "Judah",
+          "strongs": null,
+          "firstRef": "Gen.29.35",
+          "raw": "Judah@Gen.29.35-Rev"
+        },
+        {
+          "name": "Dan",
+          "strongs": null,
+          "firstRef": "Gen.30.6",
+          "raw": "Dan@Gen.30.6-1Ch"
+        },
+        {
+          "name": "Naphtali",
+          "strongs": null,
+          "firstRef": "Gen.30.8",
+          "raw": "Naphtali@Gen.30.8-Rev"
+        },
+        {
+          "name": "Gad",
+          "strongs": null,
+          "firstRef": "Gen.30.11",
+          "raw": "Gad@Gen.30.11-Rev"
+        },
+        {
+          "name": "Asher",
+          "strongs": null,
+          "firstRef": "Gen.30.13",
+          "raw": "Asher@Gen.30.13-Rev"
+        },
+        {
+          "name": "Issachar",
+          "strongs": null,
+          "firstRef": "Gen.30.18",
+          "raw": "Issachar@Gen.30.18-Rev"
+        },
+        {
+          "name": "Zebulun",
+          "strongs": null,
+          "firstRef": "Gen.30.20",
+          "raw": "Zebulun@Gen.30.20-Rev"
+        },
+        {
+          "name": "Dinah",
+          "strongs": null,
+          "firstRef": "Gen.30.21",
+          "raw": "Dinah@Gen.30.21-"
+        },
+        {
+          "name": "Joseph",
+          "strongs": null,
+          "firstRef": "Gen.30.24",
+          "raw": "Joseph@Gen.30.24-Rev"
+        },
+        {
+          "name": "Benjamin",
+          "strongs": null,
+          "firstRef": "Gen.35.18",
+          "raw": "Benjamin@Gen.35.18-Rev"
+        }
+      ]
+    },
+    "tribe": "Early Patriarch",
+    "briefDescription": "Patriarch, son of Isaac, father of twelve tribes",
+    "shortDescription": "Israel, also named Jacob, was the son of Isaac, the father of the twelve tribes of Israel, and a key patriarch of the Jewish people.",
+    "briefestDescription": "Son of Isaac"
+  },
+  "Rachel": {
+    "id": "Rachel@Gen.29.6-Mat=H7354",
+    "name": "Rachel",
+    "strongs": "H7354",
+    "firstReference": "Gen.29.6",
+    "description": "Woman living at the time of the Patriarchs",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Laban",
+          "strongs": null,
+          "firstRef": "Gen.24.29",
+          "raw": "Laban@Gen.24.29-"
+        },
+        "mother": null
+      },
+      "siblings": [
+        {
+          "name": "Leah",
+          "strongs": null,
+          "firstRef": "Gen.29.16",
+          "raw": "Leah@Gen.29.16-Rut"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Israel",
+          "strongs": null,
+          "firstRef": "Gen.25.26",
+          "raw": "Israel@Gen.25.26-Rev"
+        }
+      ],
+      "children": [
+        {
+          "name": "Joseph",
+          "strongs": null,
+          "firstRef": "Gen.30.24",
+          "raw": "Joseph@Gen.30.24-Rev"
+        },
+        {
+          "name": "Benjamin",
+          "strongs": null,
+          "firstRef": "Gen.35.18",
+          "raw": "Benjamin@Gen.35.18-Rev"
+        }
+      ]
+    },
+    "tribe": "Early Patriarch",
+    "briefDescription": "One of David's brothers, son of Jesse",
+    "shortDescription": "Raddai was one of David's brothers, a son of Jesse.",
+    "briefestDescription": "David's brother"
+  },
+  "Leah": {
+    "id": "Leah@Gen.29.16-Rut=H3812",
+    "name": "Leah",
+    "strongs": "H3812",
+    "firstReference": "Gen.29.16",
+    "description": "Woman living at the time of the Patriarchs",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Laban",
+          "strongs": null,
+          "firstRef": "Gen.24.29",
+          "raw": "Laban@Gen.24.29-"
+        },
+        "mother": null
+      },
+      "siblings": [
+        {
+          "name": "Rachel",
+          "strongs": null,
+          "firstRef": "Gen.29.6",
+          "raw": "Rachel@Gen.29.6-Mat"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Israel",
+          "strongs": null,
+          "firstRef": "Gen.25.26",
+          "raw": "Israel@Gen.25.26-Rev"
+        }
+      ],
+      "children": [
+        {
+          "name": "Reuben",
+          "strongs": null,
+          "firstRef": "Gen.29.32",
+          "raw": "Reuben@Gen.29.32-Rev"
+        },
+        {
+          "name": "Simeon",
+          "strongs": null,
+          "firstRef": "Gen.29.33",
+          "raw": "Simeon@Gen.29.33-Rev"
+        },
+        {
+          "name": "Levi",
+          "strongs": null,
+          "firstRef": "Gen.29.34",
+          "raw": "Levi@Gen.29.34-Rev"
+        },
+        {
+          "name": "Judah",
+          "strongs": null,
+          "firstRef": "Gen.29.35",
+          "raw": "Judah@Gen.29.35-Rev"
+        },
+        {
+          "name": "Issachar",
+          "strongs": null,
+          "firstRef": "Gen.30.18",
+          "raw": "Issachar@Gen.30.18-Rev"
+        },
+        {
+          "name": "Zebulun",
+          "strongs": null,
+          "firstRef": "Gen.30.20",
+          "raw": "Zebulun@Gen.30.20-Rev"
+        },
+        {
+          "name": "Dinah",
+          "strongs": null,
+          "firstRef": "Gen.30.21",
+          "raw": "Dinah@Gen.30.21-"
+        }
+      ]
+    },
+    "tribe": "Early Patriarch",
+    "briefDescription": "Ancestor of temple servants who returned from Babylonian exile",
+    "shortDescription": "Lebanah or Lebana, whose descendants were among the temple servants who returned from the Babylonian exile.",
+    "briefestDescription": ""
+  },
+  "Joseph": {
+    "id": "Joseph@Num.13.7=H3130H",
+    "name": "Joseph",
+    "strongs": "H3130H",
+    "firstReference": "Num.13.7",
+    "description": "Man living at the time of Egypt and Wilderness",
+    "family": {
+      "parents": {
+        "father": null,
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [],
+      "children": [
+        {
+          "name": "Igal",
+          "strongs": null,
+          "firstRef": "Num.13.7",
+          "raw": "Igal@Num.13.7"
+        }
+      ]
+    },
+    "tribe": ">",
+    "briefDescription": "Brother of Jesus and son of Mary",
+    "shortDescription": "Joses (or Joseph) was one of Jesus' brothers and a son of Mary.",
+    "briefestDescription": "Son of Joseph"
+  },
+  "Moses": {
+    "id": "Moses@Exo.2.10-Rev=H4872",
+    "name": "Moses",
+    "strongs": "H4872",
+    "firstReference": "Exo.2.10",
+    "description": "Levite living at the time of Egypt and Wilderness",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Amram",
+          "strongs": null,
+          "firstRef": "Exo.6.18",
+          "raw": "Amram@Exo.6.18-1Ch"
+        },
+        "mother": {
+          "name": "Jochebed",
+          "strongs": null,
+          "firstRef": "Exo.6.20",
+          "raw": "Jochebed@Exo.6.20-Num"
+        }
+      },
+      "siblings": [
+        {
+          "name": "Aaron",
+          "strongs": null,
+          "firstRef": "Exo.4.14",
+          "raw": "Aaron@Exo.4.14-Heb"
+        },
+        {
+          "name": "Miriam",
+          "strongs": null,
+          "firstRef": "Exo.15.20",
+          "raw": "Miriam@Exo.15.20-Mic"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Zipporah",
+          "strongs": null,
+          "firstRef": "Exo.2.21",
+          "raw": "Zipporah@Exo.2.21-"
+        }
+      ],
+      "children": [
+        {
+          "name": "Gershom",
+          "strongs": null,
+          "firstRef": "Exo.2.22",
+          "raw": "Gershom@Exo.2.22-1Ch"
+        },
+        {
+          "name": "Eliezer",
+          "strongs": null,
+          "firstRef": "Exo.18.4",
+          "raw": "Eliezer@Exo.18.4-1Ch"
+        }
+      ]
+    },
+    "tribe": "Tribe of Levi",
+    "briefDescription": "Mother-in-law of Peter, healed by Jesus",
+    "shortDescription": "Peter's unnamed mother-in-law, whom Jesus healed of a fever.",
+    "briefestDescription": ""
+  },
+  "Aaron": {
+    "id": "Aaron@Exo.4.14-Heb=H0175",
+    "name": "Aaron",
+    "strongs": "H0175",
+    "firstReference": "Exo.4.14",
+    "description": "High Priest living at the time of Egypt and Wilderness",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Amram",
+          "strongs": null,
+          "firstRef": "Exo.6.18",
+          "raw": "Amram@Exo.6.18-1Ch"
+        },
+        "mother": {
+          "name": "Jochebed",
+          "strongs": null,
+          "firstRef": "Exo.6.20",
+          "raw": "Jochebed@Exo.6.20-Num"
+        }
+      },
+      "siblings": [
+        {
+          "name": "Moses",
+          "strongs": null,
+          "firstRef": "Exo.2.10",
+          "raw": "Moses@Exo.2.10-Rev"
+        },
+        {
+          "name": "Miriam",
+          "strongs": null,
+          "firstRef": "Exo.15.20",
+          "raw": "Miriam@Exo.15.20-Mic"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Elisheba",
+          "strongs": null,
+          "firstRef": "Exo.6.23",
+          "raw": "Elisheba@Exo.6.23"
+        }
+      ],
+      "children": [
+        {
+          "name": "Nadab",
+          "strongs": null,
+          "firstRef": "Exo.6.23",
+          "raw": "Nadab@Exo.6.23-1Ch"
+        },
+        {
+          "name": "Abihu",
+          "strongs": null,
+          "firstRef": "Exo.6.23",
+          "raw": "Abihu@Exo.6.23-1Ch"
+        },
+        {
+          "name": "Ithamar",
+          "strongs": null,
+          "firstRef": "Exo.6.23",
+          "raw": "Ithamar@Exo.6.23-Ezr"
+        },
+        {
+          "name": "Eleazar",
+          "strongs": null,
+          "firstRef": "Exo.6.23",
+          "raw": "Eleazar@Exo.6.23-Ezr"
+        }
+      ]
+    },
+    "tribe": "Tribe of Levi",
+    "briefDescription": "One of King Ahasuerus' seven eunuchs",
+    "shortDescription": "Abagtha was one of the seven eunuchs who served King Ahasuerus.",
+    "briefestDescription": "Ahasuerus' eunuch"
+  },
+  "Miriam": {
+    "id": "Miriam@Exo.15.20-Mic=H4813G",
+    "name": "Miriam",
+    "strongs": "H4813G",
+    "firstReference": "Exo.15.20",
+    "description": "Moses' sister living at the time of Egypt and Wilderness",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Amram",
+          "strongs": null,
+          "firstRef": "Exo.6.18",
+          "raw": "Amram@Exo.6.18-1Ch"
+        },
+        "mother": {
+          "name": "Jochebed",
+          "strongs": null,
+          "firstRef": "Exo.6.20",
+          "raw": "Jochebed@Exo.6.20-Num"
+        }
+      },
+      "siblings": [
+        {
+          "name": "Moses",
+          "strongs": null,
+          "firstRef": "Exo.2.10",
+          "raw": "Moses@Exo.2.10-Rev"
+        },
+        {
+          "name": "Aaron",
+          "strongs": null,
+          "firstRef": "Exo.4.14",
+          "raw": "Aaron@Exo.4.14-Heb"
+        }
+      ],
+      "partners": [],
+      "children": []
+    },
+    "tribe": "Tribe of Levi",
+    "briefDescription": "A Benjamite mentioned in a genealogy.",
+    "shortDescription": "Mirmah, a Benjamite, is listed in the genealogy of Shaharaim.",
+    "briefestDescription": "Son of Shaharaim"
+  },
+  "David": {
+    "id": "David@Rut.4.17-Rev=H1732",
+    "name": "David",
+    "strongs": "H1732",
+    "firstReference": "Rut.4.17",
+    "description": "King living at the time of United Monarchy",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Jesse",
+          "strongs": null,
+          "firstRef": "Rut.4.17",
+          "raw": "Jesse@Rut.4.17-Rom"
+        },
+        "mother": {
+          "name": "Nahash",
+          "strongs": null,
+          "firstRef": "2Sa.17.25",
+          "raw": "Nahash@2Sa.17.25"
+        }
+      },
+      "siblings": [
+        {
+          "name": "Eliab",
+          "strongs": null,
+          "firstRef": "1Sa.16.6",
+          "raw": "Eliab@1Sa.16.6-2Ch"
+        },
+        {
+          "name": "Abinadab",
+          "strongs": null,
+          "firstRef": "1Sa.16.8",
+          "raw": "Abinadab@1Sa.16.8-1Ch"
+        },
+        {
+          "name": "Shimeah",
+          "strongs": null,
+          "firstRef": "1Sa.16.9",
+          "raw": "Shimeah@1Sa.16.9-1Ch"
+        },
+        {
+          "name": "Zeruiah",
+          "strongs": null,
+          "firstRef": "1Sa.26.6",
+          "raw": "Zeruiah@1Sa.26.6-1Ch"
+        },
+        {
+          "name": "Abigail",
+          "strongs": null,
+          "firstRef": "2Sa.17.25",
+          "raw": "Abigail@2Sa.17.25-1Ch(?)"
+        },
+        {
+          "name": "Nethanel",
+          "strongs": null,
+          "firstRef": "1Ch.2.14",
+          "raw": "Nethanel@1Ch.2.14"
+        },
+        {
+          "name": "Raddai",
+          "strongs": null,
+          "firstRef": "1Ch.2.14",
+          "raw": "Raddai@1Ch.2.14"
+        },
+        {
+          "name": "Ozem",
+          "strongs": null,
+          "firstRef": "1Ch.2.15",
+          "raw": "Ozem@1Ch.2.15"
+        },
+        {
+          "name": "Elihu",
+          "strongs": null,
+          "firstRef": "1Ch.27.18",
+          "raw": "Elihu@1Ch.27.18"
+        }
+      ],
+      "partners": [
+        {
+          "name": "Michal",
+          "strongs": null,
+          "firstRef": "1Sa.14.49",
+          "raw": "Michal@1Sa.14.49-1Ch"
+        },
+        {
+          "name": "Abigail",
+          "strongs": null,
+          "firstRef": "1Sa.25.3",
+          "raw": "Abigail@1Sa.25.3-1Ch"
+        },
+        {
+          "name": "Ahinoam",
+          "strongs": null,
+          "firstRef": "1Sa.25.43",
+          "raw": "Ahinoam@1Sa.25.43-1Ch"
+        },
+        {
+          "name": "Maacah",
+          "strongs": null,
+          "firstRef": "2Sa.3.3",
+          "raw": "Maacah@2Sa.3.3-1Ch"
+        },
+        {
+          "name": "Haggith",
+          "strongs": null,
+          "firstRef": "2Sa.3.4",
+          "raw": "Haggith@2Sa.3.4-1Ch"
+        },
+        {
+          "name": "Abital",
+          "strongs": null,
+          "firstRef": "2Sa.3.4",
+          "raw": "Abital@2Sa.3.4-1Ch"
+        },
+        {
+          "name": "Eglah",
+          "strongs": null,
+          "firstRef": "2Sa.3.5",
+          "raw": "Eglah@2Sa.3.5-1Ch"
+        },
+        {
+          "name": "Bathsheba",
+          "strongs": null,
+          "firstRef": "2Sa.11.3",
+          "raw": "Bathsheba@2Sa.11.3-Psa"
+        },
+        {
+          "name": "Jerusalem_wives",
+          "strongs": null,
+          "firstRef": "2Sa.5.13",
+          "raw": "Jerusalem_wives@2Sa.5.13"
+        }
+      ],
+      "children": [
+        {
+          "name": "Amnon",
+          "strongs": null,
+          "firstRef": "2Sa.3.2",
+          "raw": "Amnon@2Sa.3.2-1Ch"
+        },
+        {
+          "name": "Chileab",
+          "strongs": null,
+          "firstRef": "2Sa.3.3",
+          "raw": "Chileab@2Sa.3.3-1Ch"
+        },
+        {
+          "name": "Absalom",
+          "strongs": null,
+          "firstRef": "2Sa.3.3",
+          "raw": "Absalom@2Sa.3.3-Psa"
+        },
+        {
+          "name": "Adonijah",
+          "strongs": null,
+          "firstRef": "2Sa.3.4",
+          "raw": "Adonijah@2Sa.3.4-1Ch"
+        },
+        {
+          "name": "Shephatiah",
+          "strongs": null,
+          "firstRef": "2Sa.3.4",
+          "raw": "Shephatiah@2Sa.3.4-1Ch"
+        },
+        {
+          "name": "Ithream",
+          "strongs": null,
+          "firstRef": "2Sa.3.5",
+          "raw": "Ithream@2Sa.3.5-1Ch"
+        },
+        {
+          "name": "Shammua",
+          "strongs": null,
+          "firstRef": "2Sa.5.14",
+          "raw": "Shammua@2Sa.5.14-1Ch"
+        },
+        {
+          "name": "Shobab",
+          "strongs": null,
+          "firstRef": "2Sa.5.14",
+          "raw": "Shobab@2Sa.5.14-1Ch"
+        },
+        {
+          "name": "Nathan",
+          "strongs": null,
+          "firstRef": "2Sa.5.14",
+          "raw": "Nathan@2Sa.5.14-Luk"
+        },
+        {
+          "name": "Solomon",
+          "strongs": null,
+          "firstRef": "2Sa.5.14",
+          "raw": "Solomon@2Sa.5.14-Act"
+        },
+        {
+          "name": "Ibhar",
+          "strongs": null,
+          "firstRef": "2Sa.5.15",
+          "raw": "Ibhar@2Sa.5.15-1Ch"
+        },
+        {
+          "name": "Elishua",
+          "strongs": null,
+          "firstRef": "2Sa.5.15",
+          "raw": "Elishua@2Sa.5.15-1Ch"
+        },
+        {
+          "name": "Nepheg",
+          "strongs": null,
+          "firstRef": "2Sa.5.15",
+          "raw": "Nepheg@2Sa.5.15-1Ch"
+        },
+        {
+          "name": "Japhia",
+          "strongs": null,
+          "firstRef": "2Sa.5.15",
+          "raw": "Japhia@2Sa.5.15-1Ch"
+        },
+        {
+          "name": "Elishama",
+          "strongs": null,
+          "firstRef": "2Sa.5.16",
+          "raw": "Elishama@2Sa.5.16-1Ch"
+        },
+        {
+          "name": "Eliada",
+          "strongs": null,
+          "firstRef": "2Sa.5.16",
+          "raw": "Eliada@2Sa.5.16-1Ch"
+        },
+        {
+          "name": "Eliphelet",
+          "strongs": null,
+          "firstRef": "2Sa.5.16",
+          "raw": "Eliphelet@2Sa.5.16-1Ch"
+        },
+        {
+          "name": "Tamar",
+          "strongs": null,
+          "firstRef": "2Sa.13.1",
+          "raw": "Tamar@2Sa.13.1-1Ch"
+        },
+        {
+          "name": "Elpelet",
+          "strongs": null,
+          "firstRef": "1Ch.3.6",
+          "raw": "Elpelet@1Ch.3.6-"
+        },
+        {
+          "name": "Nogah",
+          "strongs": null,
+          "firstRef": "1Ch.3.7",
+          "raw": "Nogah@1Ch.3.7-"
+        },
+        {
+          "name": "Jerimoth",
+          "strongs": null,
+          "firstRef": "2Ch.11.18",
+          "raw": "Jerimoth@2Ch.11.18"
+        }
+      ]
+    },
+    "tribe": "Tribe of Judah",
+    "briefDescription": "Amorite king of Eglon, defeated by Joshua",
+    "shortDescription": "Debir was the Amorite king of Eglon who joined a coalition against Joshua but was defeated.",
+    "briefestDescription": "Amorite king"
+  },
+  "Solomon": {
+    "id": "Solomon@2Sa.5.14-Act=H8010",
+    "name": "Solomon",
+    "strongs": "H8010",
+    "firstReference": "2Sa.5.14",
+    "description": "King living at the time of United Monarchy",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "David",
+          "strongs": null,
+          "firstRef": "Rut.4.17",
+          "raw": "David@Rut.4.17-Rev"
+        },
+        "mother": {
+          "name": "Bathsheba",
+          "strongs": null,
+          "firstRef": "2Sa.11.3",
+          "raw": "Bathsheba@2Sa.11.3-Psa"
+        }
+      },
+      "siblings": [
+        {
+          "name": "Amnon",
+          "strongs": null,
+          "firstRef": "2Sa.3.2",
+          "raw": "Amnon@2Sa.3.2-1Ch"
+        },
+        {
+          "name": "Chileab",
+          "strongs": null,
+          "firstRef": "2Sa.3.3",
+          "raw": "Chileab@2Sa.3.3-1Ch"
+        },
+        {
+          "name": "Absalom",
+          "strongs": null,
+          "firstRef": "2Sa.3.3",
+          "raw": "Absalom@2Sa.3.3-Psa"
+        },
+        {
+          "name": "Adonijah",
+          "strongs": null,
+          "firstRef": "2Sa.3.4",
+          "raw": "Adonijah@2Sa.3.4-1Ch"
+        },
+        {
+          "name": "Shephatiah",
+          "strongs": null,
+          "firstRef": "2Sa.3.4",
+          "raw": "Shephatiah@2Sa.3.4-1Ch"
+        },
+        {
+          "name": "Ithream",
+          "strongs": null,
+          "firstRef": "2Sa.3.5",
+          "raw": "Ithream@2Sa.3.5-1Ch"
+        },
+        {
+          "name": "Shammua",
+          "strongs": null,
+          "firstRef": "2Sa.5.14",
+          "raw": "Shammua@2Sa.5.14-1Ch"
+        },
+        {
+          "name": "Shobab",
+          "strongs": null,
+          "firstRef": "2Sa.5.14",
+          "raw": "Shobab@2Sa.5.14-1Ch"
+        },
+        {
+          "name": "Nathan",
+          "strongs": null,
+          "firstRef": "2Sa.5.14",
+          "raw": "Nathan@2Sa.5.14-Luk"
+        },
+        {
+          "name": "Ibhar",
+          "strongs": null,
+          "firstRef": "2Sa.5.15",
+          "raw": "Ibhar@2Sa.5.15-1Ch"
+        },
+        {
+          "name": "Elishua",
+          "strongs": null,
+          "firstRef": "2Sa.5.15",
+          "raw": "Elishua@2Sa.5.15-1Ch"
+        },
+        {
+          "name": "Nepheg",
+          "strongs": null,
+          "firstRef": "2Sa.5.15",
+          "raw": "Nepheg@2Sa.5.15-1Ch"
+        },
+        {
+          "name": "Japhia",
+          "strongs": null,
+          "firstRef": "2Sa.5.15",
+          "raw": "Japhia@2Sa.5.15-1Ch"
+        },
+        {
+          "name": "Elishama",
+          "strongs": null,
+          "firstRef": "2Sa.5.16",
+          "raw": "Elishama@2Sa.5.16-1Ch"
+        },
+        {
+          "name": "Eliada",
+          "strongs": null,
+          "firstRef": "2Sa.5.16",
+          "raw": "Eliada@2Sa.5.16-1Ch"
+        },
+        {
+          "name": "Eliphelet",
+          "strongs": null,
+          "firstRef": "2Sa.5.16",
+          "raw": "Eliphelet@2Sa.5.16-1Ch"
+        },
+        {
+          "name": "Tamar",
+          "strongs": null,
+          "firstRef": "2Sa.13.1",
+          "raw": "Tamar@2Sa.13.1-1Ch"
+        },
+        {
+          "name": "Elpelet",
+          "strongs": null,
+          "firstRef": "1Ch.3.6",
+          "raw": "Elpelet@1Ch.3.6-"
+        },
+        {
+          "name": "Nogah",
+          "strongs": null,
+          "firstRef": "1Ch.3.7",
+          "raw": "Nogah@1Ch.3.7-"
+        },
+        {
+          "name": "Jerimoth",
+          "strongs": null,
+          "firstRef": "2Ch.11.18",
+          "raw": "Jerimoth@2Ch.11.18"
+        }
+      ],
+      "partners": [
+        {
+          "name": "daughter_of_Pharaoh",
+          "strongs": null,
+          "firstRef": "1Ki.3.1",
+          "raw": "daughter_of_Pharaoh@1Ki.3.1"
+        },
+        {
+          "name": "Naamah",
+          "strongs": null,
+          "firstRef": "1Ki.14.21",
+          "raw": "Naamah@1Ki.14.21-2Ch"
+        },
+        {
+          "name": "a_wife_of_Solomon",
+          "strongs": null,
+          "firstRef": "1Ki.4.11",
+          "raw": "a_wife_of_Solomon@1Ki.4.11"
+        }
+      ],
+      "children": [
+        {
+          "name": "Taphath",
+          "strongs": null,
+          "firstRef": "1Ki.4.11",
+          "raw": "Taphath@1Ki.4.11"
+        },
+        {
+          "name": "Basemath",
+          "strongs": null,
+          "firstRef": "1Ki.4.15",
+          "raw": "Basemath@1Ki.4.15"
+        },
+        {
+          "name": "Rehoboam",
+          "strongs": null,
+          "firstRef": "1Ki.11.43",
+          "raw": "Rehoboam@1Ki.11.43-Mat"
+        }
+      ]
+    },
+    "tribe": "Tribe of Judah",
+    "briefDescription": "Son of Jashen - One of David's mighty men",
+    "shortDescription": "The son of Jashen, unnamed in the Bible, was one of David's mighty men.",
+    "briefestDescription": "David's warrior"
+  },
+  "Elijah": {
+    "id": "Elijah@Ezr.10.26=H0452J",
+    "name": "Elijah",
+    "strongs": "H0452J",
+    "firstReference": "Ezr.10.26",
+    "description": "Man living at the time of Exile and Return",
+    "family": {
+      "parents": {
+        "father": null,
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [],
+      "children": []
+    },
+    "tribe": ">",
+    "briefDescription": "A Harodite, one of David's mighty men.",
+    "shortDescription": "Elika the Harodite was one of David's mighty men.",
+    "briefestDescription": "Father of Mahlon"
+  },
+  "Elisha": {
+    "id": "Elisha@1Ki.19.16-Luk=H0477",
+    "name": "Elisha",
+    "strongs": "H0477",
+    "firstReference": "1Ki.19.16",
+    "description": "Prophet living at the time of Divided Monarchy",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Shaphat",
+          "strongs": null,
+          "firstRef": "1Ki.19.16",
+          "raw": "Shaphat@1Ki.19.16-2Ki"
+        },
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [],
+      "children": []
+    },
+    "tribe": ">",
+    "briefDescription": "A son of Javan, who is grandson of Noah.",
+    "shortDescription": "Elishah was a son of Javan and great-grandson of Noah.",
+    "briefestDescription": "Son of Javan"
+  },
+  "Isaiah": {
+    "id": "Isaiah@2Ki.19.2-Rom=H3470A",
+    "name": "Isaiah",
+    "strongs": "H3470A",
+    "firstReference": "2Ki.19.2",
+    "description": "Prophet living at the time of Divided Monarchy",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Amoz",
+          "strongs": null,
+          "firstRef": "2Ki.19.2",
+          "raw": "Amoz@2Ki.19.2-Isa"
+        },
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [],
+      "children": [
+        {
+          "name": "Shear-jashub",
+          "strongs": null,
+          "firstRef": "Isa.7.3",
+          "raw": "Shear-jashub@Isa.7.3"
+        },
+        {
+          "name": "Maher-shalal-hash-baz",
+          "strongs": null,
+          "firstRef": "Isa.8.1",
+          "raw": "Maher-shalal-hash-baz@Isa.8.1-"
+        }
+      ]
+    },
+    "tribe": ">",
+    "briefDescription": "Daughter of Haran, Milcah's sister, Lot's sister.",
+    "shortDescription": "Iscah was the daughter of Haran and sister of Milcah and Lot.",
+    "briefestDescription": "Sister of Lot"
+  },
+  "Jeremiah": {
+    "id": "Jeremiah@Neh.10.2-=H3414M",
+    "name": "Jeremiah",
+    "strongs": "H3414M",
+    "firstReference": "Neh.10.2",
+    "description": "Man living at the time of Exile and Return",
+    "family": {
+      "parents": {
+        "father": null,
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [],
+      "children": []
+    },
+    "tribe": ">",
+    "briefDescription": "Son of Becher, a Benjamite.",
+    "shortDescription": "Jeremoth was a son of Becher and a member of the tribe of Benjamin, as mentioned in the genealogy in 1 Chronicles.",
+    "briefestDescription": "Son of Beriah"
+  },
+  "Daniel": {
+    "id": "Daniel@Ezr.8.2-Neh=H1841G",
+    "name": "Daniel",
+    "strongs": "H1841G",
+    "firstReference": "Ezr.8.2",
+    "description": "Man living at the time of Exile and Return",
+    "family": {
+      "parents": {
+        "father": null,
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [],
+      "children": []
+    },
+    "tribe": ">",
+    "briefDescription": "Son of Zerah, grandson of Judah",
+    "shortDescription": "Dara was a son of Zerah and grandson of Judah.",
+    "briefestDescription": "Son of Mahol"
+  },
+  "Ruth": {
+    "id": "Ruth@Rut.1.4-Mat=H7327",
+    "name": "Ruth",
+    "strongs": "H7327",
+    "firstReference": "Rut.1.4",
+    "description": "Woman living before Israel's Monarchy",
+    "family": {
+      "parents": {
+        "father": null,
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [
+        {
+          "name": "Mahlon",
+          "strongs": null,
+          "firstRef": "Rut.1.2",
+          "raw": "Mahlon@Rut.1.2-"
+        },
+        {
+          "name": "Boaz",
+          "strongs": null,
+          "firstRef": "Rut.2.1",
+          "raw": "Boaz@Rut.2.1-Luk"
+        }
+      ],
+      "children": [
+        {
+          "name": "Obed",
+          "strongs": null,
+          "firstRef": "Rut.4.17",
+          "raw": "Obed@Rut.4.17-Luk"
+        }
+      ]
+    },
+    "tribe": "Moab",
+    "briefDescription": "Son of Cush, grandson of Ham",
+    "shortDescription": "Sabtah (or Sabta) was a son of Cush and a grandson of Ham, mentioned in the Table of Nations.",
+    "briefestDescription": "Son of Cush"
+  },
+  "Esther": {
+    "id": "Esther@Est.2.7-=H0635",
+    "name": "Esther",
+    "strongs": "H0635",
+    "firstReference": "Est.2.7",
+    "description": "Woman living at the time of Exile and Return",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Abihail",
+          "strongs": null,
+          "firstRef": "Est.2.15",
+          "raw": "Abihail@Est.2.15-"
+        },
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [],
+      "children": []
+    },
+    "tribe": ">",
+    "briefDescription": "Son of Zerah; grandson of Judah.",
+    "shortDescription": "Ethan was a son of Zerah and a grandson of Judah.",
+    "briefestDescription": "Son of Zerah"
+  },
+  "Mary": {
+    "id": "Mary@Rom.16.6=G3137M",
+    "name": "Mary",
+    "strongs": "G3137M",
+    "firstReference": "Rom.16.6",
+    "description": "Woman living at the time of the New Testament",
+    "family": {
+      "parents": {
+        "father": null,
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [],
+      "children": []
+    },
+    "tribe": ">",
+    "briefDescription": "Follower of Jesus, first witness of His resurrection.",
+    "shortDescription": "Mary Magdalene, a follower of Jesus, was the first to witness His resurrection.",
+    "briefestDescription": ""
+  },
+  "Jesus": {
+    "id": "Jesus@Isa.7.14-Rev=G2424G",
+    "name": "Jesus",
+    "strongs": "G2424G",
+    "firstReference": "Isa.7.14",
+    "description": "Man living at the time of the New Testament",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Joseph",
+          "strongs": null,
+          "firstRef": "Mat.1.16",
+          "raw": "Joseph@Mat.1.16-Jhn"
+        },
+        "mother": {
+          "name": "Mary",
+          "strongs": null,
+          "firstRef": "Mat.1.16",
+          "raw": "Mary@Mat.1.16-Act"
+        }
+      },
+      "siblings": [
+        {
+          "name": "James",
+          "strongs": null,
+          "firstRef": "Mat.13.55",
+          "raw": "James@Mat.13.55-Jud"
+        },
+        {
+          "name": "Joses",
+          "strongs": null,
+          "firstRef": "Mat.13.55",
+          "raw": "Joses@Mat.13.55-Mrk"
+        },
+        {
+          "name": "Simon",
+          "strongs": null,
+          "firstRef": "Mat.13.55",
+          "raw": "Simon@Mat.13.55-Mrk"
+        },
+        {
+          "name": "Jude",
+          "strongs": null,
+          "firstRef": "Mat.13.55",
+          "raw": "Jude@Mat.13.55-Jud"
+        }
+      ],
+      "partners": [],
+      "children": []
+    },
+    "tribe": "Tribe of Judah",
+    "briefDescription": "The Son of God and Savior of the world.",
+    "shortDescription": "Jesus Christ, the central figure of Christianity, is the Son of God who became incarnate, died for the sins of humanity, and rose from the dead, providing salvation for all who believe in Him.",
+    "briefestDescription": "Son of Joseph"
+  },
+  "Peter": {
+    "id": "Peter@Mat.4.18-2Pe=G4074G",
+    "name": "Peter",
+    "strongs": "G4074G",
+    "firstReference": "Mat.4.18",
+    "description": "Apostle living at the time of the New Testament",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "John",
+          "strongs": null,
+          "firstRef": "Mat.16.17",
+          "raw": "John@Mat.16.17-Jhn"
+        },
+        "mother": null
+      },
+      "siblings": [
+        {
+          "name": "Andrew",
+          "strongs": null,
+          "firstRef": "Mat.4.18",
+          "raw": "Andrew@Mat.4.18-Act"
+        }
+      ],
+      "partners": [
+        {
+          "name": "a_wife_of_Peter",
+          "strongs": null,
+          "firstRef": "Mat.8.14",
+          "raw": "a_wife_of_Peter@Mat.8.14-1Co"
+        }
+      ],
+      "children": []
+    },
+    "tribe": ">",
+    "briefDescription": "Head of the 19th priestly division",
+    "shortDescription": "Peter, also known as Simon, Cephas, or Simon Bar-Jonah, was one of the twelve apostles of Jesus and a prominent leader in the early Christian church.",
+    "briefestDescription": ""
+  },
+  "Paul": {
+    "id": "Paul@Act.7.58-2Pe=G3972G",
+    "name": "Paul",
+    "strongs": "G3972G",
+    "firstReference": "Act.7.58",
+    "description": "Apostle living at the time of the New Testament",
+    "family": {
+      "parents": {
+        "father": null,
+        "mother": null
+      },
+      "siblings": [],
+      "partners": [],
+      "children": []
+    },
+    "tribe": ">",
+    "briefDescription": "Leader from Naphtali appointed to divide Canaan",
+    "shortDescription": "Pedahel, son of Ammihud, the leader from Naphtali appointed to help divide Canaan.",
+    "briefestDescription": "Son of Ammihud"
+  },
+  "John": {
+    "id": "John@Mat.4.21-Rev=G2491H",
+    "name": "John",
+    "strongs": "G2491H",
+    "firstReference": "Mat.4.21",
+    "description": "Apostle living at the time of the New Testament",
+    "family": {
+      "parents": {
+        "father": {
+          "name": "Zebedee",
+          "strongs": null,
+          "firstRef": "Mat.4.21",
+          "raw": "Zebedee@Mat.4.21-Jhn"
+        },
+        "mother": {
+          "name": "Salome",
+          "strongs": null,
+          "firstRef": "Mat.20.20",
+          "raw": "Salome@Mat.20.20-Mrk"
+        }
+      },
+      "siblings": [
+        {
+          "name": "James",
+          "strongs": null,
+          "firstRef": "Mat.4.21",
+          "raw": "James@Mat.4.21-Act"
+        }
+      ],
+      "partners": [],
+      "children": []
+    },
+    "tribe": ">",
+    "briefDescription": "A high priest, son of Eliashib",
+    "shortDescription": "Joiada served as a high priest during the Persian period, succeeding his father Eliashib.",
+    "briefestDescription": "High Priest"
+  }
+}

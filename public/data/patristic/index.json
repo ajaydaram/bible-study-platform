@@ -1,0 +1,1710 @@
+{
+  "metadata": {
+    "source": "HistoricalChristianFaith/Commentaries-Database",
+    "description": "Church Fathers Commentaries on Scripture",
+    "license": "Public Domain",
+    "generated": "2026-02-05T07:15:49.628Z",
+    "fatherCount": 334,
+    "totalCommentaries": 63522
+  },
+  "books": {
+    "1chronicles": {
+      "displayName": "1 Chronicles",
+      "count": 82,
+      "file": "1chronicles.json"
+    },
+    "1corinthians": {
+      "displayName": "1 Corinthians",
+      "count": 2262,
+      "file": "1corinthians.json"
+    },
+    "1john": {
+      "displayName": "1 John",
+      "count": 766,
+      "file": "1john.json"
+    },
+    "1kings": {
+      "displayName": "1 Kings",
+      "count": 322,
+      "file": "1kings.json"
+    },
+    "1maccabees": {
+      "displayName": "1 Maccabees",
+      "count": 2,
+      "file": "1maccabees.json"
+    },
+    "1peter": {
+      "displayName": "1 Peter",
+      "count": 601,
+      "file": "1peter.json"
+    },
+    "1samuel": {
+      "displayName": "1 Samuel",
+      "count": 951,
+      "file": "1samuel.json"
+    },
+    "1thessalonians": {
+      "displayName": "1 Thessalonians",
+      "count": 289,
+      "file": "1thessalonians.json"
+    },
+    "1timothy": {
+      "displayName": "1 Timothy",
+      "count": 803,
+      "file": "1timothy.json"
+    },
+    "2chronicles": {
+      "displayName": "2 Chronicles",
+      "count": 49,
+      "file": "2chronicles.json"
+    },
+    "2corinthians": {
+      "displayName": "2 Corinthians",
+      "count": 1109,
+      "file": "2corinthians.json"
+    },
+    "2john": {
+      "displayName": "2 John",
+      "count": 43,
+      "file": "2john.json"
+    },
+    "2kings": {
+      "displayName": "2 Kings",
+      "count": 202,
+      "file": "2kings.json"
+    },
+    "2maccabees": {
+      "displayName": "2 Maccabees",
+      "count": 21,
+      "file": "2maccabees.json"
+    },
+    "2peter": {
+      "displayName": "2 Peter",
+      "count": 261,
+      "file": "2peter.json"
+    },
+    "2samuel": {
+      "displayName": "2 Samuel",
+      "count": 167,
+      "file": "2samuel.json"
+    },
+    "2thessalonians": {
+      "displayName": "2 Thessalonians",
+      "count": 237,
+      "file": "2thessalonians.json"
+    },
+    "2timothy": {
+      "displayName": "2 Timothy",
+      "count": 424,
+      "file": "2timothy.json"
+    },
+    "3john": {
+      "displayName": "3 John",
+      "count": 40,
+      "file": "3john.json"
+    },
+    "acts": {
+      "displayName": "Acts",
+      "count": 2677,
+      "file": "acts.json"
+    },
+    "amos": {
+      "displayName": "Amos",
+      "count": 183,
+      "file": "amos.json"
+    },
+    "baruch": {
+      "displayName": "Baruch",
+      "count": 67,
+      "file": "baruch.json"
+    },
+    "colossians": {
+      "displayName": "Colossians",
+      "count": 402,
+      "file": "colossians.json"
+    },
+    "daniel": {
+      "displayName": "Daniel",
+      "count": 774,
+      "file": "daniel.json"
+    },
+    "deuteronomy": {
+      "displayName": "Deuteronomy",
+      "count": 278,
+      "file": "deuteronomy.json"
+    },
+    "ecclesiastes": {
+      "displayName": "Ecclesiastes",
+      "count": 562,
+      "file": "ecclesiastes.json"
+    },
+    "ephesians": {
+      "displayName": "Ephesians",
+      "count": 935,
+      "file": "ephesians.json"
+    },
+    "esther": {
+      "displayName": "Esther",
+      "count": 100,
+      "file": "esther.json"
+    },
+    "exodus": {
+      "displayName": "Exodus",
+      "count": 626,
+      "file": "exodus.json"
+    },
+    "ezekiel": {
+      "displayName": "Ezekiel",
+      "count": 1125,
+      "file": "ezekiel.json"
+    },
+    "ezra": {
+      "displayName": "Ezra",
+      "count": 132,
+      "file": "ezra.json"
+    },
+    "galatians": {
+      "displayName": "Galatians",
+      "count": 906,
+      "file": "galatians.json"
+    },
+    "genesis": {
+      "displayName": "Genesis",
+      "count": 2265,
+      "file": "genesis.json"
+    },
+    "habakkuk": {
+      "displayName": "Habakkuk",
+      "count": 136,
+      "file": "habakkuk.json"
+    },
+    "haggai": {
+      "displayName": "Haggai",
+      "count": 45,
+      "file": "haggai.json"
+    },
+    "hebrews": {
+      "displayName": "Hebrews",
+      "count": 1385,
+      "file": "hebrews.json"
+    },
+    "hosea": {
+      "displayName": "Hosea",
+      "count": 312,
+      "file": "hosea.json"
+    },
+    "isaiah": {
+      "displayName": "Isaiah",
+      "count": 2651,
+      "file": "isaiah.json"
+    },
+    "james": {
+      "displayName": "James",
+      "count": 420,
+      "file": "james.json"
+    },
+    "jeremiah": {
+      "displayName": "Jeremiah",
+      "count": 1166,
+      "file": "jeremiah.json"
+    },
+    "job": {
+      "displayName": "Job",
+      "count": 1612,
+      "file": "job.json"
+    },
+    "joel": {
+      "displayName": "Joel",
+      "count": 104,
+      "file": "joel.json"
+    },
+    "john": {
+      "displayName": "John",
+      "count": 6786,
+      "file": "john.json"
+    },
+    "jonah": {
+      "displayName": "Jonah",
+      "count": 155,
+      "file": "jonah.json"
+    },
+    "joshua": {
+      "displayName": "Joshua",
+      "count": 262,
+      "file": "joshua.json"
+    },
+    "jude": {
+      "displayName": "Jude",
+      "count": 108,
+      "file": "jude.json"
+    },
+    "judges": {
+      "displayName": "Judges",
+      "count": 211,
+      "file": "judges.json"
+    },
+    "lamentations": {
+      "displayName": "Lamentations",
+      "count": 186,
+      "file": "lamentations.json"
+    },
+    "leviticus": {
+      "displayName": "Leviticus",
+      "count": 154,
+      "file": "leviticus.json"
+    },
+    "luke": {
+      "displayName": "Luke",
+      "count": 5518,
+      "file": "luke.json"
+    },
+    "malachi": {
+      "displayName": "Malachi",
+      "count": 112,
+      "file": "malachi.json"
+    },
+    "mark": {
+      "displayName": "Mark",
+      "count": 2032,
+      "file": "mark.json"
+    },
+    "matthew": {
+      "displayName": "Matthew",
+      "count": 6109,
+      "file": "matthew.json"
+    },
+    "micah": {
+      "displayName": "Micah",
+      "count": 143,
+      "file": "micah.json"
+    },
+    "nahum": {
+      "displayName": "Nahum",
+      "count": 55,
+      "file": "nahum.json"
+    },
+    "nehemiah": {
+      "displayName": "Nehemiah",
+      "count": 105,
+      "file": "nehemiah.json"
+    },
+    "numbers": {
+      "displayName": "Numbers",
+      "count": 231,
+      "file": "numbers.json"
+    },
+    "obadiah": {
+      "displayName": "Obadiah",
+      "count": 44,
+      "file": "obadiah.json"
+    },
+    "philemon": {
+      "displayName": "Philemon",
+      "count": 141,
+      "file": "philemon.json"
+    },
+    "philippians": {
+      "displayName": "Philippians",
+      "count": 506,
+      "file": "philippians.json"
+    },
+    "proverbs": {
+      "displayName": "Proverbs",
+      "count": 1380,
+      "file": "proverbs.json"
+    },
+    "psalms": {
+      "displayName": "Psalms",
+      "count": 4926,
+      "file": "psalms.json"
+    },
+    "revelation": {
+      "displayName": "Revelation",
+      "count": 2201,
+      "file": "revelation.json"
+    },
+    "romans": {
+      "displayName": "Romans",
+      "count": 2868,
+      "file": "romans.json"
+    },
+    "ruth": {
+      "displayName": "Ruth",
+      "count": 27,
+      "file": "ruth.json"
+    },
+    "sirach": {
+      "displayName": "Sirach",
+      "count": 284,
+      "file": "sirach.json"
+    },
+    "songofsolomon": {
+      "displayName": "Song of Solomon",
+      "count": 576,
+      "file": "songofsolomon.json"
+    },
+    "titus": {
+      "displayName": "Titus",
+      "count": 225,
+      "file": "titus.json"
+    },
+    "tobit": {
+      "displayName": "Tobit",
+      "count": 38,
+      "file": "tobit.json"
+    },
+    "wisdom": {
+      "displayName": "Wisdom",
+      "count": 323,
+      "file": "wisdom.json"
+    },
+    "zechariah": {
+      "displayName": "Zechariah",
+      "count": 267,
+      "file": "zechariah.json"
+    },
+    "zephaniah": {
+      "displayName": "Zephaniah",
+      "count": 55,
+      "file": "zephaniah.json"
+    }
+  },
+  "fathers": {
+    "Braulio of Zaragoza": {
+      "year": 651,
+      "wiki": "https://en.wikipedia.org/wiki/Braulio_of_Zaragoza"
+    },
+    "Palladius of Galatia": {
+      "year": 420,
+      "wiki": "https://en.wikipedia.org/wiki/Palladius_of_Galatia"
+    },
+    "Isidore of Pelusium": {
+      "year": 450,
+      "wiki": "https://en.wikipedia.org/wiki/Isidore_of_Pelusium"
+    },
+    "Gennadius of Constantinople": {
+      "year": 471,
+      "wiki": "https://en.wikipedia.org/wiki/Gennadius_of_Constantinople"
+    },
+    "Leander of Seville": {
+      "year": 601,
+      "wiki": "https://en.wikipedia.org/wiki/Leander_of_Seville"
+    },
+    "Peter Chrysologus": {
+      "year": 450,
+      "wiki": "https://en.wikipedia.org/wiki/Peter_Chrysologus"
+    },
+    "Philastrius of Brescia": {
+      "year": 397,
+      "wiki": "https://en.wikipedia.org/wiki/Philastrius"
+    },
+    "Nemesius of Emesa": {
+      "year": 390,
+      "wiki": "https://en.wikipedia.org/wiki/Nemesius"
+    },
+    "Alexander of Alexandria": {
+      "year": 328,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Alexander_I_of_Alexandria"
+    },
+    "Julius Africanus": {
+      "year": 240,
+      "wiki": "https://en.wikipedia.org/wiki/Sextus_Julius_Africanus"
+    },
+    "Adamantius": {
+      "year": 400,
+      "wiki": "https://en.wikipedia.org/wiki/De_recta_in_Deum_fide"
+    },
+    "Gregory Palamas": {
+      "year": 1359,
+      "wiki": "https://en.wikipedia.org/wiki/Gregory_Palamas"
+    },
+    "Patrick of Ireland": {
+      "year": 461,
+      "wiki": "https://en.wikipedia.org/wiki/Saint_Patrick"
+    },
+    "Council of Ancyra of 314": {
+      "year": 314,
+      "wiki": "https://en.wikipedia.org/wiki/Synod_of_Ancyra"
+    },
+    "Hebrews": {
+      "year": 69,
+      "wiki": "https://en.wikipedia.org/wiki/Epistle_to_the_Hebrews"
+    },
+    "Matthew": {
+      "year": 60,
+      "wiki": "https://en.wikipedia.org/wiki/Gospel_of_Matthew"
+    },
+    "John of Dalyatha": {
+      "year": 780,
+      "wiki": "https://en.wikipedia.org/wiki/John_of_Dalyatha"
+    },
+    "Aponius": {
+      "year": 500,
+      "wiki": "https://referenceworks.brillonline.com/entries/brill-s-new-pauly/aponius-e128770"
+    },
+    "Gospel of the Hebrews": {
+      "year": 150,
+      "wiki": "https://en.wikipedia.org/wiki/Gospel_of_the_Hebrews"
+    },
+    "Eusebius of Gaul": {
+      "year": 500,
+      "wiki": "https://fr.wikipedia.org/wiki/Eus%C3%A8be_gallican"
+    },
+    "Philoxenus of Mabbug": {
+      "year": 523,
+      "wiki": "https://en.wikipedia.org/wiki/Philoxenus_of_Mabbug"
+    },
+    "Jude": {
+      "year": 70,
+      "wiki": "https://en.wikipedia.org/wiki/Epistle_of_Jude"
+    },
+    "Gaudentius of Rimini": {
+      "year": 360,
+      "wiki": "https://en.wikipedia.org/wiki/Gaudentius_of_Rimini"
+    },
+    "Council of Constantinople of 381": {
+      "year": 381,
+      "wiki": "https://en.wikipedia.org/wiki/First_Council_of_Constantinople"
+    },
+    "Epiphanius of Salamis": {
+      "year": 403,
+      "wiki": "https://en.wikipedia.org/wiki/Epiphanius_of_Salamis"
+    },
+    "Apollinaris of Laodicea": {
+      "year": 382,
+      "wiki": "https://en.wikipedia.org/wiki/Apollinaris_of_Laodicea"
+    },
+    "Walafrid Strabo": {
+      "year": 849,
+      "wiki": "https://en.wikipedia.org/wiki/Walafrid_Strabo"
+    },
+    "Olympiodorus of Alexandria": {
+      "year": 600,
+      "wiki": "https://www.biblicalcyclopedia.com/O/olympiodorus-of-alexandria.html"
+    },
+    "Theodotus of Ancyra": {
+      "year": 446,
+      "wiki": "https://en.wikipedia.org/wiki/Theodotus_of_Ancyra_(bishop)"
+    },
+    "Ephesians": {
+      "year": 62,
+      "wiki": "https://en.wikipedia.org/wiki/Epistle_to_the_Ephesians"
+    },
+    "Andreas of Caesarea": {
+      "year": 614,
+      "wiki": "https://en.wikipedia.org/wiki/Andreas_of_Caesarea"
+    },
+    "Severus of Antioch": {
+      "year": 538,
+      "wiki": "https://en.wikipedia.org/wiki/Severus_of_Antioch"
+    },
+    "Gregory of Neocaesarea": {
+      "year": 270,
+      "wiki": "https://en.wikipedia.org/wiki/Gregory_Thaumaturgus"
+    },
+    "Diadochos of Photiki": {
+      "year": 486,
+      "wiki": "https://en.wikipedia.org/wiki/Diadochos_of_Photiki"
+    },
+    "Hippolytus of Rome": {
+      "year": 235,
+      "wiki": "https://en.wikipedia.org/wiki/Hippolytus_of_Rome"
+    },
+    "Papias of Hierapolis": {
+      "year": 130,
+      "wiki": "https://en.wikipedia.org/wiki/Papias_of_Hierapolis"
+    },
+    "Dorotheos of Gaza": {
+      "year": 565,
+      "wiki": "https://en.wikipedia.org/wiki/Dorotheus_of_Gaza"
+    },
+    "Optatus of Milevis": {
+      "year": 390,
+      "wiki": "https://en.wikipedia.org/wiki/Optatus"
+    },
+    "Methodius of Olympus": {
+      "year": 311,
+      "wiki": "https://en.wikipedia.org/wiki/Methodius_of_Olympus"
+    },
+    "Potamius of Lisbon": {
+      "year": 360,
+      "wiki": "https://en.wikipedia.org/wiki/Potamius"
+    },
+    "Ammonius of Alexandria": {
+      "year": 300,
+      "wiki": "https://en.wikipedia.org/wiki/Ammonius_of_Alexandria_(Christian_philosopher)"
+    },
+    "GK Chesterton": {
+      "year": 1936,
+      "wiki": "https://en.wikipedia.org/wiki/G._K._Chesterton"
+    },
+    "The Passing of Mary": {
+      "year": 300,
+      "wiki": "https://www.ccel.org/ccel/schaff/anf08/anf08.vii.xliv.html"
+    },
+    "Tyrannius Rufinus": {
+      "year": 411,
+      "wiki": "https://en.wikipedia.org/wiki/Tyrannius_Rufinus"
+    },
+    "Paulus Orosius": {
+      "year": 420,
+      "wiki": "https://en.wikipedia.org/wiki/Orosius"
+    },
+    "Haymo of Halberstadt": {
+      "year": 853,
+      "wiki": "https://en.wikipedia.org/wiki/Haymo_of_Halberstadt"
+    },
+    "Theodore of Mopsuestia": {
+      "year": 428,
+      "wiki": "https://en.wikipedia.org//wiki/Theodore_of_Mopsuestia"
+    },
+    "Berengaudus": {
+      "year": 892,
+      "wiki": "https://en.wikipedia.org/wiki/Berengaudus"
+    },
+    "John Damascene": {
+      "year": 749,
+      "wiki": "https://en.wikipedia.org/wiki/John_of_Damascus"
+    },
+    "The Passion of Saints Perpetua and Felicity": {
+      "year": 203,
+      "wiki": "https://en.wikipedia.org/wiki/The_Passion_of_Saints_Perpetua_and_Felicity"
+    },
+    "John Chrysostom": {
+      "year": 407,
+      "wiki": "https://en.wikipedia.org/wiki/John_Chrysostom"
+    },
+    "Symeon the New Theologian": {
+      "year": 1022,
+      "wiki": "https://en.wikipedia.org/wiki/Symeon_the_New_Theologian"
+    },
+    "Council of Neocaesarea of 315": {
+      "year": 315,
+      "wiki": "https://en.wikipedia.org/wiki/Synod_of_Neocaesarea"
+    },
+    "Martin of Braga": {
+      "year": 580,
+      "wiki": "https://en.wikipedia.org/wiki/Martin_of_Braga"
+    },
+    "Gregory of Nazianzus": {
+      "year": 390,
+      "wiki": "https://en.wikipedia.org/wiki/Gregory_of_Nazianzus"
+    },
+    "Alexander of Jerusalem": {
+      "year": 251,
+      "wiki": "https://en.wikipedia.org/wiki/Alexander_of_Jerusalem"
+    },
+    "Pacian of Barcelona": {
+      "year": 391,
+      "wiki": "https://en.wikipedia.org/wiki/Pacian"
+    },
+    "Sophronius of Jerusalem": {
+      "year": 638,
+      "wiki": "https://en.wikipedia.org/wiki/Sophronius_of_Jerusalem"
+    },
+    "Pseudo-Athanasius": {
+      "year": 9999,
+      "wiki": "https://en.wikipedia.org/wiki/Athanasius_of_Alexandria#Misattributed_works"
+    },
+    "Amphilochius of Iconium": {
+      "year": 403,
+      "wiki": "https://en.wikipedia.org/wiki/Amphilochius_of_Iconium"
+    },
+    "Didascalia Apostolorum": {
+      "year": 230,
+      "wiki": "https://en.wikipedia.org/wiki/Didascalia_Apostolorum"
+    },
+    "Theognostus Of Alexandria": {
+      "year": 270,
+      "wiki": "https://en.wikipedia.org/wiki/Theognostus_of_Alexandria"
+    },
+    "Vincent of Lérins": {
+      "year": 445,
+      "wiki": "https://en.wikipedia.org/wiki/Vincent_of_L%C3%A9rins"
+    },
+    "John I of Antioch": {
+      "year": 441,
+      "wiki": "https://en.wikipedia.org/wiki/John_I_of_Antioch"
+    },
+    "Douglas Wilson": {
+      "year": 2020,
+      "wiki": "https://en.wikipedia.org/wiki/Douglas_Wilson_(theologian)"
+    },
+    "Ambrosian Hymn Writer": {
+      "year": 500,
+      "wiki": "https://en.wikipedia.org/wiki/Ambrosian_hymns"
+    },
+    "Shepherd of Hermas": {
+      "year": 160,
+      "wiki": "https://en.wikipedia.org/wiki/The_Shepherd_of_Hermas"
+    },
+    "Arator": {
+      "year": 544,
+      "wiki": "https://en.wikipedia.org/wiki/Arator"
+    },
+    "Thietland of Einsiedeln": {
+      "year": 945,
+      "wiki": "https://sites.google.com/site/aquinasstudybible/home/glossa-ordinaria/thietland-of-einsiedein"
+    },
+    "Polycarp of Smyrna": {
+      "year": 155,
+      "wiki": "https://en.wikipedia.org/wiki/Polycarp"
+    },
+    "Magnus Felix Ennodius": {
+      "year": 521,
+      "wiki": "https://en.wikipedia.org/wiki/Magnus_Felix_Ennodius"
+    },
+    "Haimo of Auxerre": {
+      "year": 865,
+      "wiki": "https://en.wikipedia.org/wiki/Haimo_of_Auxerre"
+    },
+    "Mark": {
+      "year": 60,
+      "wiki": "https://en.wikipedia.org/wiki/Gospel_of_Mark"
+    },
+    "Hugh of Saint-Cher": {
+      "year": 1263,
+      "wiki": "https://en.wikipedia.org//wiki/Hugh_of_Saint-Cher"
+    },
+    "Basil of Caesarea": {
+      "year": 379,
+      "wiki": "https://en.wikipedia.org/wiki/Basil_of_Caesarea"
+    },
+    "Salvian the Presbyter": {
+      "year": 500,
+      "wiki": "https://en.wikipedia.org/wiki/Salvian"
+    },
+    "Justin Martyr": {
+      "year": 165,
+      "wiki": "https://en.wikipedia.org/wiki/Justin_Martyr"
+    },
+    "Arnobius the Younger": {
+      "year": 460,
+      "wiki": "https://en.wikipedia.org/wiki/Arnobius_the_Younger"
+    },
+    "Ambrosiaster": {
+      "year": 384,
+      "wiki": "https://en.wikipedia.org/wiki/Ambrosiaster"
+    },
+    "Macrina the Younger": {
+      "year": 379,
+      "wiki": "https://en.wikipedia.org/wiki/Macrina_the_Younger"
+    },
+    "Codex Veronensis": {
+      "year": 500,
+      "wiki": "https://en.wikipedia.org/wiki/Codex_Veronensis"
+    },
+    "Rabanus Maurus": {
+      "year": 856,
+      "wiki": "https://en.wikipedia.org/wiki/Rabanus_Maurus"
+    },
+    "Paterius": {
+      "year": 606,
+      "wiki": "https://en.wikipedia.org/wiki/Paterius"
+    },
+    "Tatian the Assyrian": {
+      "year": 180,
+      "wiki": "https://en.wikipedia.org/wiki/Tatian"
+    },
+    "Dionysius of Alexandria": {
+      "year": 264,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Dionysius_of_Alexandria"
+    },
+    "1 Timothy": {
+      "year": 64,
+      "wiki": "https://en.wikipedia.org/wiki/First_Epistle_to_Timothy"
+    },
+    "Ignatius of Antioch": {
+      "year": 108,
+      "wiki": "https://en.wikipedia.org/wiki/Ignatius_of_Antioch"
+    },
+    "Pope Anterus": {
+      "year": 236,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Anterus"
+    },
+    "Cyril of Alexandria": {
+      "year": 444,
+      "wiki": "https://en.wikipedia.org/wiki/Cyril_of_Alexandria"
+    },
+    "Chromatius of Aquileia": {
+      "year": 406,
+      "wiki": "https://en.wikipedia.org/wiki/Chromatius"
+    },
+    "John of Cressy": {
+      "year": 1313,
+      "wiki": "https://www.biblicalcyclopedia.com/J/john-the-monk.html"
+    },
+    "Philippians": {
+      "year": 62,
+      "wiki": "https://en.wikipedia.org/wiki/Epistle_to_the_Philippians"
+    },
+    "Maximus of Turin": {
+      "year": 465,
+      "wiki": "https://en.wikipedia.org/wiki/Maximus_of_Turin"
+    },
+    "Abraham of Nathpar": {
+      "year": 600,
+      "wiki": "https://syriaca.org/person/321"
+    },
+    "Eugippius": {
+      "year": 535,
+      "wiki": "https://en.wikipedia.org/wiki/Eugippius"
+    },
+    "Marcus Minucius Felix": {
+      "year": 250,
+      "wiki": "https://en.wikipedia.org/wiki/Marcus_Minucius_Felix"
+    },
+    "Syncletica of Alexandria": {
+      "year": 350,
+      "wiki": "https://en.wikipedia.org/wiki/Syncletica_of_Alexandria"
+    },
+    "Theodoret of Cyrus": {
+      "year": 458,
+      "wiki": "https://en.wikipedia.org/wiki/Theodoret"
+    },
+    "James": {
+      "year": 49,
+      "wiki": "https://en.wikipedia.org/wiki/Epistle_of_James"
+    },
+    "JB Lightfoot": {
+      "year": 1889,
+      "wiki": "https://en.wikipedia.org/wiki/J._B._Lightfoot"
+    },
+    "Prudentius": {
+      "year": 410,
+      "wiki": "https://en.wikipedia.org/wiki/Prudentius"
+    },
+    "Nicetas of Remesiana": {
+      "year": 414,
+      "wiki": "https://en.wikipedia.org/wiki/Nicetas_of_Remesiana"
+    },
+    "Gennadius of Massilia": {
+      "year": 496,
+      "wiki": "https://en.wikipedia.org/wiki/Gennadius_of_Massilia"
+    },
+    "Josephus": {
+      "year": 100,
+      "wiki": "https://en.wikipedia.org/wiki/Josephus"
+    },
+    "Pseudo-Augustine": {
+      "year": 9999,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Augustine"
+    },
+    "Titus of Bostra": {
+      "year": 378,
+      "wiki": "https://en.wikipedia.org/wiki/Titus_of_Bostra"
+    },
+    "Gregory of Elvira": {
+      "year": 392,
+      "wiki": "https://en.wikipedia.org/wiki/Gregory_of_Elvira"
+    },
+    "Liturgy of Saint Mark": {
+      "year": 300,
+      "wiki": "https://en.wikipedia.org/wiki/Liturgy_of_Saint_Cyril"
+    },
+    "1 Corinthians": {
+      "year": 55,
+      "wiki": "https://en.wikipedia.org/wiki/First_Epistle_to_the_Corinthians"
+    },
+    "Council of Nicaea of 325": {
+      "year": 325,
+      "wiki": "https://en.wikipedia.org/wiki/First_Council_of_Nicaea"
+    },
+    "Hegesippus": {
+      "year": 180,
+      "wiki": "https://en.wikipedia.org/wiki/Hegesippus_(chronicler)"
+    },
+    "Alcuin of York": {
+      "year": 804,
+      "wiki": "https://en.wikipedia.org/wiki/Alcuin"
+    },
+    "Philo of Alexandria": {
+      "year": 50,
+      "wiki": "https://en.wikipedia.org/wiki/Philo"
+    },
+    "Valentinus": {
+      "year": 180,
+      "wiki": "https://en.wikipedia.org/wiki/Valentinus_(Gnostic)"
+    },
+    "Pope Zephyrinus": {
+      "year": 217,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Zephyrinus"
+    },
+    "Leo the Great": {
+      "year": 461,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Leo_I"
+    },
+    "Venerable Barsanuphius and John the Prophet": {
+      "year": 545,
+      "wiki": "https://en.wikipedia.org/wiki/Barsanuphius"
+    },
+    "Pseudo-Dionysius the Areopagite": {
+      "year": 532,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Dionysius_the_Areopagite"
+    },
+    "Epistle of Barnabas": {
+      "year": 132,
+      "wiki": "https://en.wikipedia.org//wiki/Epistle_of_Barnabas"
+    },
+    "Valerian of Cimiez": {
+      "year": 460,
+      "wiki": "https://www.wikidata.org/wiki/Q3554325"
+    },
+    "Pseudo-Tertullian": {
+      "year": 9999,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Tertullian"
+    },
+    "Acts of Peter": {
+      "year": 200,
+      "wiki": "https://en.wikipedia.org/wiki/Acts_of_Peter"
+    },
+    "Petrus Alphonsi": {
+      "year": 1130,
+      "wiki": "https://en.wikipedia.org/wiki/Petrus_Alphonsi"
+    },
+    "Ishodad of Merv": {
+      "year": 850,
+      "wiki": "https://en.wikipedia.org/wiki/Ishodad_of_Merv"
+    },
+    "Nicholas of Lyra": {
+      "year": 1349,
+      "wiki": "https://en.wikipedia.org/wiki/Nicholas_of_Lyra"
+    },
+    "Jerome": {
+      "year": 420,
+      "wiki": "https://en.wikipedia.org/wiki/Jerome"
+    },
+    "Theophilus of Alexandria": {
+      "year": 412,
+      "wiki": "https://en.wikipedia.org/wiki/Theophilus_I_of_Alexandria"
+    },
+    "Fulgentius of Ruspe": {
+      "year": 533,
+      "wiki": "https://en.wikipedia.org/wiki/Fulgentius_of_Ruspe"
+    },
+    "Novatian": {
+      "year": 258,
+      "wiki": "https://en.wikipedia.org/wiki/Novatian"
+    },
+    "Didymus the Blind": {
+      "year": 398,
+      "wiki": "https://en.wikipedia.org/wiki/Didymus_the_Blind"
+    },
+    "Lateran Council of 649": {
+      "year": 649,
+      "wiki": "https://en.wikipedia.org/wiki/Lateran_Council_of_649"
+    },
+    "Julian of Toledo": {
+      "year": 690,
+      "wiki": "https://en.wikipedia.org/wiki/Julian_of_Toledo"
+    },
+    "Apringius of Beja": {
+      "year": 600,
+      "wiki": "https://en.wikipedia.org/wiki/Apringius"
+    },
+    "Clement of Rome": {
+      "year": 99,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Clement_I"
+    },
+    "2 Corinthians": {
+      "year": 56,
+      "wiki": "https://en.wikipedia.org/wiki/Second_Epistle_to_the_Corinthians"
+    },
+    "Jacob of Edessa": {
+      "year": 708,
+      "wiki": "https://en.wikipedia.org/wiki/Jacob_of_Edessa"
+    },
+    "Eznik of Kolb": {
+      "year": 449,
+      "wiki": "https://en.wikipedia.org/wiki/Eznik_of_Kolb"
+    },
+    "Ildefonsus of Toledo": {
+      "year": 667,
+      "wiki": "https://en.wikipedia.org/wiki/Ildefonsus"
+    },
+    "Horsiesios": {
+      "year": 387,
+      "wiki": "https://coptic-wiki.org/horsiesios-saint"
+    },
+    "Nicholas of Gorran": {
+      "year": 1295,
+      "wiki": "https://en.wikipedia.org/wiki/Nicholas_of_Gorran"
+    },
+    "Odes of Solomon": {
+      "year": 125,
+      "wiki": "https://en.wikipedia.org/wiki/Odes_of_Solomon"
+    },
+    "Proclus of Constantinople": {
+      "year": 446,
+      "wiki": "https://en.wikipedia.org/wiki/Proclus_of_Constantinople"
+    },
+    "Theonas of Alexandria": {
+      "year": 300,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Theonas_of_Alexandria"
+    },
+    "Isaac of Nineveh": {
+      "year": 700,
+      "wiki": "https://en.wikipedia.org/wiki/Isaac_of_Nineveh"
+    },
+    "Aphrahat the Persian Sage": {
+      "year": 345,
+      "wiki": "https://en.wikipedia.org/wiki/Aphrahat"
+    },
+    "Hilary of Poitiers": {
+      "year": 367,
+      "wiki": "https://en.wikipedia.org/wiki/Hilary_of_Poitiers"
+    },
+    "John Calvin": {
+      "year": 1564,
+      "wiki": "https://en.wikipedia.org/wiki/John_Calvin"
+    },
+    "Primasius of Hadrumetum": {
+      "year": 560,
+      "wiki": "https://en.wikipedia.org/wiki/Primasius_of_Hadrumetum"
+    },
+    "Erasmus of Rotterdam": {
+      "year": 1536,
+      "wiki": "https://en.wikipedia.org/wiki/Erasmus"
+    },
+    "Luke": {
+      "year": 61,
+      "wiki": "https://en.wikipedia.org/wiki/Gospel_of_Luke"
+    },
+    "Pseudo-Cyprian": {
+      "year": 300,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Cyprian"
+    },
+    "Adamnan": {
+      "year": 704,
+      "wiki": "https://en.wikipedia.org/wiki/Adomn%C3%A1n"
+    },
+    "Isaiah the Solitary": {
+      "year": 491,
+      "wiki": "https://en.wikipedia.org/wiki/Isaiah_the_Solitary"
+    },
+    "Agapius of Hierapolis": {
+      "year": 942,
+      "wiki": "https://en.wikipedia.org/wiki/Agapius_of_Hierapolis"
+    },
+    "Galatians": {
+      "year": 50,
+      "wiki": "https://en.wikipedia.org/wiki/Epistle_to_the_Galatians"
+    },
+    "Hegemonius": {
+      "year": 400,
+      "wiki": "https://en.wikipedia.org/wiki/Hegemonius"
+    },
+    "Oresiesis-Heru-sa Ast": {
+      "year": 380,
+      "wiki": "https://en.wikipedia.org/wiki/Orsisius"
+    },
+    "Peter Olivi": {
+      "year": 1298,
+      "wiki": "https://en.wikipedia.org/wiki/Peter_John_Olivi"
+    },
+    "Hermias Sozomen": {
+      "year": 450,
+      "wiki": "https://en.wikipedia.org/wiki/Sozomen"
+    },
+    "Pamphilus of Caesarea": {
+      "year": 309,
+      "wiki": "https://en.wikipedia.org/wiki/Pamphilus_of_Caesarea"
+    },
+    "Pseudo-Hegesippus": {
+      "year": 400,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Hegesippus"
+    },
+    "Caius Presbyter of Rome": {
+      "year": 200,
+      "wiki": "https://en.wikipedia.org/wiki/Caius_(presbyter)"
+    },
+    "John the Solitary": {
+      "year": 450,
+      "wiki": "https://roger-pearse.com/wiki/index.php?title=John_the_Solitary"
+    },
+    "Evagrius Ponticus": {
+      "year": 399,
+      "wiki": "https://en.wikipedia.org/wiki/Evagrius_Ponticus"
+    },
+    "2 Peter": {
+      "year": 68,
+      "wiki": "https://en.wikipedia.org/wiki/Second_Epistle_of_Peter"
+    },
+    "Lucifer of Cagliari": {
+      "year": 370,
+      "wiki": "https://en.wikipedia.org/wiki/Lucifer_of_Cagliari"
+    },
+    "Bede": {
+      "year": 735,
+      "wiki": "https://en.wikipedia.org/wiki/Bede"
+    },
+    "Besa The Copt": {
+      "year": 474,
+      "wiki": "https://ccdl.claremont.edu/digital/collection/cce/id/345/"
+    },
+    "Julianus Pomerius": {
+      "year": 505,
+      "wiki": "https://en.wikipedia.org/wiki/Julianus_Pomerius"
+    },
+    "Archelaus of Carrhae": {
+      "year": 278,
+      "wiki": "https://en.wikipedia.org/wiki/Archelaus_(bishop_of_Carrhae)"
+    },
+    "Hesychius of Jerusalem": {
+      "year": 450,
+      "wiki": "https://en.wikipedia.org/wiki/Hesychius_of_Jerusalem"
+    },
+    "Epiphanius Scholasticus": {
+      "year": 510,
+      "wiki": "https://en.wikipedia.org/wiki/Epiphanius_Scholasticus"
+    },
+    "Dionysius of Corinth": {
+      "year": 171,
+      "wiki": "https://en.wikipedia.org/wiki/Dionysius_of_Corinth"
+    },
+    "Pseudo-Hippolytus": {
+      "year": 9999,
+      "wiki": "https://www.tertullian.org/fathers2/ANF-05/anf05-20.htm"
+    },
+    "Julian of Eclanum": {
+      "year": 455,
+      "wiki": "https://en.wikipedia.org/wiki/Julian_of_Eclanum"
+    },
+    "Verecundus of Junca": {
+      "year": 552,
+      "wiki": "https://en.wikipedia.org/wiki/Verecundus_of_Junca"
+    },
+    "Pseudo-Barnabas": {
+      "year": 132,
+      "wiki": "https://en.wikipedia.org/wiki/Epistle_of_Barnabas"
+    },
+    "Commodian": {
+      "year": 250,
+      "wiki": "https://en.wikipedia.org/wiki/Commodian"
+    },
+    "Pelagius": {
+      "year": 418,
+      "wiki": "https://en.wikipedia.org/wiki/Pelagius"
+    },
+    "Eusebius of Caesarea": {
+      "year": 339,
+      "wiki": "https://en.wikipedia.org/wiki/Eusebius"
+    },
+    "Phileas of Thmuis": {
+      "year": 306,
+      "wiki": "https://en.wikipedia.org/wiki/Phileas_and_Philoromus"
+    },
+    "Romanos the Melodist": {
+      "year": 555,
+      "wiki": "https://en.wikipedia.org/wiki/Romanos_the_Melodist"
+    },
+    "Lanfranc of Canterbury": {
+      "year": 1089,
+      "wiki": "https://en.wikipedia.org/wiki/Lanfranc"
+    },
+    "Council of Ephesus": {
+      "year": 431,
+      "wiki": "https://en.wikipedia.org/wiki/Council_of_Ephesus"
+    },
+    "Polycrates Of Ephesus": {
+      "year": 196,
+      "wiki": "https://en.wikipedia.org/wiki/Polycrates_of_Ephesus"
+    },
+    "Acts of Peter and Paul": {
+      "year": 500,
+      "wiki": "https://en.wikipedia.org/wiki/Acts_of_Peter_and_Paul"
+    },
+    "John Wesley": {
+      "year": 1791,
+      "wiki": "https://en.wikipedia.org/wiki/John_Wesley"
+    },
+    "Facundus of Hermiane": {
+      "year": 544,
+      "wiki": "https://en.wikipedia.org/wiki/Facundus_of_Hermiane"
+    },
+    "Abba Poemen": {
+      "year": 450,
+      "wiki": "https://en.wikipedia.org/wiki/Poemen"
+    },
+    "Paschasius Radbertus": {
+      "year": 865,
+      "wiki": "https://en.wikipedia.org/wiki/Paschasius_Radbertus"
+    },
+    "The Liturgy Of The Blessed Apostles": {
+      "year": 200,
+      "wiki": "http://www.liturgies.net/Liturgies/Historical/LiturgyOfBlessedApostles.htm"
+    },
+    "Protoevangelium of James": {
+      "year": 150,
+      "wiki": "https://en.wikipedia.org/wiki/Gospel_of_James"
+    },
+    "Asterius of Cappadocia": {
+      "year": 341,
+      "wiki": "https://en.wikipedia.org/wiki/Asterius_of_Cappadocia"
+    },
+    "Pseudo-Ignatius": {
+      "year": 400,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Ignatius"
+    },
+    "Athanasius of Alexandria": {
+      "year": 373,
+      "wiki": "https://en.wikipedia.org/wiki/Athanasius_of_Alexandria"
+    },
+    "Dhuoda of Septimania": {
+      "year": 844,
+      "wiki": "https://en.wikipedia.org/wiki/Dhuoda"
+    },
+    "Ulrich Zwingli": {
+      "year": 1531,
+      "wiki": "https://en.wikipedia.org/wiki/Huldrych_Zwingli"
+    },
+    "Thomas Aquinas": {
+      "year": 1274,
+      "wiki": "https://en.wikipedia.org/wiki/Thomas_Aquinas"
+    },
+    "Ambrose of Milan": {
+      "year": 397,
+      "wiki": "https://en.wikipedia.org/wiki/Ambrose"
+    },
+    "Isidore of Seville": {
+      "year": 636,
+      "wiki": "https://en.wikipedia.org/wiki/Isidore_of_Seville"
+    },
+    "Cosmas of Maiuma": {
+      "year": 773,
+      "wiki": "https://en.wikipedia.org/wiki/Cosmas_of_Maiuma"
+    },
+    "Arnobius of Sicca": {
+      "year": 330,
+      "wiki": "https://en.wikipedia.org/wiki/Arnobius"
+    },
+    "Andrew of Crete": {
+      "year": 740,
+      "wiki": "https://en.wikipedia.org/wiki/Andrew_of_Crete"
+    },
+    "Victorinus of Pettau": {
+      "year": 304,
+      "wiki": "https://en.wikipedia.org/wiki/Victorinus_of_Pettau"
+    },
+    "Lucius Caecilius Firmianus Lactantius": {
+      "year": 325,
+      "wiki": "https://en.wikipedia.org/wiki/Lactantius"
+    },
+    "Melito of Sardis": {
+      "year": 180,
+      "wiki": "https://en.wikipedia.org//wiki/Melito_of_Sardis"
+    },
+    "Testaments of the Twelve Patriarchs": {
+      "year": 192,
+      "wiki": "https://en.wikipedia.org/wiki/Testaments_of_the_Twelve_Patriarchs"
+    },
+    "Anselm of Canterbury": {
+      "year": 1109,
+      "wiki": "https://en.wikipedia.org/wiki/Anselm_of_Canterbury"
+    },
+    "Arethas of Caesarea": {
+      "year": 900,
+      "wiki": "https://en.wikipedia.org/wiki/Arethas_of_Caesarea"
+    },
+    "Liturgy of Saint James": {
+      "year": 400,
+      "wiki": "https://en.wikipedia.org/wiki/Liturgy_of_Saint_James"
+    },
+    "Jacob Bar-Salibi": {
+      "year": 1171,
+      "wiki": "https://en.wikipedia.org/wiki/Dionysius_bar_Salibi"
+    },
+    "Athenagoras of Athens": {
+      "year": 190,
+      "wiki": "https://en.wikipedia.org/wiki/Athenagoras_of_Athens"
+    },
+    "Oecumenius": {
+      "year": 990,
+      "wiki": "https://en.wikipedia.org/wiki/Oecumenius"
+    },
+    "CS Lewis": {
+      "year": 1963,
+      "wiki": "https://en.wikipedia.org/wiki/C._S._Lewis"
+    },
+    "Nilus of Sinai": {
+      "year": 451,
+      "wiki": "https://en.wikipedia.org/wiki/Nilus_of_Sinai"
+    },
+    "John of the Cross": {
+      "year": 1591,
+      "wiki": "https://en.wikipedia.org/wiki/John_of_the_Cross"
+    },
+    "Paschasius of Dumium": {
+      "year": 600,
+      "wiki": "https://en.wikipedia.org/wiki/Paschasius_of_Dumium"
+    },
+    "Haymo of Faversham": {
+      "year": 1243,
+      "wiki": "https://en.wikipedia.org/wiki/Haymo_of_Faversham"
+    },
+    "Quodvultdeus": {
+      "year": 450,
+      "wiki": "https://en.wikipedia.org/wiki/Quodvultdeus"
+    },
+    "Eucherius of Lyon": {
+      "year": 449,
+      "wiki": "https://en.wikipedia.org/wiki/Eucherius_of_Lyon"
+    },
+    "Procopius of Gaza": {
+      "year": 528,
+      "wiki": "https://en.wikipedia.org/wiki/Procopius_of_Gaza"
+    },
+    "Eustathius of Antioch": {
+      "year": 360,
+      "wiki": "https://en.wikipedia.org/wiki/Eustathius_of_Antioch"
+    },
+    "Abercius": {
+      "year": 167,
+      "wiki": "https://en.wikipedia.org/wiki/Inscription_of_Abercius"
+    },
+    "Martyrdom Of Polycarp": {
+      "year": 200,
+      "wiki": "https://en.wikipedia.org/wiki/Martyrdom_of_Polycarp"
+    },
+    "Victor Vitensis": {
+      "year": 500,
+      "wiki": "https://en.wikipedia.org/wiki/Victor_Vitensis"
+    },
+    "Theodore Stratelates": {
+      "year": 319,
+      "wiki": "https://en.wikipedia.org/wiki/Theodore_Stratelates"
+    },
+    "Julius Firmicus Maternus": {
+      "year": 350,
+      "wiki": "https://en.wikipedia.org/wiki/Julius_Firmicus_Maternus"
+    },
+    "Sulpicius Severus": {
+      "year": 425,
+      "wiki": "https://en.wikipedia.org/wiki/Sulpicius_Severus"
+    },
+    "Zephyrinus": {
+      "year": 217,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Zephyrinus"
+    },
+    "Severian of Gabala": {
+      "year": 425,
+      "wiki": "https://en.wikipedia.org/wiki/Severian_of_Gabala"
+    },
+    "JRR Tolkien": {
+      "year": 1973,
+      "wiki": "https://en.wikipedia.org/wiki/J._R._R._Tolkien"
+    },
+    "Fabian of Rome": {
+      "year": 250,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Fabian"
+    },
+    "Bernard of Clairvaux": {
+      "year": 1153,
+      "wiki": "https://en.wikipedia.org/wiki/Bernard_of_Clairvaux"
+    },
+    "Theophanes of Nicaea": {
+      "year": 845,
+      "wiki": "https://en.wikipedia.org/wiki/Theodorus_and_Theophanes#Theophanes_the_Branded"
+    },
+    "Sahdona the Syrian": {
+      "year": 649,
+      "wiki": "https://en.wikipedia.org/wiki/Sahdona"
+    },
+    "Macarius of Egypt": {
+      "year": 391,
+      "wiki": "https://en.wikipedia.org/wiki/Macarius_of_Egypt"
+    },
+    "Peter of Alexandria": {
+      "year": 311,
+      "wiki": "https://en.wikipedia.org/wiki/Peter_I_of_Alexandria"
+    },
+    "Possidius": {
+      "year": 437,
+      "wiki": "https://en.wikipedia.org//wiki/Possidius"
+    },
+    "1 Peter": {
+      "year": 65,
+      "wiki": "https://en.wikipedia.org/wiki/First_Epistle_of_Peter"
+    },
+    "Irenaeus": {
+      "year": 202,
+      "wiki": "https://en.wikipedia.org/wiki/Irenaeus"
+    },
+    "Clement of Alexandria": {
+      "year": 215,
+      "wiki": "https://en.wikipedia.org/wiki/Clement_of_Alexandria"
+    },
+    "Acts": {
+      "year": 62,
+      "wiki": "https://en.wikipedia.org/wiki/Acts_of_the_Apostles"
+    },
+    "Tertullian": {
+      "year": 220,
+      "wiki": "https://en.wikipedia.org/wiki/Tertullian"
+    },
+    "Origen of Alexandria": {
+      "year": 253,
+      "wiki": "https://en.wikipedia.org/wiki/Origen"
+    },
+    "Remigius of Rheims": {
+      "year": 533,
+      "wiki": "https://en.wikipedia.org/wiki/Saint_Remigius"
+    },
+    "Liturgy of Addai and Mari": {
+      "year": 200,
+      "wiki": "https://en.wikipedia.org/wiki/Liturgy_of_Addai_and_Mari"
+    },
+    "Pseudo-Basil": {
+      "year": 9999,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Basil"
+    },
+    "Socrates Scholasticus": {
+      "year": 439,
+      "wiki": "https://en.wikipedia.org/wiki/Socrates_of_Constantinople"
+    },
+    "Gaudentius of Brescia": {
+      "year": 410,
+      "wiki": "https://en.wikipedia.org/wiki/Gaudentius_of_Brescia"
+    },
+    "Gregory of Nyssa": {
+      "year": 395,
+      "wiki": "https://en.wikipedia.org/wiki/Gregory_of_Nyssa"
+    },
+    "Romans": {
+      "year": 56,
+      "wiki": "https://en.wikipedia.org/wiki/Epistle_to_the_Romans"
+    },
+    "Epistle to Diognetus": {
+      "year": 150,
+      "wiki": "https://en.wikipedia.org/wiki/Epistle_to_Diognetus"
+    },
+    "Anselm of Laon": {
+      "year": 1117,
+      "wiki": "https://en.wikipedia.org/wiki/Anselm_of_Laon"
+    },
+    "Ticonius": {
+      "year": 390,
+      "wiki": "https://en.wikipedia.org/wiki/Ticonius"
+    },
+    "Papias the Lexicographer": {
+      "year": 1060,
+      "wiki": "https://en.wikipedia.org/wiki/Papias_(lexicographer)"
+    },
+    "Palladius of Antioch": {
+      "year": 390,
+      "wiki": "https://en.wikipedia.org/wiki/Palladius_of_Antioch"
+    },
+    "Acacius of Beroea": {
+      "year": 437,
+      "wiki": "https://en.wikipedia.org/wiki/Acacius_of_Beroea"
+    },
+    "Desert Fathers": {
+      "year": 500,
+      "wiki": "https://en.wikipedia.org/wiki/Desert_Fathers"
+    },
+    "Pseudo-Clement": {
+      "year": 400,
+      "wiki": "https://en.wikipedia.org/wiki/Clementine_literature"
+    },
+    "Cyril of Jerusalem": {
+      "year": 386,
+      "wiki": "https://en.wikipedia.org/wiki/Cyril_of_Jerusalem"
+    },
+    "Council of Carthage of 419": {
+      "year": 419,
+      "wiki": "https://en.wikipedia.org/wiki/Councils_of_Carthage#Council_of_419"
+    },
+    "Gregory the Dialogist": {
+      "year": 604,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Gregory_I"
+    },
+    "Aurelius Prudentius Clemens": {
+      "year": 413,
+      "wiki": "https://en.wikipedia.org/wiki/Prudentius"
+    },
+    "Eusebius of Emesa": {
+      "year": 360,
+      "wiki": "https://en.wikipedia.org/wiki/Eusebius_of_Emesa"
+    },
+    "John Cassian": {
+      "year": 435,
+      "wiki": "https://en.wikipedia.org/wiki/John_Cassian"
+    },
+    "Revelation": {
+      "year": 96,
+      "wiki": "https://en.wikipedia.org/wiki/Book_of_Revelation"
+    },
+    "Hilary of Arles": {
+      "year": 449,
+      "wiki": "https://en.wikipedia.org/wiki/Hilary_of_Arles"
+    },
+    "Arius": {
+      "year": 336,
+      "wiki": "https://en.wikipedia.org/wiki/Arius"
+    },
+    "Heracleon": {
+      "year": 175,
+      "wiki": "https://en.wikipedia.org/wiki/Heracleon"
+    },
+    "Photios I of Constantinople": {
+      "year": 893,
+      "wiki": "https://en.wikipedia.org/wiki/Photios_I_of_Constantinople"
+    },
+    "Adamnán of Iona": {
+      "year": 704,
+      "wiki": "https://en.wikipedia.org/wiki/Adomn%C3%A1n"
+    },
+    "Theophylact of Ohrid": {
+      "year": 1107,
+      "wiki": "https://en.wikipedia.org/wiki/Theophylact_of_Ohrid"
+    },
+    "Council of Carthage of 411": {
+      "year": 411,
+      "wiki": "https://en.wikipedia.org/wiki/Councils_of_Carthage#Conference_of_411"
+    },
+    "Marcus Eremita": {
+      "year": 430,
+      "wiki": "https://en.wikipedia.org/wiki/Marcus_Eremita"
+    },
+    "Diodorus of Tarsus": {
+      "year": 390,
+      "wiki": "https://en.wikipedia.org/wiki/Diodorus_of_Tarsus"
+    },
+    "Muratorian fragment": {
+      "year": 170,
+      "wiki": "https://en.wikipedia.org/wiki/Muratorian_fragment"
+    },
+    "Ammonas of Egypt": {
+      "year": 396,
+      "wiki": "https://en.wikipedia.org/wiki/Ammonas_of_Egypt"
+    },
+    "Anthony the Great": {
+      "year": 356,
+      "wiki": "https://en.wikipedia.org/wiki/Anthony_the_Great"
+    },
+    "Paulinus of Milan": {
+      "year": 422,
+      "wiki": "https://en.wikipedia.org/wiki/Paulinus_the_Deacon"
+    },
+    "Cornelius a Lapide": {
+      "year": 1637,
+      "wiki": "https://en.wikipedia.org/wiki/Cornelius_a_Lapide"
+    },
+    "Richard of Saint Victor": {
+      "year": 1173,
+      "wiki": "https://en.wikipedia.org/wiki/Richard_of_Saint_Victor"
+    },
+    "Faustinus of Lyon": {
+      "year": 254,
+      "wiki": "https://en.wikipedia.org/wiki/Faustinus_of_Lyon"
+    },
+    "Shenoute the Archimandrite": {
+      "year": 465,
+      "wiki": "https://en.wikipedia.org/wiki/Shenoute"
+    },
+    "Sibylline Oracles": {
+      "year": 700,
+      "wiki": "https://en.wikipedia.org/wiki/Sibylline_Oracles"
+    },
+    "Nerses of Lambron": {
+      "year": 1198,
+      "wiki": "https://en.wikipedia.org/wiki/Nerses_of_Lambron"
+    },
+    "Venantius Fortunatus": {
+      "year": 609,
+      "wiki": "https://en.wikipedia.org/wiki/Venantius_Fortunatus"
+    },
+    "Acacius of Caesarea": {
+      "year": 366,
+      "wiki": "https://en.wikipedia.org/wiki/Acacius_of_Caesarea"
+    },
+    "Didache": {
+      "year": 100,
+      "wiki": "https://en.wikipedia.org/wiki/Didache"
+    },
+    "Martin Luther": {
+      "year": 1546,
+      "wiki": "https://en.wikipedia.org/wiki/Martin_Luther"
+    },
+    "John": {
+      "year": 90,
+      "wiki": "https://en.wikipedia.org/wiki/Gospel_of_John"
+    },
+    "Pseudo-Macarius": {
+      "year": 534,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Macarius"
+    },
+    "Malchion": {
+      "year": 272,
+      "wiki": "https://en.wikipedia.org/wiki/Malchion"
+    },
+    "Benedict of Nursia": {
+      "year": 548,
+      "wiki": "https://en.wikipedia.org/wiki/Benedict_of_Nursia"
+    },
+    "Gaius Marius Victorinus": {
+      "year": 370,
+      "wiki": "https://en.wikipedia.org/wiki/Gaius_Marius_Victorinus"
+    },
+    "Ancient Greek Expositor": {
+      "year": 1274,
+      "wiki": null
+    },
+    "Pseudo-Justin": {
+      "year": 9999,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Justin"
+    },
+    "Victor of Cartenna": {
+      "year": 500,
+      "wiki": "https://www.biblicalcyclopedia.com/V/victor-of-cartenna.html"
+    },
+    "Pseudo-Jerome": {
+      "year": 9999,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Jerome"
+    },
+    "Jacob of Serugh": {
+      "year": 521,
+      "wiki": "https://en.wikipedia.org//wiki/Jacob_of_Serugh"
+    },
+    "Second Council of Constantinople": {
+      "year": 553,
+      "wiki": "https://en.wikipedia.org/wiki/Second_Council_of_Constantinople"
+    },
+    "Basil of Seleucia": {
+      "year": 468,
+      "wiki": "https://en.wikipedia.org/wiki/Basil_of_Seleucia"
+    },
+    "Paulinus of Nola": {
+      "year": 431,
+      "wiki": "https://en.wikipedia.org/wiki/Paulinus_of_Nola"
+    },
+    "Apostolic Constitutions": {
+      "year": 380,
+      "wiki": "https://en.wikipedia.org/wiki/Apostolic_Constitutions"
+    },
+    "Prosper of Aquitaine": {
+      "year": 455,
+      "wiki": "https://en.wikipedia.org/wiki/Prosper_of_Aquitaine"
+    },
+    "Theophilus of Antioch": {
+      "year": 185,
+      "wiki": "https://en.wikipedia.org/wiki/Theophilus_of_Antioch"
+    },
+    "Maximus the Confessor": {
+      "year": 662,
+      "wiki": "https://en.wikipedia.org/wiki/Maximus_the_Confessor"
+    },
+    "Pseudo-Chrysostom": {
+      "year": 500,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Chrysostom"
+    },
+    "Caesarius of Arles": {
+      "year": 542,
+      "wiki": "https://en.wikipedia.org/wiki/Caesarius_of_Arles"
+    },
+    "Richard Challoner": {
+      "year": 1781,
+      "wiki": "https://en.wikipedia.org/wiki/Richard_Challoner"
+    },
+    "Book of Jubilees": {
+      "year": -100,
+      "wiki": "https://en.wikipedia.org/wiki/Book_of_Jubilees"
+    },
+    "Theodorus of Tabennese": {
+      "year": 368,
+      "wiki": "https://en.wikipedia.org/wiki/Theodorus_of_Tabennese"
+    },
+    "Pseudo-Ambrose": {
+      "year": 384,
+      "wiki": "https://en.wikipedia.org/wiki/Ambrosiaster"
+    },
+    "Philo of Carpasia": {
+      "year": 400,
+      "wiki": "https://en.wikipedia.org/wiki/Karpasia_(town)"
+    },
+    "Book of Steps": {
+      "year": 400,
+      "wiki": "https://en.wikipedia.org/wiki/Book_of_Steps"
+    },
+    "Ephrem the Syrian": {
+      "year": 373,
+      "wiki": "https://en.wikipedia.org/wiki/Ephrem_the_Syrian"
+    },
+    "John of Karpathos": {
+      "year": 800,
+      "wiki": "https://en.wikipedia.org/wiki/John_of_Karpathos"
+    },
+    "Pseudo-Ephrem": {
+      "year": 800,
+      "wiki": "https://en.wikipedia.org/wiki/Apocalypse_of_Pseudo-Ephraem"
+    },
+    "Fastidius": {
+      "year": 420,
+      "wiki": "https://en.wikisource.org/wiki/Nicene_and_Post-Nicene_Fathers:_Series_II/Volume_III/Lives_of_Illustrious_Men/Gennadius/Fastidius_the_bishop"
+    },
+    "Vigilius of Thapsus": {
+      "year": 484,
+      "wiki": "https://en.wikipedia.org/wiki/Vigilius_of_Thapsus"
+    },
+    "Pseudo-Origen": {
+      "year": 9999,
+      "wiki": null
+    },
+    "Pachomius the Great": {
+      "year": 348,
+      "wiki": "https://en.wikipedia.org/wiki/Pachomius_the_Great"
+    },
+    "Fructuosus of Braga": {
+      "year": 665,
+      "wiki": "https://en.wikipedia.org/wiki/Fructuosus_of_Braga"
+    },
+    "Faustus of Riez": {
+      "year": 490,
+      "wiki": "https://en.wikipedia.org/wiki/Faustus_of_Riez"
+    },
+    "Eusebius of Vercelli": {
+      "year": 371,
+      "wiki": "https://en.wikipedia.org/wiki/Eusebius_of_Vercelli"
+    },
+    "Augustine of Hippo": {
+      "year": 430,
+      "wiki": "https://en.wikipedia.org/wiki/Augustine_of_Hippo"
+    },
+    "Callistus I of Rome": {
+      "year": 223,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Callixtus_I"
+    },
+    "Cassiodorus": {
+      "year": 585,
+      "wiki": "https://en.wikipedia.org/wiki/Cassiodorus"
+    },
+    "Pope Pontian": {
+      "year": 235,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Pontian"
+    },
+    "Pope Urban I": {
+      "year": 230,
+      "wiki": "https://en.wikipedia.org/wiki/Pope_Urban_I"
+    },
+    "Glossa Ordinaria": {
+      "year": 1274,
+      "wiki": "https://en.wikipedia.org/wiki/Glossa_Ordinaria"
+    },
+    "Pseudo-Cyril": {
+      "year": 9999,
+      "wiki": null
+    },
+    "Book of Biblical Antiquities": {
+      "year": 100,
+      "wiki": "https://en.wikipedia.org/wiki/Pseudo-Philo"
+    },
+    "Cyprian": {
+      "year": 258,
+      "wiki": "https://en.wikipedia.org/wiki/Cyprian"
+    },
+    "Ammon of Hadrianopolis": {
+      "year": 355,
+      "wiki": "https://ccdl.claremont.edu/digital/collection/cce/id/1211"
+    }
+  }
+}
