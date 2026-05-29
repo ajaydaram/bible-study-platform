@@ -1,4 +1,5 @@
 # Scriptorium Bible App
+# Scriptorium Bible App
 
 A comprehensive Bible study platform featuring a **502-day chronological reading plan** spanning 13 Biblical Eras, from Genesis to Revelation. Built with React, TypeScript, Firebase, and TailwindCSS.
 
@@ -536,6 +537,7 @@ This project is for personal/educational use. Contact the maintainer for licensi
 
 ---
 
+
 **Built with ❤️ for deeper Bible study**
 
 ---
@@ -550,4 +552,4 @@ This project is for personal/educational use. Contact the maintainer for licensi
 - Create Bible study templates for small groups
 - Add daily devotional content integration
 - Build in-app tutorials and onboarding for new users
-# react-scriptorium
+
