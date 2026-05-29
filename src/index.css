@@ -1,0 +1,797 @@
+/* Google Fonts - Beautiful typography for Bible app */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Hebrew:wght@400;500;700&family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for consistent theming */
+:root {
+  --font-serif: 'Crimson Pro', 'Noto Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-hebrew: 'Noto Sans Hebrew', 'SBL Hebrew', 'Ezra SIL', serif;
+  --font-greek: 'Noto Serif', 'SBL Greek', 'Gentium Plus', serif;
+  
+  /* Reading colors - warm, easy on eyes */
+  --scripture-bg: #faf8f5;
+  --scripture-text: #2c2416;
+  --verse-number: #8b7355;
+  --highlight-gold: #f5e6c8;
+}
+
+.dark {
+  --scripture-bg: #1a1814;
+  --scripture-text: #e8e4dd;
+  --verse-number: #a69076;
+  --highlight-gold: #3d3526;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   TYPOGRAPHY - Beautiful Bible Reading
+   ============================================ */
+
+/* Serif font for Scripture and devotional content */
+.font-scripture {
+  font-family: var(--font-serif);
+  font-feature-settings: 'liga' 1, 'kern' 1;
+  letter-spacing: 0.01em;
+}
+
+/* Hebrew font class - Right-to-left */
+.font-hebrew {
+  font-family: var(--font-hebrew);
+  direction: rtl;
+  font-size: 1.3em;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+/* Greek font class */
+.font-greek {
+  font-family: var(--font-greek);
+  font-size: 1.15em;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* ============================================
+   BIBLE TEXT STYLES
+   ============================================ */
+
+/* Main Bible prose container */
+.prose-bible {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.9;
+  letter-spacing: 0.015em;
+  color: var(--scripture-text);
+  background: var(--scripture-bg);
+  @apply rounded-lg p-6;
+}
+
+.prose-bible p {
+  @apply mb-5;
+  text-indent: 1.5em;
+}
+
+.prose-bible p:first-child {
+  text-indent: 0;
+}
+
+/* Verse numbers */
+.verse-num {
+  font-family: var(--font-sans);
+  font-size: 0.7em;
+  font-weight: 600;
+  color: var(--verse-number);
+  vertical-align: super;
+  margin-right: 0.15em;
+  margin-left: 0.3em;
+}
+
+/* Chapter numbers - large decorative */
+.chapter-num {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 400;
+  line-height: 1;
+  float: left;
+  margin-right: 0.15em;
+  margin-top: 0.05em;
+  color: var(--verse-number);
+}
+
+/* Scripture quotation blocks */
+.scripture-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.85;
+  background: var(--scripture-bg);
+  border-left: 3px solid var(--verse-number);
+  @apply pl-5 py-3 my-4 rounded-r-lg;
+}
+
+/* Red letter (words of Jesus) */
+.red-letter {
+  color: #b91c1c;
+}
+
+.dark .red-letter {
+  color: #ef4444;
+}
+
+/* Highlighted verse */
+.verse-highlight {
+  background: var(--highlight-gold);
+  @apply px-1 rounded;
+}
+
+/* Poetry formatting (Psalms, Proverbs) */
+.poetry-line {
+  @apply pl-8 -indent-4;
+}
+
+.poetry-line-indent {
+  @apply pl-12 -indent-4;
+}
+
+/* ============================================
+   WORD STUDY STYLES
+   ============================================ */
+
+.word-study-card {
+  @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden;
+  border: 1px solid rgba(139, 115, 85, 0.15);
+}
+
+.word-study-header {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 50%, #3d5a7f 100%);
+  @apply p-8 text-center;
+}
+
+.dark .word-study-header {
+  background: linear-gradient(135deg, #1a2a3f 0%, #243a4f 50%, #2e4a5f 100%);
+}
+
+.original-word {
+  font-size: 3.5rem;
+  line-height: 1.3;
+  @apply text-white mb-3;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.transliteration {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  @apply text-blue-100;
+}
+
+.strongs-badge {
+  @apply inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold;
+  background: rgba(255,255,255,0.2);
+  @apply text-white mt-4;
+}
+
+.definition-block {
+  @apply p-6 border-b border-gray-100 dark:border-gray-700;
+}
+
+.definition-label {
+  font-family: var(--font-sans);
+  @apply text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2;
+}
+
+.definition-text {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  @apply text-gray-900 dark:text-white;
+}
+
+.meaning-text {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  @apply text-gray-700 dark:text-gray-300;
+}
+
+/* ============================================
+   PATRISTIC QUOTE STYLES
+   ============================================ */
+
+.patristic-quote-card {
+  @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden;
+  border: 1px solid rgba(139, 115, 85, 0.15);
+}
+
+.patristic-quote-card blockquote {
+  font-family: var(--font-serif);
+  position: relative;
+}
+
+.patristic-quote-card blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem;
+  left: -0.5rem;
+  font-size: 4rem;
+  color: var(--verse-number);
+  opacity: 0.15;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* ============================================
+   INTERLINEAR BIBLE STYLES
+   ============================================ */
+
+.interlinear-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  @apply justify-start;
+}
+
+.interlinear-word {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  min-width: 4rem;
+  @apply bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700;
+  @apply hover:border-primary-300 dark:hover:border-primary-600 hover:shadow-soft;
+  @apply transition-all duration-150 cursor-pointer;
+}
+
+.interlinear-word:hover {
+  transform: translateY(-2px);
+}
+
+.interlinear-word .original-text {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  @apply text-gray-900 dark:text-white mb-1;
+}
+
+.interlinear-word .transliteration {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.75rem;
+  @apply text-gray-500 dark:text-gray-400;
+}
+
+.interlinear-word .gloss {
+  font-size: 0.8rem;
+  font-weight: 500;
+  @apply text-primary-700 dark:text-primary-400 mt-0.5;
+}
+
+.interlinear-word .strongs-num {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  @apply text-gray-400 dark:text-gray-500 mt-1 font-mono;
+}
+
+/* Interlinear inline display (alternative) */
+.interlinear-inline {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 2.5;
+}
+
+.interlinear-inline ruby {
+  ruby-align: center;
+}
+
+.interlinear-inline rt {
+  font-size: 0.6em;
+  @apply text-gray-500 dark:text-gray-400;
+}
+
+/* ============================================
+   CARDS & CONTAINERS
+   ============================================ */
+
+.card {
+  @apply bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.card-elevated {
+  @apply bg-white dark:bg-gray-800 rounded-xl;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+}
+
+.glass-card {
+  @apply rounded-xl;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass-card {
+  background: rgba(31, 41, 55, 0.8);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn-primary {
+  @apply px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium;
+  @apply transition-all duration-200 ease-out;
+  @apply shadow-sm hover:shadow-md;
+}
+
+.btn-secondary {
+  @apply px-5 py-2.5 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600;
+  @apply text-gray-700 dark:text-gray-200 rounded-lg font-medium;
+  @apply transition-all duration-200 ease-out;
+}
+
+.btn-scripture {
+  @apply px-5 py-2.5 rounded-lg font-medium;
+  background: linear-gradient(135deg, #8b7355 0%, #a68966 100%);
+  @apply text-white shadow-sm hover:shadow-md;
+  @apply transition-all duration-200 ease-out;
+}
+
+.btn-scripture:hover {
+  background: linear-gradient(135deg, #7a6448 0%, #957a59 100%);
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+.input-field {
+  @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600;
+  @apply bg-white dark:bg-gray-700 text-gray-900 dark:text-white;
+  @apply placeholder-gray-400 dark:placeholder-gray-500;
+  @apply focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  @apply transition-all duration-200;
+  font-family: var(--font-sans);
+}
+
+.select-field {
+  @apply px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600;
+  @apply bg-white dark:bg-gray-700 text-gray-900 dark:text-white;
+  @apply focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  animation: fadeIn 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+
+/* ============================================
+   SCRIPTURE READING PANE
+   ============================================ */
+
+.scripture-card {
+  @apply bg-white dark:bg-gray-800 rounded-2xl min-h-[500px];
+  @apply p-8 sm:p-10 md:p-12;
+  border: 1px solid rgba(139, 115, 85, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dark .scripture-card {
+  border-color: rgba(139, 115, 85, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.chapter-heading {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  @apply text-gray-900 dark:text-white mb-2;
+}
+
+.scripture-text {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  line-height: 2;
+  letter-spacing: 0.01em;
+  color: var(--scripture-text);
+  max-width: 38rem;
+  @apply mx-auto;
+}
+
+.dark .scripture-text {
+  color: var(--scripture-text);
+}
+
+.verse-line {
+  @apply py-1.5 px-2 -mx-2 rounded-lg;
+  @apply transition-colors duration-150;
+}
+
+.verse-line:hover {
+  background: var(--highlight-gold);
+}
+
+.verse-text {
+  font-family: var(--font-serif);
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.transition-theme {
+  @apply transition-colors duration-200;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Gradient text */
+.text-gradient {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #1e3a5f 0%, #3b82f6 100%);
+}
+
+.dark .text-gradient {
+  background-image: linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%);
+}
+
+/* Reading mode - reduced distractions */
+.reading-mode {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  .prose-bible {
+    font-size: 1rem;
+    line-height: 1.8;
+    @apply p-4;
+  }
+  
+  .original-word {
+    font-size: 2.5rem;
+  }
+  
+  .chapter-num {
+    font-size: 2.5rem;
+  }
+}
+
+/* Print styles for Bible text */
+@media print {
+  .prose-bible {
+    font-size: 11pt;
+    line-height: 1.6;
+    color: black;
+    background: white;
+  }
+  
+  .verse-num {
+    color: #666;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY STYLES
+   ============================================ */
+
+/* CSS custom property for font scale */
+:root {
+  --font-scale: 1;
+}
+
+/* Font size scaling - applies globally */
+html[data-font-size="small"] {
+  font-size: 14px;
+}
+
+html[data-font-size="normal"] {
+  font-size: 16px;
+}
+
+html[data-font-size="large"] {
+  font-size: 18px;
+}
+
+html[data-font-size="x-large"] {
+  font-size: 20px;
+}
+
+/* High Contrast Mode */
+html.high-contrast {
+  /* Increase contrast ratios */
+  --scripture-text: #000000;
+  --scripture-bg: #ffffff;
+  --verse-number: #000000;
+}
+
+html.high-contrast.dark {
+  --scripture-text: #ffffff;
+  --scripture-bg: #000000;
+  --verse-number: #ffffff;
+}
+
+html.high-contrast body {
+  @apply bg-white text-black dark:bg-black dark:text-white;
+}
+
+html.high-contrast .bg-gray-50,
+html.high-contrast .bg-gray-100 {
+  @apply bg-white dark:bg-black;
+}
+
+html.high-contrast .bg-gray-800,
+html.high-contrast .bg-gray-900 {
+  @apply bg-black dark:bg-black;
+}
+
+html.high-contrast .text-gray-500,
+html.high-contrast .text-gray-600 {
+  @apply text-gray-900 dark:text-gray-100;
+}
+
+html.high-contrast .border-gray-200,
+html.high-contrast .border-gray-300 {
+  @apply border-black dark:border-white;
+}
+
+html.high-contrast .border-gray-700,
+html.high-contrast .border-gray-800 {
+  @apply border-white dark:border-white;
+}
+
+html.high-contrast a,
+html.high-contrast button {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+html.high-contrast button:focus,
+html.high-contrast a:focus,
+html.high-contrast input:focus,
+html.high-contrast select:focus,
+html.high-contrast textarea:focus {
+  @apply outline-4 outline-offset-2 outline-black dark:outline-white;
+}
+
+/* Reduced Motion */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Line Spacing */
+:root {
+  --line-height: 1.5;
+}
+
+html[data-line-spacing="normal"] {
+  --line-height: 1.5;
+}
+
+html[data-line-spacing="relaxed"] {
+  --line-height: 1.75;
+}
+
+html[data-line-spacing="loose"] {
+  --line-height: 2;
+}
+
+/* Apply line spacing to content areas */
+.prose-bible,
+.font-scripture,
+main p,
+main li,
+article p,
+article li {
+  line-height: var(--line-height);
+}
+
+/* Font Family Options */
+html[data-font-family="dyslexic"] body,
+html[data-font-family="dyslexic"] .font-scripture {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', cursive, sans-serif;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+}
+
+html[data-font-family="serif"] body,
+html[data-font-family="serif"] .font-scripture {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+html[data-font-family="mono"] body,
+html[data-font-family="mono"] .font-scripture {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Enhanced Focus Indicators */
+html.enhanced-focus :focus-visible {
+  @apply outline-4 outline-offset-4 outline-primary-500;
+  box-shadow: 0 0 0 4px theme('colors.primary.500' / 30%);
+}
+
+html.enhanced-focus button:focus-visible,
+html.enhanced-focus a:focus-visible {
+  @apply ring-4 ring-primary-500/30;
+}
+
+/* Visible focus for all interactive elements when enhanced */
+html.enhanced-focus :focus {
+  @apply outline-2 outline-primary-500 outline-offset-2;
+}
+
+/* Extra cursor visibility */
+html.enhanced-focus button,
+html.enhanced-focus a,
+html.enhanced-focus [role="button"] {
+  cursor: pointer;
+}
+
+html.enhanced-focus button:hover,
+html.enhanced-focus a:hover,
+html.enhanced-focus [role="button"]:hover {
+  @apply ring-2 ring-primary-400/50;
+}
+
+/* Focus styles - improved visibility */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary-500;
+}
+
+/* Screen reader only utility (already in Tailwind but adding for clarity) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Make sr-only visible on focus (for skip links) */
+.sr-only:focus,
+.focus\:not-sr-only:focus {
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Minimum touch target size (WCAG 2.2) */
+@media (pointer: coarse) {
+  button,
+  a,
+  input[type="checkbox"],
+  input[type="radio"],
+  select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Better link styling for accessibility */
+html[data-screen-reader="true"] a:not(.btn):not([class*="button"]) {
+  text-decoration: underline;
+}
+
+/* Improve readability of prose */
+.prose-bible,
+.font-scripture {
+  max-width: 70ch; /* Optimal line length for readability */
+}
+
+/* Animation for slide up (used in notifications) */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+html.reduce-motion .animate-slide-up {
+  animation: none;
+}
