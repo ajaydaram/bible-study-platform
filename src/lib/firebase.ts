@@ -15,6 +15,8 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || ''
 }
 
+export const firebaseEnabled = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId)
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 
@@ -23,7 +25,7 @@ const app = initializeApp(firebaseConfig)
 // 1. Go to Firebase Console > App Check
 // 2. Register your app with reCAPTCHA Enterprise
 // 3. Add the site key to .env as VITE_RECAPTCHA_SITE_KEY
-if (typeof window !== 'undefined' && import.meta.env.VITE_RECAPTCHA_SITE_KEY) {
+if (firebaseEnabled && typeof window !== 'undefined' && import.meta.env.VITE_RECAPTCHA_SITE_KEY) {
   // Enable debug token for localhost development
   if (import.meta.env.DEV) {
     // @ts-expect-error - Debug token for development
@@ -37,12 +39,12 @@ if (typeof window !== 'undefined' && import.meta.env.VITE_RECAPTCHA_SITE_KEY) {
 }
 
 // Initialize services
-export const auth = getAuth(app)
-export const db = getFirestore(app)
+export const auth = firebaseEnabled ? getAuth(app) : ({} as ReturnType<typeof getAuth>)
+export const db = firebaseEnabled ? getFirestore(app) : ({} as ReturnType<typeof getFirestore>)
 export const googleProvider = new GoogleAuthProvider()
 
 // Initialize Analytics
-export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null
+export const analytics = firebaseEnabled && typeof window !== 'undefined' ? getAnalytics(app) : null
 
 // Analytics helper functions
 export const trackEvent = (eventName: string, params?: Record<string, unknown>) => {

@@ -10,6 +10,7 @@ import {
   User as FirebaseUser
 } from 'firebase/auth'
 import { auth, googleProvider, identifyUser, trackEvent, AnalyticsEvents } from '../lib/firebase'
+import { firebaseEnabled } from '../lib/firebase'
 import { setSentryUser, clearSentryUser } from '../lib/sentry'
 import type { User } from '../types'
 
@@ -41,6 +42,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    if (!firebaseEnabled) {
+      setUser(null)
+      setIsLoading(false)
+      clearSentryUser()
+      return
+    }
+
     // Listen for Firebase auth state changes
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
@@ -62,6 +70,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const signIn = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
+    if (!firebaseEnabled) {
+      return { success: false, error: 'Authentication is unavailable until Firebase is configured.' }
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password)
       return { success: true }
@@ -82,6 +94,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const signUp = async (email: string, password: string, name: string): Promise<{ success: boolean; error?: string }> => {
+    if (!firebaseEnabled) {
+      return { success: false, error: 'Authentication is unavailable until Firebase is configured.' }
+    }
+
     try {
       const credential = await createUserWithEmailAndPassword(auth, email, password)
       
@@ -109,6 +125,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const signInWithGoogle = async (): Promise<{ success: boolean; error?: string }> => {
+    if (!firebaseEnabled) {
+      return { success: false, error: 'Google sign-in is unavailable until Firebase is configured.' }
+    }
+
     try {
       await signInWithPopup(auth, googleProvider)
       return { success: true }
@@ -127,6 +147,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const signInAsGuest = async (): Promise<{ success: boolean; error?: string }> => {
+    if (!firebaseEnabled) {
+      setUser({
+        id: 'guest',
+        email: '',
+        name: 'Guest',
+        isGuest: true,
+        createdAt: new Date().toISOString()
+      })
+      setIsLoading(false)
+      return { success: true }
+    }
+
     try {
       await signInAnonymously(auth)
       trackEvent(AnalyticsEvents.SESSION_START, { auth_method: 'guest' })
@@ -138,6 +170,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const signOut = async () => {
+    if (!firebaseEnabled) {
+      setUser(null)
+      return
+    }
+
     await firebaseSignOut(auth)
     setUser(null)
     clearSentryUser()
