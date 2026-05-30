@@ -15,24 +15,15 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || ''
 }
 
-// Initialize Firebase only when essential config (apiKey + projectId) is present.
-const hasFirebaseConfig = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId)
-
-let app = null as ReturnType<typeof initializeApp> | null
-if (hasFirebaseConfig) {
-  app = initializeApp(firebaseConfig)
-} else {
-  // If no Firebase configuration is provided (e.g., on a public deploy without env vars),
-  // avoid initializing Firebase to prevent runtime exceptions (invalid API key, etc.).
-  // Features depending on Firebase should guard against `null` exports.
-}
+// Initialize Firebase
+const app = initializeApp(firebaseConfig)
 
 // Initialize App Check for API protection (prevents unauthorized API usage)
 // To enable: 
 // 1. Go to Firebase Console > App Check
 // 2. Register your app with reCAPTCHA Enterprise
 // 3. Add the site key to .env as VITE_RECAPTCHA_SITE_KEY
-if (app && typeof window !== 'undefined' && import.meta.env.VITE_RECAPTCHA_SITE_KEY) {
+if (typeof window !== 'undefined' && import.meta.env.VITE_RECAPTCHA_SITE_KEY) {
   // Enable debug token for localhost development
   if (import.meta.env.DEV) {
     // @ts-expect-error - Debug token for development
@@ -46,12 +37,12 @@ if (app && typeof window !== 'undefined' && import.meta.env.VITE_RECAPTCHA_SITE_
 }
 
 // Initialize services
-export const auth = app ? getAuth(app) : null
-export const db = app ? getFirestore(app) : null
+export const auth = getAuth(app)
+export const db = getFirestore(app)
 export const googleProvider = new GoogleAuthProvider()
 
-// Initialize Analytics (only in browser and when app is initialized)
-export const analytics = app && typeof window !== 'undefined' ? getAnalytics(app) : null
+// Initialize Analytics
+export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null
 
 // Analytics helper functions
 export const trackEvent = (eventName: string, params?: Record<string, unknown>) => {
