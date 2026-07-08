@@ -8,6 +8,7 @@
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { db, trackEvent, AnalyticsEvents } from './firebase'
 import { startOfDay, format, isToday, isYesterday } from 'date-fns'
+import { showLocalNotification } from './notifications'
 
 // Achievement definitions
 export interface Achievement {
@@ -48,6 +49,21 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'era-complete-13', name: 'Era Master', description: 'Complete all 13 Biblical Eras', icon: '🌎', category: 'special', requirement: 13 },
   { id: 'journal-10', name: 'Reflective Reader', description: 'Write 10 journal entries', icon: '✍️', category: 'special', requirement: 10 },
   { id: 'prayer-10', name: 'Prayer Warrior', description: 'Log 10 prayer requests', icon: '🙏', category: 'special', requirement: 10 },
+  
+  // Specific Era master achievements
+  { id: 'era-master-1', name: 'Master of Beginnings', description: 'Complete all readings in the Era of Beginnings (Days 1-14)', icon: '🌍', category: 'special', requirement: 1 },
+  { id: 'era-master-2', name: 'Patriarch Master', description: 'Complete all readings in the Era of the Patriarchs (Days 15-45)', icon: '⛺', category: 'special', requirement: 1 },
+  { id: 'era-master-3', name: 'Exodus Pioneer', description: 'Complete all readings in the Era of Egypt & Exodus (Days 46-75)', icon: '🔥', category: 'special', requirement: 1 },
+  { id: 'era-master-4', name: 'Wilderness Guide', description: 'Complete all readings in the Era of the Wilderness (Days 76-105)', icon: '🏜️', category: 'special', requirement: 1 },
+  { id: 'era-master-5', name: 'Conquest Conqueror', description: 'Complete all readings in the Era of Conquest (Days 106-125)', icon: '⚔️', category: 'special', requirement: 1 },
+  { id: 'era-master-6', name: 'Judge of Israel', description: 'Complete all readings in the Era of the Judges (Days 126-150)', icon: '⚖️', category: 'special', requirement: 1 },
+  { id: 'era-master-7', name: 'King of Hearts', description: 'Complete all readings in the Era of the United Kingdom (Days 151-200)', icon: '👑', category: 'special', requirement: 1 },
+  { id: 'era-master-8', name: 'Prophetic Voice', description: 'Complete all readings in the Era of the Divided Kingdom (Days 201-260)', icon: '🏛️', category: 'special', requirement: 1 },
+  { id: 'era-master-9', name: 'Exile Defender', description: 'Complete all readings in the Era of Exile (Days 261-290)', icon: '⛓️', category: 'special', requirement: 1 },
+  { id: 'era-master-10', name: 'Rebuilder of Hope', description: 'Complete all readings in the Era of Return (Days 291-310)', icon: '🏗️', category: 'special', requirement: 1 },
+  { id: 'era-master-11', name: 'Wisdom Sage', description: 'Complete all readings in the Era of Wisdom & Worship (Days 311-354)', icon: '📜', category: 'special', requirement: 1 },
+  { id: 'era-master-12', name: 'Messiah Disciple', description: 'Complete all readings in the Era of the Messiah (Days 355-422)', icon: '✝️', category: 'special', requirement: 1 },
+  { id: 'era-master-13', name: 'Church Apostle', description: 'Complete all readings in the Era of the Church (Days 423-502)', icon: '⛪', category: 'special', requirement: 1 },
 ]
 
 // Streak data interface
@@ -170,6 +186,18 @@ export async function updateStreak(userId: string): Promise<{
     current_streak: newCurrentStreak,
     total_days: newTotalDays
   })
+
+  // Show push notification for milestone streaks
+  const milestones = [3, 7, 14, 30, 60, 90, 180, 365]
+  if (milestones.includes(newCurrentStreak)) {
+    try {
+      showLocalNotification('Milestone Streak! 🔥', {
+        body: `Congratulations! You've read the Bible for ${newCurrentStreak} days in a row! Keep it up!`
+      })
+    } catch (e) {
+      console.warn('Failed to send streak notification:', e)
+    }
+  }
   
   // Check for new achievements
   const userAchievements = await getUserAchievements(userId)
@@ -391,4 +419,63 @@ export function getDaysUntilMilestone(currentStreak: number): { milestone: numbe
   }
   
   return null
+}
+
+// Check specific era master achievements based on completed chronological days
+export async function checkEraCompletionAchievements(
+  userId: string,
+  completedDays: number[]
+): Promise<Achievement[]> {
+  const userAchievements = await getUserAchievements(userId)
+  const unlockedIds = new Set(userAchievements.unlocked.map(a => a.id))
+  const newAchievements: Achievement[] = []
+
+  const eras = [
+    { id: 1, name: "Era of Beginnings", startDay: 1, endDay: 14 },
+    { id: 2, name: "Era of the Patriarchs", startDay: 15, endDay: 45 },
+    { id: 3, name: "Era of Egypt & Exodus", startDay: 46, endDay: 75 },
+    { id: 4, name: "Era of the Wilderness", startDay: 76, endDay: 105 },
+    { id: 5, name: "Era of Conquest", startDay: 106, endDay: 125 },
+    { id: 6, name: "Era of the Judges", startDay: 126, endDay: 150 },
+    { id: 7, name: "Era of the United Kingdom", startDay: 151, endDay: 200 },
+    { id: 8, name: "Era of the Divided Kingdom", startDay: 201, endDay: 260 },
+    { id: 9, name: "Era of Exile", startDay: 261, endDay: 290 },
+    { id: 10, name: "Era of Return", startDay: 291, endDay: 310 },
+    { id: 11, name: "Era of Wisdom & Worship", startDay: 311, endDay: 354 },
+    { id: 12, name: "Era of the Messiah", startDay: 355, endDay: 422 },
+    { id: 13, name: "Era of the Church", startDay: 423, endDay: 502 }
+  ]
+
+  for (const era of eras) {
+    const achId = `era-master-${era.id}`
+    if (!unlockedIds.has(achId)) {
+      // Check if all days in the era range are completed
+      let allCompleted = true
+      for (let day = era.startDay; day <= era.endDay; day++) {
+        if (!completedDays.includes(day)) {
+          allCompleted = false
+          break
+        }
+      }
+      if (allCompleted) {
+        const ach = ACHIEVEMENTS.find(a => a.id === achId)
+        if (ach) {
+          newAchievements.push(ach)
+        }
+      }
+    }
+  }
+
+  if (newAchievements.length > 0) {
+    await unlockAchievements(userId, newAchievements)
+    
+    // Also update overall era milestones (complete 1 era, 5 eras, 13 eras)
+    const newlyUnlockedCount = newAchievements.length
+    const existingUnlockedErasCount = Array.from(unlockedIds).filter(id => id.startsWith('era-master-')).length
+    const totalErasCompleted = existingUnlockedErasCount + newlyUnlockedCount
+    
+    await checkSpecialAchievements(userId, { erasCompleted: totalErasCompleted })
+  }
+
+  return newAchievements
 }

@@ -12,6 +12,7 @@ export default function JournalNew() {
   const [passage, setPassage] = useState('')
   const [tagInput, setTagInput] = useState('')
   const [tags, setTags] = useState<string[]>([])
+  const [shareWithGroup, setShareWithGroup] = useState(false)
   
   const navigate = useNavigate()
   const { user } = useAuth()
@@ -33,12 +34,14 @@ export default function JournalNew() {
     const stored = localStorage.getItem(STORAGE_KEY)
     const entries: JournalEntry[] = stored ? JSON.parse(stored) : []
     
+    const finalTags = shareWithGroup ? [...tags, 'shared'] : tags
+
     const newEntry: JournalEntry = {
       id: crypto.randomUUID(),
       title,
       content,
       passage: passage || undefined,
-      tags,
+      tags: finalTags,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       userId: user?.id || 'anonymous'
@@ -138,6 +141,19 @@ export default function JournalNew() {
                 ))}
               </div>
             )}
+          </div>
+
+          <div className="flex items-center gap-2 border-t border-gray-100 dark:border-gray-700/50 pt-4">
+            <input
+              id="shareWithGroup"
+              type="checkbox"
+              checked={shareWithGroup}
+              onChange={(e) => setShareWithGroup(e.target.checked)}
+              className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+            />
+            <label htmlFor="shareWithGroup" className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+              Share with Reading Circles (Public Reflection)
+            </label>
           </div>
         </div>
 

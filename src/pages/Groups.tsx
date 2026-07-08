@@ -40,26 +40,27 @@ export default function Groups() {
       {groups.length > 0 ? (
         <div className="grid sm:grid-cols-2 gap-4">
           {groups.map(group => (
-            <div
+            <Link
               key={group.id}
-              className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5"
+              to={`/groups/${group.id}`}
+              className="block bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-md transition-all group"
             >
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
                 {group.name}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
                 {group.description}
               </p>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between border-t border-gray-100 dark:border-gray-700/50 pt-3">
                 <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                  <UserPlus className="h-4 w-4" />
+                  <UserPlus className="h-4 w-4 text-orange-500" />
                   {group.memberCount} members
                 </div>
                 <span className="text-xs text-gray-400">
                   Created {format(new Date(group.createdAt), 'MMM d, yyyy')}
                 </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       ) : (

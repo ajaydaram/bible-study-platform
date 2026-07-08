@@ -1,7 +1,15 @@
+import { 
+  isBibleVersionLoaded, 
+  importBibleToDb, 
+  getDbVerse, 
+  getDbChapter, 
+  searchDbBible, 
+  getDbBibleStructure 
+} from './bibleDb';
+
 /**
  * Local Bible Library
- * Provides offline-first Bible text access using locally stored JSON files
- * Falls back to API.Bible/ESV API only when local data is unavailable
+ * Provides offline-first Bible text access using IndexedDB local storage
  */
 
 export interface LocalVerse {
@@ -29,17 +37,36 @@ export interface LocalBibleData {
   }>;
 }
 
-// Cache for loaded Bible versions
-const bibleCache: Record<string, LocalBibleData> = {};
-
 // Supported local versions
 export const LOCAL_VERSIONS = {
   kjv: { name: 'King James Version', abbrev: 'KJV', file: 'kjv.json' },
   web: { name: 'World English Bible', abbrev: 'WEB', file: 'web.json' },
-  // bbe: { name: 'Bible in Basic English', abbrev: 'BBE', file: 'bbe.json' },
+  esv: { name: 'English Standard Version', abbrev: 'ESV', file: 'esv.json' },
 } as const;
 
 export type LocalVersionId = keyof typeof LOCAL_VERSIONS;
+
+// Progress listener tracking for the indexing process
+type ProgressCallback = (progress: number) => void;
+const progressListeners: Record<string, Set<ProgressCallback>> = {};
+
+export function addProgressListener(versionId: string, callback: ProgressCallback) {
+  if (!progressListeners[versionId]) {
+    progressListeners[versionId] = new Set();
+  }
+  progressListeners[versionId].add(callback);
+}
+
+export function removeProgressListener(versionId: string, callback: ProgressCallback) {
+  progressListeners[versionId]?.delete(callback);
+}
+
+function notifyProgress(versionId: string, progress: number) {
+  progressListeners[versionId]?.forEach(cb => cb(progress));
+}
+
+const importPromises: Record<string, Promise<void>> = {};
+const rawJsonCache: Record<string, LocalBibleData> = {};
 
 // Book abbreviation mappings (API.Bible format to local format)
 const BOOK_ABBREV_MAP: Record<string, string> = {
@@ -83,27 +110,67 @@ const BOOK_NAME_TO_ABBREV: Record<string, string> = {
 };
 
 /**
- * Load a Bible version from local JSON
+ * Fetch raw JSON file as fallback/import source
  */
-export async function loadLocalBible(versionId: LocalVersionId): Promise<LocalBibleData | null> {
-  if (bibleCache[versionId]) {
-    return bibleCache[versionId];
+async function fetchRawJsonData(versionId: LocalVersionId): Promise<LocalBibleData | null> {
+  if (rawJsonCache[versionId]) {
+    return rawJsonCache[versionId];
   }
-
   const version = LOCAL_VERSIONS[versionId];
   if (!version) return null;
-
   try {
     const response = await fetch(`/data/bibles/${version.file}`);
-    if (!response.ok) {
-      console.warn(`Local Bible ${versionId} not available`);
-      return null;
-    }
+    if (!response.ok) return null;
     const data: LocalBibleData = await response.json();
-    bibleCache[versionId] = data;
+    rawJsonCache[versionId] = data;
     return data;
-  } catch (error) {
-    console.warn(`Error loading local Bible ${versionId}:`, error);
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Load a Bible version and trigger IndexedDB import in the background if needed
+ */
+export async function loadLocalBible(versionId: LocalVersionId): Promise<LocalBibleData | null> {
+  const isLoaded = await isBibleVersionLoaded(versionId);
+  if (isLoaded) {
+    return { version: versionId.toUpperCase(), books: {} };
+  }
+
+  if (!importPromises[versionId]) {
+    importPromises[versionId] = (async () => {
+      const version = LOCAL_VERSIONS[versionId];
+      if (!version) return;
+
+      try {
+        notifyProgress(versionId, 0);
+        const data = await fetchRawJsonData(versionId);
+        if (!data) {
+          throw new Error(`Local file not found: ${version.file}`);
+        }
+        
+        notifyProgress(versionId, 5);
+        await importBibleToDb(versionId, data, (progress) => {
+          const scaleProgress = 5 + Math.round((progress / 100) * 95);
+          notifyProgress(versionId, scaleProgress);
+        });
+        
+        notifyProgress(versionId, 100);
+      } catch (err) {
+        console.error(`Failed to import Bible ${versionId}:`, err);
+        notifyProgress(versionId, -1);
+        throw err;
+      } finally {
+        delete importPromises[versionId];
+      }
+    })();
+  }
+
+  try {
+    await importPromises[versionId];
+    return { version: versionId.toUpperCase(), books: {} };
+  } catch (e) {
     return null;
   }
 }
@@ -132,7 +199,6 @@ export function parseReference(reference: string): {
   startVerse?: number;
   endVerse?: number;
 } | null {
-  // Match patterns like "John 3:16", "1 John 2:1-3", "Genesis 1"
   const match = reference.match(/^(\d?\s*[A-Za-z]+(?:\s+[A-Za-z]+)?)\s+(\d+)(?::(\d+)(?:-(\d+))?)?$/i);
   if (!match) return null;
 
@@ -156,11 +222,26 @@ export async function getLocalVerse(
   chapter: number,
   verse: number
 ): Promise<LocalVerse | null> {
-  const bible = await loadLocalBible(versionId);
-  if (!bible) return null;
+  const isLoaded = await isBibleVersionLoaded(versionId);
+  if (isLoaded) {
+    const dbVerse = await getDbVerse(versionId, book, chapter, verse);
+    if (dbVerse) {
+      return {
+        book: dbVerse.book,
+        bookName: dbVerse.bookName,
+        chapter: dbVerse.chapter,
+        verse: dbVerse.verse,
+        text: dbVerse.text
+      };
+    }
+  }
 
+  // Fallback to raw JSON
+  const rawData = await fetchRawJsonData(versionId);
+  if (!rawData) return null;
+  
   const bookAbbrev = normalizeBookAbbrev(book);
-  const bookData = bible.books[bookAbbrev];
+  const bookData = rawData.books[bookAbbrev];
   if (!bookData) return null;
 
   const chapterData = bookData.chapters[chapter];
@@ -186,11 +267,32 @@ export async function getLocalChapter(
   book: string,
   chapter: number
 ): Promise<LocalChapter | null> {
-  const bible = await loadLocalBible(versionId);
-  if (!bible) return null;
+  const isLoaded = await isBibleVersionLoaded(versionId);
+  if (isLoaded) {
+    const dbVerses = await getDbChapter(versionId, book, chapter);
+    if (dbVerses.length > 0) {
+      return {
+        book: book.toUpperCase(),
+        bookName: dbVerses[0].bookName,
+        chapter,
+        verses: dbVerses.map(v => ({
+          book: v.book,
+          bookName: v.bookName,
+          chapter: v.chapter,
+          verse: v.verse,
+          text: v.text
+        })),
+        verseCount: dbVerses.length
+      };
+    }
+  }
+
+  // Fallback to raw JSON
+  const rawData = await fetchRawJsonData(versionId);
+  if (!rawData) return null;
 
   const bookAbbrev = normalizeBookAbbrev(book);
-  const bookData = bible.books[bookAbbrev];
+  const bookData = rawData.books[bookAbbrev];
   if (!bookData) return null;
 
   const chapterData = bookData.chapters[chapter];
@@ -269,16 +371,28 @@ export async function searchLocalBible(
   query: string,
   options: { caseSensitive?: boolean; wholeWord?: boolean; limit?: number } = {}
 ): Promise<LocalVerse[]> {
-  const bible = await loadLocalBible(versionId);
-  if (!bible) return [];
+  const isLoaded = await isBibleVersionLoaded(versionId);
+  if (isLoaded) {
+    const dbVerses = await searchDbBible(versionId, query, options);
+    return dbVerses.map(v => ({
+      book: v.book,
+      bookName: v.bookName,
+      chapter: v.chapter,
+      verse: v.verse,
+      text: v.text
+    }));
+  }
+
+  // Fallback to raw JSON search
+  const rawData = await fetchRawJsonData(versionId);
+  if (!rawData) return [];
 
   const { caseSensitive = false, wholeWord = false, limit = 100 } = options;
   const searchQuery = caseSensitive ? query : query.toLowerCase();
   const results: LocalVerse[] = [];
-
   const wordPattern = wholeWord ? new RegExp(`\\b${query}\\b`, caseSensitive ? '' : 'i') : null;
 
-  for (const [bookAbbrev, bookData] of Object.entries(bible.books)) {
+  for (const [bookAbbrev, bookData] of Object.entries(rawData.books)) {
     for (const [chapterNum, chapterData] of Object.entries(bookData.chapters)) {
       for (const [verseNum, text] of Object.entries(chapterData)) {
         const searchText = caseSensitive ? text : text.toLowerCase();
@@ -313,11 +427,22 @@ export async function getLocalBookInfo(
   versionId: LocalVersionId,
   book: string
 ): Promise<{ name: string; abbrev: string; chapterCount: number; verseCounts: number[] } | null> {
-  const bible = await loadLocalBible(versionId);
-  if (!bible) return null;
+  const isLoaded = await isBibleVersionLoaded(versionId);
+  if (isLoaded) {
+    const structure = await getDbBibleStructure(versionId);
+    const bookAbbrev = normalizeBookAbbrev(book);
+    const bookData = structure?.[bookAbbrev];
+    if (bookData) {
+      return bookData;
+    }
+  }
+
+  // Fallback to raw JSON
+  const rawData = await fetchRawJsonData(versionId);
+  if (!rawData) return null;
 
   const bookAbbrev = normalizeBookAbbrev(book);
-  const bookData = bible.books[bookAbbrev];
+  const bookData = rawData.books[bookAbbrev];
   if (!bookData) return null;
 
   const chapters = Object.keys(bookData.chapters).map(Number).sort((a, b) => a - b);
@@ -335,10 +460,22 @@ export async function getLocalBookInfo(
  * Get all books in the Bible
  */
 export async function getLocalBooks(versionId: LocalVersionId): Promise<{ abbrev: string; name: string }[]> {
-  const bible = await loadLocalBible(versionId);
-  if (!bible) return [];
+  const isLoaded = await isBibleVersionLoaded(versionId);
+  if (isLoaded) {
+    const structure = await getDbBibleStructure(versionId);
+    if (structure) {
+      return Object.values<any>(structure).map(b => ({
+        abbrev: b.abbrev,
+        name: b.name
+      }));
+    }
+  }
 
-  return Object.entries(bible.books).map(([abbrev, book]) => ({
+  // Fallback to raw JSON
+  const rawData = await fetchRawJsonData(versionId);
+  if (!rawData) return [];
+
+  return Object.entries(rawData.books).map(([abbrev, book]) => ({
     abbrev,
     name: book.name
   }));
@@ -352,7 +489,8 @@ export function getLocalBibleStatus(): {
   available: string[];
 } {
   return {
-    loaded: Object.keys(bibleCache),
+    // Return empty mock for backwards compatibility with legacy cache checks
+    loaded: [],
     available: Object.keys(LOCAL_VERSIONS)
   };
 }

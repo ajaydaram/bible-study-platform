@@ -9,7 +9,9 @@ import {
   SortAsc,
   SortDesc,
   Layers,
-  Book
+  Book,
+  Network,
+  List
 } from 'lucide-react'
 import {
   getCrossReferences,
@@ -18,6 +20,7 @@ import {
   type CrossReference
 } from '../lib/crossReferences'
 import { getLocalVerse } from '../lib/localBible'
+import CrossReferencesGraph from './CrossReferencesGraph'
 
 interface CrossReferencesPanelProps {
   book: string
@@ -77,6 +80,7 @@ export default function CrossReferencesPanel({
   const [sortBy, setSortBy] = useState<SortOption>('relevance')
   const [filterBy, setFilterBy] = useState<FilterOption>('all')
   const [showFilters, setShowFilters] = useState(false)
+  const [viewMode, setViewMode] = useState<'list' | 'graph'>('list')
 
   // Get current book code
   const currentBookCode = Object.entries(BOOK_NAMES).find(([_, name]) => name === book)?.[0] || book.toUpperCase().substring(0, 3)
@@ -216,16 +220,29 @@ export default function CrossReferencesPanel({
               </p>
             </div>
           </div>
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className={`p-2 rounded-lg transition-colors ${
-              showFilters 
-                ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400' 
-                : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500'
-            }`}
-          >
-            <Filter className="h-4 w-4" />
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setViewMode(prev => prev === 'list' ? 'graph' : 'list')}
+              className={`p-2 rounded-lg transition-colors ${
+                viewMode === 'graph' 
+                  ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400' 
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500'
+              }`}
+              title={viewMode === 'graph' ? 'Switch to List View' : 'Switch to Graph View'}
+            >
+              {viewMode === 'graph' ? <List className="h-4 w-4" /> : <Network className="h-4 w-4" />}
+            </button>
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className={`p-2 rounded-lg transition-colors ${
+                showFilters 
+                  ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400' 
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500'
+              }`}
+            >
+              <Filter className="h-4 w-4" />
+            </button>
+          </div>
         </div>
 
         {/* Stats badges */}
@@ -307,9 +324,19 @@ export default function CrossReferencesPanel({
         )}
       </div>
 
-      {/* References list */}
+      {/* References list or graph */}
       <div className="flex-1 overflow-y-auto">
-        {filteredAndSorted.length === 0 ? (
+        {viewMode === 'graph' ? (
+          <div className="p-3">
+            <CrossReferencesGraph
+              book={book}
+              chapter={chapter}
+              verse={verse}
+              references={filteredAndSorted}
+              onNavigate={onNavigate}
+            />
+          </div>
+        ) : filteredAndSorted.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12 text-gray-500 dark:text-gray-400">
             <Link2 className="h-10 w-10 opacity-30 mb-3" />
             <p className="text-sm font-medium">No cross-references found</p>

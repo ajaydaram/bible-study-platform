@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Map, MapPin, Navigation, Book, ChevronRight, X, ExternalLink } from 'lucide-react'
 
-interface BibleLocation {
+export interface BibleLocation {
   name: string
   modernName?: string
   coordinates: { lat: number; lng: number }
@@ -12,7 +12,7 @@ interface BibleLocation {
   period: string[]
 }
 
-interface BibleMap {
+export interface BibleMap {
   id: string
   title: string
   description: string
@@ -21,7 +21,7 @@ interface BibleMap {
   locations: BibleLocation[]
 }
 
-const bibleMaps: BibleMap[] = [
+export const bibleMaps: BibleMap[] = [
   {
     id: 'patriarchs',
     title: "Journey of the Patriarchs",

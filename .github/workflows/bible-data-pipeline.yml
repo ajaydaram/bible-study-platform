@@ -1,0 +1,55 @@
+name: Bible Data Sync Pipeline
+
+on:
+  schedule:
+    # Run at midnight on the 1st of every month
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+    # Allow manual execution via GitHub Actions UI
+
+jobs:
+  update-bible-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-id: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run download and parse script
+        run: |
+          echo "Starting download of Bible texts and Strong's Greek/Hebrew dictionaries..."
+          node scripts/bible-data/download-bibles.mjs
+
+      - name: Check for changes
+        id: git-status
+        run: |
+          git status --porcelain
+          echo "changes=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request for Updated Data
+        if: steps.git-status.outputs.changes > 0
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(data): automated monthly update of Bible texts and Strong's dictionaries"
+          title: "🤖 Automated Update: Bible Texts & Strong's Dictionaries"
+          body: |
+            This is an automated pull request triggered by the monthly scheduled workflow.
+            
+            It updates the offline Bible versions (KJV/WEB/ASV) and Strong's Greek/Hebrew dictionary definitions directly in `public/data/` to keep local storage definitions fresh.
+            
+            Please review the modified files and merge if there are no parsing issues.
+          branch: automated-bible-data-update
+          delete-branch: true
+          labels: |
+            automated-pr
+            data-sync

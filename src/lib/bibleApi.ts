@@ -21,7 +21,7 @@ const BASE_URL = 'https://rest.api.bible/v1'
 // Popular Bible versions available
 // Versions with local: true use offline JSON files first
 export const BIBLE_VERSIONS = [
-  { id: 'ESV', name: 'English Standard Version', abbr: 'ESV', api: 'esv' as const, local: false },
+  { id: 'ESV', name: 'English Standard Version', abbr: 'ESV', api: 'esv' as const, local: true, localId: 'esv' as LocalVersionId },
   { id: 'de4e12af7f28f599-02', name: 'King James Version', abbr: 'KJV', api: 'apibible' as const, local: true, localId: 'kjv' as LocalVersionId },
   { id: '9879dbb7cfe39e4d-04', name: 'World English Bible', abbr: 'WEB', api: 'apibible' as const, local: true, localId: 'web' as LocalVersionId },
   { id: '06125adad2d5898a-01', name: 'American Standard Version', abbr: 'ASV', api: 'apibible' as const, local: false },

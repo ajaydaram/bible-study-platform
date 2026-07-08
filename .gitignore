@@ -58,3 +58,14 @@ vite.config.*.mjs
 # Test coverage
 coverage/
 .vercel
+
+# Temporary/local folders
+.tmp-creeds-json/
+dev-dist/
+*.log
+
+# Scripts dependency/clone folders
+scripts/sword-modules/
+scripts/data-sources/
+scripts/stepbible/
+scripts/church-fathers/

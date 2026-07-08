@@ -22,6 +22,7 @@ import JournalNew from './pages/JournalNew'
 import JournalEdit from './pages/JournalEdit'
 import Groups from './pages/Groups'
 import GroupNew from './pages/GroupNew'
+import GroupDetail from './pages/GroupDetail'
 import Discussions from './pages/Discussions'
 import DiscussionNew from './pages/DiscussionNew'
 import Prayers from './pages/Prayers'
@@ -93,6 +94,7 @@ function App() {
                     <Route path="/journal/edit/:id" element={<JournalEdit />} />
                     <Route path="/groups" element={<Groups />} />
                     <Route path="/groups/new" element={<GroupNew />} />
+                    <Route path="/groups/:id" element={<GroupDetail />} />
                     <Route path="/discussions" element={<Discussions />} />
                     <Route path="/discussions/new" element={<DiscussionNew />} />
                     <Route path="/prayers" element={<Prayers />} />

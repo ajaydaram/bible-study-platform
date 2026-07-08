@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { BookOpen, ChevronLeft, ChevronRight, Loader2, BookMarked, Headphones, Link2, BookText, PanelRightOpen, PanelRightClose, Users, Info } from 'lucide-react'
+import { BookOpen, ChevronLeft, ChevronRight, Loader2, BookMarked, Headphones, Link2, BookText, PanelRightOpen, PanelRightClose, Users, Info, Scroll, Map } from 'lucide-react'
 import { getChapter, BIBLE_VERSIONS, DEFAULT_BIBLE_ID, type ParsedPassage } from '../lib/bibleApi'
 import AudioPlayer from '../components/AudioPlayer'
 import { isBibleBrainConfigured } from '../lib/bibleBrain'
 import CrossReferencesPanel from '../components/CrossReferencesPanel'
 import CommentaryPanel from '../components/CommentaryPanel'
 import PatristicPanel from '../components/PatristicPanel'
+import CreedProofsPanel from '../components/CreedProofsPanel'
+import BibleMapSyncPanel from '../components/BibleMapSyncPanel'
 import { getVersificationNote, hasVersificationDifference } from '../lib/versification'
+import { loadCreedProofs, getCreedsForVerseSync, getOsisRef } from '../lib/creedProofs'
+import { addProgressListener, removeProgressListener } from '../lib/localBible'
 
 const BIBLE_BOOKS = [
   { name: 'Genesis', chapters: 50 },
@@ -89,11 +93,45 @@ export default function Bible() {
   const [showAudioPlayer, setShowAudioPlayer] = useState(false)
   const [activeVerse, setActiveVerse] = useState<number | null>(null)
   const [showStudyPanel, setShowStudyPanel] = useState(false)
-  const [studyTab, setStudyTab] = useState<'crossref' | 'commentary' | 'patristic'>('crossref')
+  const [studyTab, setStudyTab] = useState<'crossref' | 'commentary' | 'patristic' | 'confession' | 'map'>('crossref')
+  const [indexingProgress, setIndexingProgress] = useState<number | null>(null)
 
   const currentBookInfo = BIBLE_BOOKS.find(b => b.name === selectedBook)
   const currentVersionInfo = BIBLE_VERSIONS.find(v => v.id === selectedVersion)
   const audioConfigured = isBibleBrainConfigured()
+
+  useEffect(() => {
+    loadCreedProofs()
+  }, [])
+
+  useEffect(() => {
+    const version = BIBLE_VERSIONS.find(v => v.id === selectedVersion)
+    if (version?.local && version.localId) {
+      const localId = version.localId
+
+      const handleProgress = (progress: number) => {
+        if (progress >= 100) {
+          setIndexingProgress(100)
+          setTimeout(() => setIndexingProgress(null), 3000)
+        } else if (progress === -1) {
+          setIndexingProgress(null)
+        } else {
+          setIndexingProgress(progress)
+        }
+      }
+
+      addProgressListener(localId, handleProgress)
+      
+      // Trigger background indexing
+      import('../lib/localBible').then(m => m.loadLocalBible(localId))
+
+      return () => {
+        removeProgressListener(localId, handleProgress)
+      }
+    } else {
+      setIndexingProgress(null)
+    }
+  }, [selectedVersion])
 
   useEffect(() => {
     const bookParam = searchParams.get('book')
@@ -145,9 +183,29 @@ export default function Bible() {
       {/* Main content area */}
       <div className={`flex-1 space-y-6 transition-all duration-300 ${showStudyPanel ? 'max-w-3xl' : 'max-w-4xl mx-auto'}`}>
         {/* Header */}
-        <div className="flex items-center gap-3">
-          <BookOpen className="h-8 w-8 text-primary-600" />
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Bible Reader</h1>
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-3">
+            <BookOpen className="h-8 w-8 text-primary-600" />
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Bible Reader</h1>
+          </div>
+          {indexingProgress !== null && (
+            <div className="flex items-center gap-3 px-3 py-1.5 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/30 rounded-xl text-xs text-indigo-700 dark:text-indigo-300 animate-fade-in shadow-sm select-none">
+              <div className={indexingProgress < 100 ? "animate-spin rounded-full h-3 w-3 border-b-2 border-indigo-600 dark:border-indigo-400" : ""}>
+                {indexingProgress === 100 ? "✓" : ""}
+              </div>
+              <span className="font-medium">
+                {indexingProgress === 100 
+                  ? `Offline Ready`
+                  : `Offline Indexing: ${indexingProgress}%`}
+              </span>
+              <div className="w-16 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-indigo-650 dark:bg-indigo-400 transition-all duration-300"
+                  style={{ width: `${indexingProgress}%` }}
+                ></div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Controls */}
@@ -278,6 +336,10 @@ export default function Bible() {
                   const versificationNote = getVersificationNote(bookAbbr, selectedChapter, verse.verse);
                   const hasVerseDiff = hasVersificationDifference(bookAbbr, selectedChapter, verse.verse);
                   
+                  // Get confessional proofs
+                  const osisRef = getOsisRef(selectedBook, selectedChapter, verse.verse);
+                  const proofs = getCreedsForVerseSync(osisRef);
+                  
                   return (
                   <p 
                     key={verse.verse} 
@@ -307,6 +369,30 @@ export default function Bible() {
                       )}
                     </sup>
                     <span className="verse-text">{verse.text}</span>
+                    {proofs.length > 0 && (
+                      <span 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveVerse(verse.verse);
+                          setStudyTab('confession');
+                          setShowStudyPanel(true);
+                        }}
+                        className="inline-flex items-center gap-0.5 ml-2 px-1.5 py-0.5 rounded text-[10px] font-medium bg-indigo-50 hover:bg-indigo-100 text-indigo-700 dark:bg-indigo-950/40 dark:hover:bg-indigo-900/40 dark:text-indigo-300 border border-indigo-200/30 dark:border-indigo-800/30 cursor-pointer select-none"
+                      >
+                        <Scroll className="w-2.5 h-2.5" />
+                        <span>
+                          {proofs[0].creedTitle.includes('Westminster Confession')
+                            ? 'WCF'
+                            : proofs[0].creedTitle.includes('Heidelberg Catechism')
+                            ? 'HC'
+                            : proofs[0].creedTitle.includes('Baptist Catechism')
+                            ? 'LBC'
+                            : proofs[0].creedTitle.split(' ')[0]}{' '}
+                          {proofs[0].sectionId.replace('chapter-', 'Ch.').replace('-section-', ' Sec.').replace('q-', 'Q')}{' '}
+                          {proofs.length > 1 ? `(+${proofs.length - 1})` : ''}
+                        </span>
+                      </span>
+                    )}
                   </p>
                 )})
               ) : (
@@ -356,6 +442,28 @@ export default function Bible() {
               <Users className="h-4 w-4" />
               <span className="hidden sm:inline">Fathers</span>
             </button>
+            <button
+              onClick={() => setStudyTab('confession')}
+              className={`flex-1 flex items-center justify-center gap-1 px-2 py-3 text-xs font-medium transition-colors ${
+                studyTab === 'confession'
+                  ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/20'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+              }`}
+            >
+              <Scroll className="h-4 w-4" />
+              <span className="hidden sm:inline">Creeds</span>
+            </button>
+            <button
+              onClick={() => setStudyTab('map')}
+              className={`flex-1 flex items-center justify-center gap-1 px-2 py-3 text-xs font-medium transition-colors ${
+                studyTab === 'map'
+                  ? 'text-emerald-600 dark:text-emerald-400 border-b-2 border-emerald-600 dark:border-emerald-400 bg-emerald-50/50 dark:bg-emerald-900/20'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+              }`}
+            >
+              <Map className="h-4 w-4" />
+              <span className="hidden sm:inline">Maps</span>
+            </button>
           </div>
 
           {/* Tab Content */}
@@ -378,11 +486,21 @@ export default function Bible() {
                 currentVerse={activeVerse || undefined}
                 onVerseClick={(verse) => setActiveVerse(verse)}
               />
-            ) : (
+            ) : studyTab === 'patristic' ? (
               <PatristicPanel
                 book={selectedBook}
                 chapter={selectedChapter}
                 verse={activeVerse || 1}
+              />
+            ) : studyTab === 'confession' ? (
+              <CreedProofsPanel
+                reference={getOsisRef(selectedBook, selectedChapter, activeVerse || 1)}
+              />
+            ) : (
+              <BibleMapSyncPanel
+                book={selectedBook}
+                chapter={selectedChapter}
+                chapterText={passage?.text || ''}
               />
             )}
           </div>

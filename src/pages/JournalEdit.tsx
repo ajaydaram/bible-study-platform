@@ -14,6 +14,7 @@ export default function JournalEdit() {
   const [passage, setPassage] = useState('')
   const [tagInput, setTagInput] = useState('')
   const [tags, setTags] = useState<string[]>([])
+  const [shareWithGroup, setShareWithGroup] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -25,7 +26,9 @@ export default function JournalEdit() {
         setTitle(entry.title)
         setContent(entry.content)
         setPassage(entry.passage || '')
-        setTags(entry.tags)
+        // Filter out 'shared' from display tags
+        setTags(entry.tags.filter(t => t !== 'shared'))
+        setShareWithGroup(entry.tags.includes('shared'))
       }
     }
     setLoading(false)
@@ -48,6 +51,8 @@ export default function JournalEdit() {
     const stored = localStorage.getItem(STORAGE_KEY)
     const entries: JournalEntry[] = stored ? JSON.parse(stored) : []
     
+    const finalTags = shareWithGroup ? [...tags, 'shared'] : tags
+
     const updatedEntries = entries.map(entry => {
       if (entry.id === id) {
         return {
@@ -55,7 +60,7 @@ export default function JournalEdit() {
           title,
           content,
           passage: passage || undefined,
-          tags,
+          tags: finalTags,
           updatedAt: new Date().toISOString()
         }
       }
@@ -161,6 +166,19 @@ export default function JournalEdit() {
                 ))}
               </div>
             )}
+          </div>
+
+          <div className="flex items-center gap-2 border-t border-gray-100 dark:border-gray-700/50 pt-4">
+            <input
+              id="shareWithGroup"
+              type="checkbox"
+              checked={shareWithGroup}
+              onChange={(e) => setShareWithGroup(e.target.checked)}
+              className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+            />
+            <label htmlFor="shareWithGroup" className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+              Share with Reading Circles (Public Reflection)
+            </label>
           </div>
         </div>
 

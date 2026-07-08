@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { getReadingProgress, saveReadingProgress } from '../../lib/firestore'
+import { updateStreak, checkEraCompletionAchievements } from '../../lib/achievements'
+import { showLocalNotification } from '../../lib/notifications'
 import { 
   biblicalEras, 
   getDayReading, 
@@ -193,16 +195,35 @@ export default function ChronologicalPath() {
 
     setSaving(true)
     try {
+      const isCompleting = !completedDays.includes(currentDay)
       const newCompleted = completedDays.includes(currentDay)
         ? completedDays.filter(d => d !== currentDay)
         : [...completedDays, currentDay]
 
       await saveReadingProgress(user.id, 'chronological', currentDay, {
-        completed: !completedDays.includes(currentDay),
+        completed: isCompleting,
         notes: notes[currentDay] || ''
       })
 
       setCompletedDays(newCompleted)
+
+      if (isCompleting) {
+        // Update reading streak
+        const { newAchievements } = await updateStreak(user.id)
+        
+        // Check for newly completed biblical eras
+        const newlyCompletedEras = await checkEraCompletionAchievements(user.id, newCompleted)
+        
+        // Notify user of any unlocked achievements
+        const allNew = [...newAchievements, ...newlyCompletedEras]
+        if (allNew.length > 0) {
+          allNew.forEach(ach => {
+            showLocalNotification(`Badge Earned! ${ach.icon}`, {
+              body: `Congratulations! You unlocked the "${ach.name}" badge.`
+            })
+          })
+        }
+      }
     } catch (error) {
       console.error('Error saving progress:', error)
     } finally {
