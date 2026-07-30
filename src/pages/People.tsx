@@ -1,7 +1,9 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Users, Search, BookOpen, ExternalLink, ChevronRight, User, GitBranch, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Users, Search, BookOpen, ExternalLink, ChevronRight, User, GitBranch, ArrowRight, Compass } from 'lucide-react';
 import { loadBiblePeople, BiblePerson, searchPeople, getPeopleByGender, getPeopleByLetter, getFirstLetters } from '../lib/biblePeople';
 import { getPerson, type FamilyRelations } from '../lib/familyTree';
+import { getEpochForPerson } from '../data/redemptiveMapper';
 
 export default function People() {
   const [people, setPeople] = useState<BiblePerson[]>([]);
@@ -239,6 +241,34 @@ export default function People() {
                                    : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'}`}>
                     {selectedPerson.gender}
                   </span>
+
+                  <div className="mt-3 bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-950 p-4 rounded-2xl border border-indigo-800/40 text-white space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-indigo-300 flex items-center gap-1.5">
+                        <Compass className="w-3.5 h-3.5 text-indigo-400" />
+                        Redemptive-Historical Epoch
+                      </span>
+                      <Link
+                        to="/epochs"
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300 hover:text-amber-200 transition-colors"
+                      >
+                        <span>Explore in Revelation Tree</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                    {(() => {
+                      const epoch = getEpochForPerson(selectedPerson.name)
+                      return (
+                        <div className="flex items-center gap-2 pt-1">
+                          <span className="text-xl">{epoch.icon}</span>
+                          <div>
+                            <h4 className="text-sm font-bold text-white">{epoch.title}</h4>
+                            <p className="text-xs text-indigo-200">{epoch.covenantTitle}</p>
+                          </div>
+                        </div>
+                      )
+                    })()}
+                  </div>
                 </div>
               </div>
 

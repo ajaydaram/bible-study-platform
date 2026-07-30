@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Calendar, ChevronDown, ChevronUp, MapPin, Users, Book, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Calendar, ChevronDown, ChevronUp, MapPin, Users, Book, Search, Compass } from 'lucide-react';
 import { loadBibleEvents, BibleEvent, biblicalEras, Era, getEraForYear, formatYear } from '../lib/bibleTimeline';
+import { getEpochForTimelineEvent } from '../data/redemptiveMapper';
 
 export default function Timeline() {
   const [events, setEvents] = useState<BibleEvent[]>([]);
@@ -320,6 +322,32 @@ function EventCard({ event, isExpanded, onToggle, era }: EventCardProps) {
                 </div>
               </div>
             )}
+
+            {/* Redemptive Epoch & Covenant Badge */}
+            {(() => {
+              const epoch = getEpochForTimelineEvent(event.year, event.title);
+              return (
+                <div className="mt-4 p-3.5 bg-slate-900 border border-indigo-800/40 rounded-xl text-white flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-xl">{epoch.icon}</span>
+                    <div>
+                      <div className="flex items-center gap-1.5 text-[10px] text-amber-300 font-bold uppercase tracking-wider">
+                        <Compass className="w-3 h-3" />
+                        Redemptive-Historical Epoch
+                      </div>
+                      <h4 className="text-xs font-bold text-white">{epoch.title}</h4>
+                      <p className="text-[11px] text-slate-300">{epoch.covenantTitle}</p>
+                    </div>
+                  </div>
+                  <Link
+                    to="/epochs"
+                    className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-bold transition-colors flex items-center gap-1"
+                  >
+                    <span>View Revelation Tree</span>
+                  </Link>
+                </div>
+              );
+            })()}
           </div>
         </div>
       )}
