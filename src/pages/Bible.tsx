@@ -12,6 +12,9 @@ import BibleMapSyncPanel from '../components/BibleMapSyncPanel'
 import { getVersificationNote, hasVersificationDifference } from '../lib/versification'
 import { loadCreedProofs, getCreedsForVerseSync, getOsisRef } from '../lib/creedProofs'
 import { addProgressListener, removeProgressListener } from '../lib/localBible'
+import { getTypologyForVerse, TypologyMapping } from '../data/typologyBibleMap'
+import TypologyMarginBadge from '../components/TypologyMarginBadge'
+import TypologySplitScreenModal from '../components/TypologySplitScreenModal'
 
 const BIBLE_BOOKS = [
   { name: 'Genesis', chapters: 50 },
@@ -95,6 +98,7 @@ export default function Bible() {
   const [showStudyPanel, setShowStudyPanel] = useState(false)
   const [studyTab, setStudyTab] = useState<'crossref' | 'commentary' | 'patristic' | 'confession' | 'map'>('crossref')
   const [indexingProgress, setIndexingProgress] = useState<number | null>(null)
+  const [selectedTypologyMapping, setSelectedTypologyMapping] = useState<TypologyMapping | null>(null)
 
   const currentBookInfo = BIBLE_BOOKS.find(b => b.name === selectedBook)
   const currentVersionInfo = BIBLE_VERSIONS.find(v => v.id === selectedVersion)
@@ -340,6 +344,9 @@ export default function Bible() {
                   const osisRef = getOsisRef(selectedBook, selectedChapter, verse.verse);
                   const proofs = getCreedsForVerseSync(osisRef);
                   
+                  // Get Typology Mapping
+                  const typologyMapping = getTypologyForVerse(selectedBook, selectedChapter, verse.verse);
+                  
                   return (
                   <p 
                     key={verse.verse} 
@@ -369,6 +376,12 @@ export default function Bible() {
                       )}
                     </sup>
                     <span className="verse-text">{verse.text}</span>
+                    {typologyMapping && (
+                      <TypologyMarginBadge
+                        mapping={typologyMapping}
+                        onClick={() => setSelectedTypologyMapping(typologyMapping)}
+                      />
+                    )}
                     {proofs.length > 0 && (
                       <span 
                         onClick={(e) => {
@@ -506,6 +519,13 @@ export default function Bible() {
           </div>
         </div>
       )}
+
+      {/* Split Screen Typology Viewer Modal */}
+      <TypologySplitScreenModal
+        mapping={selectedTypologyMapping}
+        isOpen={!!selectedTypologyMapping}
+        onClose={() => setSelectedTypologyMapping(null)}
+      />
     </div>
   )
 }
