@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { redemptiveEpochs } from '../data/redemptiveEpochs'
+import OrganicRevelationTree from '../components/OrganicRevelationTree'
+import CallAndResponseModal from '../components/CallAndResponseModal'
+import { isEpochUnlocked } from '../data/callAndResponseData'
 import {
   Compass,
   BookOpen,
@@ -7,18 +10,37 @@ import {
   Sparkles,
   Scroll,
   Layers,
-  ArrowRight
+  ArrowRight,
+  Lock
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 export default function EpochProgression() {
   const [selectedEpochId, setSelectedEpochId] = useState<string>('pre-fall')
+  const [modalTargetEpochId, setModalTargetEpochId] = useState<string | null>(null)
+  const [refreshKey, setRefreshKey] = useState(0)
 
   const currentEpoch = redemptiveEpochs.find((e) => e.id === selectedEpochId) || redemptiveEpochs[0]
 
+  const handleSelectEpoch = (epochId: string) => {
+    if (isEpochUnlocked(epochId)) {
+      setSelectedEpochId(epochId)
+    } else {
+      // Prompt modal to unlock
+      setModalTargetEpochId(epochId)
+    }
+  }
+
+  const handleModalSuccess = () => {
+    setRefreshKey((prev) => prev + 1)
+    if (modalTargetEpochId) {
+      setSelectedEpochId(modalTargetEpochId)
+    }
+  }
+
   return (
-    <div className="max-w-7xl mx-auto space-y-8">
+    <div key={refreshKey} className="max-w-7xl mx-auto space-y-8">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden border border-indigo-800/40">
         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -54,19 +76,26 @@ export default function EpochProgression() {
         </div>
       </div>
 
+      {/* Organic Tree Visualizer Component */}
+      <OrganicRevelationTree />
+
       {/* Epoch Stepper Navigation */}
       <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
         {redemptiveEpochs.map((epoch) => {
           const isSelected = epoch.id === selectedEpochId
+          const unlocked = isEpochUnlocked(epoch.id)
+
           return (
             <button
               key={epoch.id}
-              onClick={() => setSelectedEpochId(epoch.id)}
+              onClick={() => handleSelectEpoch(epoch.id)}
               className={clsx(
                 'flex flex-col items-start p-4 rounded-2xl border text-left transition-all duration-200 relative overflow-hidden',
                 isSelected
                   ? 'bg-white dark:bg-gray-800 border-indigo-600 dark:border-indigo-500 shadow-xl ring-2 ring-indigo-500/20 scale-[1.02]'
-                  : 'bg-white/60 dark:bg-gray-800/60 border-gray-200 dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600'
+                  : unlocked
+                  ? 'bg-white/70 dark:bg-gray-800/70 border-gray-200 dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800'
+                  : 'bg-gray-100/80 dark:bg-gray-900/60 border-gray-200 dark:border-gray-800 opacity-85 hover:border-indigo-400'
               )}
             >
               <div className="flex items-center justify-between w-full mb-2">
@@ -75,18 +104,25 @@ export default function EpochProgression() {
                     'w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold',
                     isSelected
                       ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/40'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                      : unlocked
+                      ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200'
+                      : 'bg-gray-200 text-gray-500 dark:bg-gray-800 dark:text-gray-400'
                   )}
                 >
                   {epoch.number}
                 </span>
-                <span className="text-xl">{epoch.icon}</span>
+
+                <div className="flex items-center gap-1">
+                  {!unlocked && <Lock className="w-3.5 h-3.5 text-amber-500" />}
+                  <span className="text-xl">{epoch.icon}</span>
+                </div>
               </div>
+
               <h3 className="font-bold text-sm text-gray-900 dark:text-white line-clamp-1">
                 {epoch.title}
               </h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-1 font-mono">
-                {epoch.timeline}
+                {unlocked ? epoch.timeline : 'Unlock via Response'}
               </p>
 
               {/* Selection indicator bar */}
@@ -243,6 +279,16 @@ export default function EpochProgression() {
           </div>
         </div>
       </div>
+
+      {/* Call and Response Modal */}
+      {modalTargetEpochId && (
+        <CallAndResponseModal
+          targetEpochId={modalTargetEpochId}
+          isOpen={!!modalTargetEpochId}
+          onClose={() => setModalTargetEpochId(null)}
+          onSuccess={handleModalSuccess}
+        />
+      )}
     </div>
   )
 }

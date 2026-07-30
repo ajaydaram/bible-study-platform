@@ -26,7 +26,8 @@ import {
   Activity,
   FileText,
   Languages,
-  Layers
+  Layers,
+  Sparkles
 } from 'lucide-react'
 import clsx from 'clsx'
 
@@ -35,6 +36,7 @@ const navigation = [
   { name: 'Bible', href: '/bible', icon: BookOpen },
   { name: 'Redemptive Epochs', href: '/epochs', icon: Compass, isNew: true },
   { name: 'Typology Tracker', href: '/typology', icon: Layers, isNew: true },
+  { name: 'Consummation', href: '/consummation', icon: Sparkles, isNew: true },
   { name: 'Chronological', href: '/paths/chronological', icon: Calendar },
   { name: 'Thematic', href: '/paths/thematic', icon: BookMarked },
   { name: 'Pulse', href: '/pulse', icon: Activity, isNew: true },

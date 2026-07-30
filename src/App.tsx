@@ -66,6 +66,7 @@ import SharedNote from './pages/SharedNote'
 // Redemptive-Historical Architecture
 import EpochProgression from './pages/EpochProgression'
 import TypologyTracker from './pages/TypologyTracker'
+import ConsummationView from './pages/ConsummationView'
 
 // Reading Plans
 import ReadingPlans from './pages/ReadingPlans'
@@ -93,6 +94,7 @@ function App() {
                     <Route path="/bible" element={<Bible />} />
                     <Route path="/epochs" element={<EpochProgression />} />
                     <Route path="/typology" element={<TypologyTracker />} />
+                    <Route path="/consummation" element={<ConsummationView />} />
                     <Route path="/paths/chronological" element={<ChronologicalPath />} />
                     <Route path="/paths/thematic" element={<ThematicPath />} />
                     <Route path="/journal" element={<Journal />} />
