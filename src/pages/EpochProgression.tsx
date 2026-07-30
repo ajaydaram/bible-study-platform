@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { redemptiveEpochs } from '../data/redemptiveEpochs'
 import OrganicRevelationTree from '../components/OrganicRevelationTree'
 import CallAndResponseModal from '../components/CallAndResponseModal'
-import { isEpochUnlocked } from '../data/callAndResponseData'
+import { isEpochUnlocked, getSharedEcclesialResponses } from '../data/callAndResponseData'
 import {
   Compass,
   BookOpen,
@@ -11,7 +11,8 @@ import {
   Scroll,
   Layers,
   ArrowRight,
-  Lock
+  Lock,
+  Users
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
@@ -277,6 +278,47 @@ export default function EpochProgression() {
               ))}
             </ul>
           </div>
+
+          {/* Ecclesial Community Discipleship Responses for this Epoch */}
+          {(() => {
+            const sharedResponses = getSharedEcclesialResponses(selectedEpochId)
+            if (sharedResponses.length === 0) return null
+
+            return (
+              <div className="bg-amber-950/20 border border-amber-800/40 p-6 rounded-2xl space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-base font-bold text-amber-200 flex items-center gap-2">
+                    <Users className="w-5 h-5 text-amber-400" />
+                    Covenant Community Responses for {currentEpoch.title}
+                  </h3>
+                  <Link
+                    to="/groups"
+                    className="text-xs font-semibold text-amber-400 hover:underline flex items-center gap-1"
+                  >
+                    <span>View Group Feed</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {sharedResponses.slice(0, 2).map((res) => (
+                    <div
+                      key={res.id}
+                      className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-2 text-xs text-slate-200"
+                    >
+                      <div className="flex items-center justify-between font-semibold text-slate-400">
+                        <span className="text-amber-300">{res.authorName}</span>
+                        <span className="uppercase text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-md">
+                          {res.responseType}
+                        </span>
+                      </div>
+                      <p className="italic font-serif text-slate-300">"{res.responseText}"</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          })()}
         </div>
       </div>
 

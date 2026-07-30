@@ -200,10 +200,112 @@ export function isPauseActive(epochId: string, hours: number = 24): { active: bo
   return { active: false, remainingSeconds: 0 }
 }
 
+export interface EcclesialResponse {
+  id: string
+  epochId: string
+  epochTitle: string
+  authorName: string
+  authorAvatar?: string
+  responseOptionId: string
+  responseType: 'reflection' | 'prayer' | 'obedience'
+  promptText: string
+  responseText: string
+  amenCount: number
+  createdAt: string
+  userAmens: string[]
+}
+
+const LOCAL_STORAGE_ECCLESIAL_KEY = 'scriptorium_ecclesial_responses_v1'
+
+const DEFAULT_ECCLESIAL_RESPONSES: EcclesialResponse[] = [
+  {
+    id: 'ecc-1',
+    epochId: 'patriarchal',
+    epochTitle: 'Patriarchal Era',
+    authorName: 'Pastor Timothy',
+    responseOptionId: 'patriarchal-reflection',
+    responseType: 'reflection',
+    promptText: 'What is one area of your life where God is calling you to step out in pilgrim faith?',
+    responseText: 'As our congregation seeks to plant a new mission campus, I am learning like Abraham to trust God’s sovereign promise rather than visible financial security.',
+    amenCount: 8,
+    createdAt: new Date(Date.now() - 3600000 * 5).toISOString(),
+    userAmens: ['user-1', 'user-2']
+  },
+  {
+    id: 'ecc-2',
+    epochId: 'mosaic',
+    epochTitle: 'Mosaic Era',
+    authorName: 'Sarah S.',
+    responseOptionId: 'mosaic-prayer',
+    responseType: 'prayer',
+    promptText: 'Offer a prayer praising God for tearing the veil through Christ and making your heart His Holy Sanctuary.',
+    responseText: 'Lord Jesus, thank You that I no longer stand at a distance at Mount Sinai in terror, but draw near boldly to the Heavenly Zion through Your blood!',
+    amenCount: 12,
+    createdAt: new Date(Date.now() - 3600000 * 12).toISOString(),
+    userAmens: ['user-3']
+  },
+  {
+    id: 'ecc-3',
+    epochId: 'messianic',
+    epochTitle: 'Messianic Realization',
+    authorName: 'Marcus V.',
+    responseOptionId: 'messianic-obedience',
+    responseType: 'obedience',
+    promptText: 'Log one decision you will make today that reflects heavenly resurrection hope rather than worldly fear.',
+    responseText: 'In my workplace today, I refused to join in manipulative office politics, choosing instead to serve my colleagues with resurrection integrity.',
+    amenCount: 15,
+    createdAt: new Date(Date.now() - 3600000 * 24).toISOString(),
+    userAmens: ['user-1']
+  }
+]
+
+export function getSharedEcclesialResponses(epochFilter?: string): EcclesialResponse[] {
+  try {
+    const saved = localStorage.getItem(LOCAL_STORAGE_ECCLESIAL_KEY)
+    let responses: EcclesialResponse[] = saved ? JSON.parse(saved) : DEFAULT_ECCLESIAL_RESPONSES
+    if (!saved) {
+      localStorage.setItem(LOCAL_STORAGE_ECCLESIAL_KEY, JSON.stringify(DEFAULT_ECCLESIAL_RESPONSES))
+    }
+    if (epochFilter) {
+      responses = responses.filter((r) => r.epochId === epochFilter)
+    }
+    return responses.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+  } catch (e) {
+    console.error('Error fetching ecclesial responses:', e)
+    return DEFAULT_ECCLESIAL_RESPONSES
+  }
+}
+
+export function addAmenToResponse(responseId: string, userId: string = 'current-user'): EcclesialResponse[] {
+  const responses = getSharedEcclesialResponses()
+  const updated = responses.map((r) => {
+    if (r.id === responseId) {
+      const alreadyAmened = r.userAmens.includes(userId)
+      const newUserAmens = alreadyAmened
+        ? r.userAmens.filter((id) => id !== userId)
+        : [...r.userAmens, userId]
+      return {
+        ...r,
+        amenCount: alreadyAmened ? Math.max(0, r.amenCount - 1) : r.amenCount + 1,
+        userAmens: newUserAmens
+      }
+    }
+    return r
+  })
+  try {
+    localStorage.setItem(LOCAL_STORAGE_ECCLESIAL_KEY, JSON.stringify(updated))
+  } catch (e) {
+    console.error('Error updating Amen count:', e)
+  }
+  return updated
+}
+
 export function submitEpochResponse(
   targetEpochId: string,
   responseOptionId: string,
-  responseText: string
+  responseText: string,
+  shareWithGroup: boolean = false,
+  authorName: string = 'Faithful Disciple'
 ) {
   const progress = getUserEpochProgress()
   
@@ -233,6 +335,33 @@ export function submitEpochResponse(
   } catch (e) {
     console.error('Error saving response text:', e)
   }
+
+  // If sharing with group, add to Ecclesial Feed
+  if (shareWithGroup) {
+    const item = callAndResponseData[targetEpochId]
+    const option = item?.responseOptions.find((o) => o.id === responseOptionId)
+    const newEcclesialItem: EcclesialResponse = {
+      id: `ecc-${Date.now()}`,
+      epochId: targetEpochId,
+      epochTitle: item?.targetEpochTitle || 'Redemptive Epoch',
+      authorName: authorName || 'Faithful Disciple',
+      responseOptionId,
+      responseType: option?.type || 'reflection',
+      promptText: option?.promptText || 'Discipleship Response',
+      responseText,
+      amenCount: 1,
+      createdAt: new Date().toISOString(),
+      userAmens: ['current-user']
+    }
+
+    const currentEcclesial = getSharedEcclesialResponses()
+    const updatedEcclesial = [newEcclesialItem, ...currentEcclesial]
+    try {
+      localStorage.setItem(LOCAL_STORAGE_ECCLESIAL_KEY, JSON.stringify(updatedEcclesial))
+    } catch (e) {
+      console.error('Error saving shared ecclesial response:', e)
+    }
+  }
 }
 
 export function bypassPauseForStudy(targetEpochId: string) {
@@ -243,3 +372,4 @@ export function bypassPauseForStudy(targetEpochId: string) {
   }
   saveUserEpochProgress(progress)
 }
+

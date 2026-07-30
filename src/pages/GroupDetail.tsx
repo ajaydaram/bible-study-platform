@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { format } from 'date-fns';
 import { getDayReading } from '../data/biblicalEras';
+import { getSharedEcclesialResponses, addAmenToResponse, EcclesialResponse } from '../data/callAndResponseData';
 import type { Group, JournalEntry, Prayer } from '../types';
 
 interface GroupComment {
@@ -31,8 +32,9 @@ export default function GroupDetail() {
   const { user } = useAuth();
 
   const [group, setGroup] = useState<Group | null>(null);
-  const [activeTab, setActiveTab] = useState<'progress' | 'discussions' | 'journal' | 'prayers'>('progress');
+  const [activeTab, setActiveTab] = useState<'progress' | 'discussions' | 'journal' | 'prayers' | 'ecclesial'>('ecclesial');
   const [userProgressDays, setUserProgressDays] = useState<number>(0);
+  const [ecclesialResponses, setEcclesialResponses] = useState<EcclesialResponse[]>([]);
   
   // Discussion state
   const [comments, setComments] = useState<GroupComment[]>([]);
@@ -50,6 +52,9 @@ export default function GroupDetail() {
   const dayReading = getDayReading(currentDay);
 
   useEffect(() => {
+    // Load Ecclesial Responses
+    setEcclesialResponses(getSharedEcclesialResponses());
+
     // 1. Load Group Details
     const storedGroups = localStorage.getItem('scriptorium_groups');
     if (storedGroups) {
@@ -224,6 +229,17 @@ export default function GroupDetail() {
 
       {/* Tabs */}
       <div className="flex border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl p-1 shadow-sm">
+        <button
+          onClick={() => setActiveTab('ecclesial')}
+          className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium rounded-lg transition-all ${
+            activeTab === 'ecclesial'
+              ? 'bg-amber-600 text-white shadow-sm'
+              : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-55 dark:hover:bg-gray-700/50'
+          }`}
+        >
+          <Users className="w-4 h-4 text-amber-300" />
+          <span>Ecclesial Responses</span>
+        </button>
         <button
           onClick={() => setActiveTab('progress')}
           className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium rounded-lg transition-all ${
@@ -485,6 +501,114 @@ export default function GroupDetail() {
           </div>
         )}
 
+        {/* TAB 5: ECCLESIAL RESPONSES (GROUP DISCIPLESHIP SHARING) */}
+        {activeTab === 'ecclesial' && (
+          <div className="space-y-6 animate-fade-in">
+            {/* Hebrews 10:24-25 Encouragement Callout */}
+            <div className="bg-gradient-to-r from-amber-900/40 via-amber-950/60 to-slate-900 border border-amber-500/30 rounded-2xl p-5 text-amber-100 shadow-md">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-amber-500/20 rounded-xl text-amber-400 mt-0.5">
+                  <Users className="w-5 h-5" />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-sm font-bold text-amber-200">
+                    Covenant Community Discipleship Feed (Hebrews 10:24-25)
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed italic font-serif">
+                    "And let us consider how to stir up one another to love and good works, not neglecting to meet together... but encouraging one another, and all the more as you see the Day drawing near."
+                  </p>
+                  <p className="text-[11px] text-amber-300/80 pt-1 font-sans">
+                    Members of your study group share their reflective entries, guided prayers, and logged acts of obedience as they journey through redemptive history together.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Ecclesial Discipleship Cards */}
+            <div className="space-y-4">
+              {ecclesialResponses.map((item) => {
+                const hasAmened = item.userAmens?.includes('current-user');
+
+                return (
+                  <div
+                    key={item.id}
+                    className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-5 shadow-sm space-y-3 transition-all hover:border-amber-500/40"
+                  >
+                    {/* Item Header */}
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-100 dark:border-gray-700/60 pb-3">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center font-bold text-amber-600 dark:text-amber-300 text-xs">
+                          {item.authorName.charAt(0)}
+                        </div>
+                        <div>
+                          <h4 className="text-xs font-bold text-gray-900 dark:text-white">
+                            {item.authorName}
+                          </h4>
+                          <span className="text-[10px] text-gray-400">
+                            {format(new Date(item.createdAt), 'MMM d, h:mm a')}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        {/* Epoch Badge */}
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20">
+                          {item.epochTitle}
+                        </span>
+
+                        {/* Response Type Badge */}
+                        <span
+                          className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                            item.responseType === 'reflection'
+                              ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400'
+                              : item.responseType === 'prayer'
+                              ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400'
+                              : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                          }`}
+                        >
+                          {item.responseType}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Prompt Text */}
+                    <p className="text-xs font-medium text-gray-500 dark:text-gray-400 italic">
+                      "{item.promptText}"
+                    </p>
+
+                    {/* Response Text Content */}
+                    <div className="bg-gray-50 dark:bg-gray-900/60 p-4 rounded-xl border border-gray-150 dark:border-gray-750">
+                      <p className="text-xs text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
+                        {item.responseText}
+                      </p>
+                    </div>
+
+                    {/* Amen Button */}
+                    <div className="flex items-center justify-between pt-1">
+                      <span className="text-[11px] text-gray-400">
+                        Stirring up love and good works
+                      </span>
+                      <button
+                        onClick={() => {
+                          const updated = addAmenToResponse(item.id, 'current-user');
+                          setEcclesialResponses(updated);
+                        }}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                          hasAmened
+                            ? 'bg-amber-500 text-white shadow-sm'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-gray-600'
+                        }`}
+                      >
+                        <Heart className={`w-3.5 h-3.5 ${hasAmened ? 'fill-current' : ''}`} />
+                        <span>Amen! ({item.amenCount})</span>
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

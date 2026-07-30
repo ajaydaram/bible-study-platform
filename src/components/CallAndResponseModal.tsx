@@ -6,6 +6,7 @@ import {
   CallAndResponseItem,
   ResponseOption
 } from '../data/callAndResponseData'
+import { useAuth } from '../contexts/AuthContext'
 import {
   Sparkles,
   BookOpen,
@@ -14,7 +15,8 @@ import {
   Send,
   CheckCircle2,
   Clock,
-  Zap
+  Zap,
+  Users
 } from 'lucide-react'
 import clsx from 'clsx'
 
@@ -26,11 +28,13 @@ interface Props {
 }
 
 export default function CallAndResponseModal({ targetEpochId, isOpen, onClose, onSuccess }: Props) {
+  const { user } = useAuth()
   const item: CallAndResponseItem | undefined = callAndResponseData[targetEpochId]
   const [selectedOptionId, setSelectedOptionId] = useState<string>(
     item?.responseOptions[0]?.id || ''
   )
   const [responseText, setResponseText] = useState('')
+  const [shareWithGroup, setShareWithGroup] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   if (!isOpen || !item) return null
@@ -44,7 +48,13 @@ export default function CallAndResponseModal({ targetEpochId, isOpen, onClose, o
 
     setIsSubmitting(true)
     setTimeout(() => {
-      submitEpochResponse(targetEpochId, selectedOptionId, responseText)
+      submitEpochResponse(
+        targetEpochId,
+        selectedOptionId,
+        responseText,
+        shareWithGroup,
+        user?.name || 'Faithful Disciple'
+      )
       setIsSubmitting(false)
       onSuccess()
       onClose()
@@ -147,6 +157,23 @@ export default function CallAndResponseModal({ targetEpochId, isOpen, onClose, o
                 placeholder={selectedOption.placeholder}
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500"
               />
+            </div>
+
+            {/* Ecclesial Sharing Toggle */}
+            <div className="pt-2 flex items-center justify-between bg-indigo-950/30 p-3 rounded-xl border border-indigo-800/40">
+              <label className="flex items-center gap-2.5 text-xs text-indigo-200 cursor-pointer font-medium">
+                <input
+                  type="checkbox"
+                  checked={shareWithGroup}
+                  onChange={(e) => setShareWithGroup(e.target.checked)}
+                  className="w-4 h-4 rounded bg-slate-950 border-slate-700 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-slate-900"
+                />
+                <Users className="w-4 h-4 text-indigo-400 shrink-0" />
+                <span>Share response with My Study Group (Hebrews 10:24-25)</span>
+              </label>
+              <span className="text-[10px] text-indigo-300 font-mono hidden sm:inline">
+                {shareWithGroup ? 'Public to Group' : 'Private Only'}
+              </span>
             </div>
           </div>
 
