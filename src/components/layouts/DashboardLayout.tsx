@@ -25,18 +25,21 @@ import {
   BookMarked,
   Activity,
   FileText,
-  Languages
+  Languages,
+  Layers
 } from 'lucide-react'
 import clsx from 'clsx'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
   { name: 'Bible', href: '/bible', icon: BookOpen },
+  { name: 'Redemptive Epochs', href: '/epochs', icon: Compass, isNew: true },
+  { name: 'Typology Tracker', href: '/typology', icon: Layers, isNew: true },
   { name: 'Chronological', href: '/paths/chronological', icon: Calendar },
-  { name: 'Thematic', href: '/paths/thematic', icon: Compass },
+  { name: 'Thematic', href: '/paths/thematic', icon: BookMarked },
   { name: 'Pulse', href: '/pulse', icon: Activity, isNew: true },
-  { name: 'Sermon Prep', href: '/sermons', icon: FileText, isNew: true },
-  { name: 'Word Study', href: '/word-study', icon: Languages, isNew: true },
+  { name: 'Sermon Prep', href: '/sermons', icon: FileText },
+  { name: 'Word Study', href: '/word-study', icon: Languages },
   { name: 'Journal', href: '/journal', icon: PenTool },
   { name: 'Groups', href: '/groups', icon: Users },
   { name: 'Discussions', href: '/discussions', icon: MessageSquare },

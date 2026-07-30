@@ -63,6 +63,10 @@ import DiscipleshipStudy from './pages/DiscipleshipStudy'
 // Shared Content
 import SharedNote from './pages/SharedNote'
 
+// Redemptive-Historical Architecture
+import EpochProgression from './pages/EpochProgression'
+import TypologyTracker from './pages/TypologyTracker'
+
 // Reading Plans
 import ReadingPlans from './pages/ReadingPlans'
 import ReadingPlanNew from './pages/ReadingPlanNew'
@@ -87,6 +91,8 @@ function App() {
                     <Route path="/" element={<Navigate to="/dashboard" replace />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/bible" element={<Bible />} />
+                    <Route path="/epochs" element={<EpochProgression />} />
+                    <Route path="/typology" element={<TypologyTracker />} />
                     <Route path="/paths/chronological" element={<ChronologicalPath />} />
                     <Route path="/paths/thematic" element={<ThematicPath />} />
                     <Route path="/journal" element={<Journal />} />
