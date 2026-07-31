@@ -295,30 +295,30 @@ export const pulseQuestions: PulseQuestion[] = [
   },
   {
     id: 16,
-    text: "Celibacy is the highest level of spirituality.",
+    text: "Singleness is a whole, dignified, and complete Kingdom vocation in the New Covenant.",
     category: "Singleness & The Kingdom Vocation",
     categoryId: 2,
-    biblicalAnswer: 'disagree',
-    scripturalInsight: "Paul calls both marriage and singleness 'gifts.' Neither state is spiritually superior. Faithfulness in one's calling, whether married or single, is what matters to God.",
-    references: ["1 Corinthians 7:7", "1 Corinthians 7:17", "Hebrews 13:4"]
+    biblicalAnswer: 'agree',
+    scripturalInsight: "In Christ, single believers are not incomplete Christians waiting for marriage; they possess full spiritual dignity and Kingdom calling.",
+    references: ["1 Corinthians 7:7", "Matthew 19:12", "Isaiah 56:4-5"]
   },
   {
     id: 17,
-    text: "Jesus spoke about singleness.",
+    text: "Single believers require marital union to reflect the image of God fully.",
     category: "Singleness & The Kingdom Vocation",
     categoryId: 2,
-    biblicalAnswer: 'agree',
-    scripturalInsight: "Jesus explicitly spoke about those who are 'eunuchs for the sake of the kingdom of heaven,' honoring those who forego marriage for Kingdom purposes. He Himself modeled this calling.",
-    references: ["Matthew 19:10-12"]
+    biblicalAnswer: 'disagree',
+    scripturalInsight: "Jesus Christ, the perfect image of the invisible God, lived as a single man, proving that marriage is not required for complete image-bearing.",
+    references: ["Colossians 1:15", "Hebrews 4:15", "1 Corinthians 7:26"]
   },
   {
     id: 18,
-    text: "Singles should intentionally be in community with others.",
+    text: "Singleness offers unique freedom for unhindered focus on the Lord's service.",
     category: "Singleness & The Kingdom Vocation",
     categoryId: 2,
     biblicalAnswer: 'agree',
-    scripturalInsight: "The New Testament consistently emphasizes the importance of community for all believers. Singles especially need and can offer rich relationships within the body of Christ.",
-    references: ["Hebrews 10:24-25", "Acts 2:42-47", "Romans 12:10", "Galatians 6:2"]
+    scripturalInsight: "Paul explicitly notes that single believers are freed from domestic anxieties to dedicate their focus to Kingdom ministry.",
+    references: ["1 Corinthians 7:32-34", "2 Timothy 2:4"]
   },
   {
     id: 19,

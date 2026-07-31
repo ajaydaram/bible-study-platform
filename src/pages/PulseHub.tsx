@@ -37,8 +37,8 @@ const diagnosticModules: DiagnosticModule[] = [
     description: "Explore God's design for human embodiment, gender, sexuality, and what it means to honor Him with our bodies.",
     icon: "🫀",
     color: "#8B5CF6",
-    questionCount: 13,
-    estimatedTime: "8-10 min",
+    questionCount: 15,
+    estimatedTime: "10-12 min",
     topics: ["Human sexuality", "Gender identity", "Same-sex attraction", "Bodily stewardship", "Celibacy"],
     corePrincipleTitle: "Theology of the Body & Embodied Creation"
   },
@@ -50,8 +50,8 @@ const diagnosticModules: DiagnosticModule[] = [
     description: "Discover the dignity, purpose, and unique calling of the single life in God's Kingdom economy.",
     icon: "👤",
     color: "#EC4899",
-    questionCount: 10,
-    estimatedTime: "6-8 min",
+    questionCount: 15,
+    estimatedTime: "10-12 min",
     topics: ["Gift of singleness", "Celibacy", "Wholeness in Christ", "Kingdom service", "Spiritual family"],
     corePrincipleTitle: "Confessional & Creational Orthodoxy"
   },
@@ -76,8 +76,8 @@ const diagnosticModules: DiagnosticModule[] = [
     description: "Explore how the Church functions as God's true family, transcending biological relationships.",
     icon: "👨‍👩‍👧‍👦",
     color: "#10B981",
-    questionCount: 3,
-    estimatedTime: "2-3 min",
+    questionCount: 15,
+    estimatedTime: "10-12 min",
     topics: ["Spiritual family", "Church community", "Kingdom priorities", "Biological vs. spiritual bonds"],
     corePrincipleTitle: "Kingdom Kinship & Covenant Community"
   },
@@ -89,8 +89,8 @@ const diagnosticModules: DiagnosticModule[] = [
     description: "What does Scripture teach about resurrection, the future state, and marriage in the Kingdom to come?",
     icon: "✨",
     color: "#3B82F6",
-    questionCount: 8,
-    estimatedTime: "5-7 min",
+    questionCount: 15,
+    estimatedTime: "10-12 min",
     topics: ["Resurrection body", "Marriage in heaven", "New creation", "Eternal state", "Christ's return"],
     corePrincipleTitle: "Already & Not Yet Eschatological Citizenship"
   }
@@ -148,7 +148,7 @@ export default function PulseHub() {
   }
 
   const getTotalProgress = () => {
-    const totalQuestions = 49
+    const totalQuestions = 75
     const answered = Object.keys(responses).length
     return Math.round((answered / totalQuestions) * 100)
   }
