@@ -1,4 +1,5 @@
-// Living Word Bible Journey - 100 Essential Redemptive Bible Stories & 4 Narrative Movements
+// Living Word Bible Journey - Complete Full Data Integration
+// Contains 100 Stories, 4 Movements, 8 Redemptive Acts, 7 Covenant Nodes, 3 Personas, and Thematic Threads
 
 export interface BibleStory {
   id: number
@@ -20,45 +21,259 @@ export interface NarrativeMovement {
   icon: string
 }
 
+export interface CovenantNode {
+  label: string
+  description: string
+  range: [number, number]
+  scripture: string
+}
+
+export type PersonaId = 'disoriented-reader' | 'visual-learner' | 'analytical-student'
+
+export interface PersonaProfile {
+  id: PersonaId
+  label: string
+  description: string
+  need: string
+  emphasis: string
+}
+
+export interface ThematicThread {
+  title: string
+  theme: string
+  description: string
+  storyIds: number[]
+}
+
+export interface RedemptiveAct {
+  id: number
+  title: string
+  subtitle: string
+  focus: string
+  keyBooks: string[]
+  chapterCount: number
+  description: string
+  covenantFocus: string
+}
+
+// 4 Narrative Movements
 export const narrativeMovements: NarrativeMovement[] = [
   {
     id: 'creation',
     label: 'Creation',
     shortLabel: 'Creation',
-    description: 'God establishes the cosmos, orders humanity in His image, and institutes the Covenant of Works.',
+    description: 'God establishes order, human identity in His image, and the Covenant of Creation.',
     range: [1, 5],
-    accent: '#10B981', // emerald
+    accent: '#10B981',
     icon: '🌿'
   },
   {
     id: 'fall',
     label: 'Fall & Exile',
     shortLabel: 'Fall',
-    description: 'Humanity rebels, entering guilt and exile; God promises the Seed of the woman.',
+    description: 'Humanity fractures and rebels, but covenant promise begins the divine rescue.',
     range: [6, 25],
-    accent: '#F59E0B', // amber
+    accent: '#F59E0B',
     icon: '🍂'
   },
   {
     id: 'redemption',
     label: 'Redemption & Kingdom',
     shortLabel: 'Redemption',
-    description: 'God raises up prophets, priests, and kings, culminating in Christ’s incarnation, cross, and resurrection.',
+    description: 'God rescues, teaches, and gathers a covenant people, culminating in Christ.',
     range: [26, 85],
-    accent: '#8B5CF6', // purple
+    accent: '#8B5CF6',
     icon: '✝️'
   },
   {
     id: 'restoration',
     label: 'Restoration & Consummation',
     shortLabel: 'Restoration',
-    description: 'The Spirit empowers the Church; Christ returns to renew all creation in the New Jerusalem.',
+    description: 'The story resolves in new creation and God dwelling eternally with humanity.',
     range: [86, 100],
-    accent: '#3B82F6', // blue
+    accent: '#3B82F6',
     icon: '✨'
   }
 ]
 
+// 7 Covenant Nodes
+export const covenantNodes: CovenantNode[] = [
+  {
+    label: 'Creation Mandate',
+    description: 'Humanity is commissioned as royal image-bearers to cultivate and fill God’s earth.',
+    range: [1, 1],
+    scripture: 'Genesis 1–2'
+  },
+  {
+    label: 'Adamic Covenant',
+    description: 'Promise of conflict, suffering, and eventual victory over the serpent through the Seed.',
+    range: [2, 5],
+    scripture: 'Genesis 3'
+  },
+  {
+    label: 'Noahic Covenant',
+    description: 'Creation is preserved as God commits to the stability of the natural order.',
+    range: [3, 5],
+    scripture: 'Genesis 8–9'
+  },
+  {
+    label: 'Abrahamic Covenant',
+    description: 'Blessing and land move through one chosen family to reach all nations of the earth.',
+    range: [6, 17],
+    scripture: 'Genesis 12, 15, 17, 22'
+  },
+  {
+    label: 'Mosaic Covenant',
+    description: 'A redeemed nation receives holy law, tabernacle worship, and a holy way of life.',
+    range: [18, 35],
+    scripture: 'Exodus 19–24'
+  },
+  {
+    label: 'Davidic Covenant',
+    description: 'An everlasting King and eternal royal house promised from King David’s line.',
+    range: [36, 45],
+    scripture: '2 Samuel 7'
+  },
+  {
+    label: 'New Covenant',
+    description: 'Jesus secures eternal redemption, forgiven sins, the Spirit, and regenerated hearts.',
+    range: [46, 100],
+    scripture: 'Jeremiah 31, Luke 22, Hebrews 8'
+  }
+]
+
+// 3 Persona Profiles
+export const personas: PersonaProfile[] = [
+  {
+    id: 'disoriented-reader',
+    label: 'Disoriented Reader',
+    description: 'Needs immediate context so ancient text feels navigable without being overwhelmed.',
+    need: 'Unavoidable context and a clear next step.',
+    emphasis: 'Story context, plain-language summary, and one-click progression.'
+  },
+  {
+    id: 'visual-learner',
+    label: 'Visual Learner',
+    description: 'Processes the narrative through spatial, visual, and movement cues.',
+    need: 'Conceptual structure that is easy to scan and remember.',
+    emphasis: 'Timeline, 4 movement cards, cross-reference links, and thematic colors.'
+  },
+  {
+    id: 'analytical-student',
+    label: 'Analytical Student',
+    description: 'Wants structural depth, covenant connections, and traceable theological patterns.',
+    need: 'Interconnected data and thematic filters.',
+    emphasis: 'Covenant nodes, story filters, and cross-reference relationships.'
+  }
+]
+
+// Thematic Reading Threads
+export const thematicThreads: ThematicThread[] = [
+  {
+    title: 'Sacrifice & Substitution',
+    theme: 'From the ram on Moriah to the Passover Lamb to Revelation.',
+    description: 'A thread of substitution, blood atonement, and divine covenant faithfulness.',
+    storyIds: [12, 25, 43, 58, 60, 99]
+  },
+  {
+    title: 'Kingdom of God',
+    theme: 'From Davidic promises to Jesus Christ to the New Jerusalem.',
+    description: 'A reading path that tracks the reign of God through kingship, cross, and ultimate renewal.',
+    storyIds: [37, 39, 49, 52, 63, 100]
+  },
+  {
+    title: 'Divine Presence',
+    theme: 'God dwelling with His people.',
+    description: 'A path from Eden, to tabernacle, to incarnation, to the eternal New Creation.',
+    storyIds: [1, 30, 40, 46, 86, 100]
+  }
+]
+
+// 8 Redemptive Acts (Mapping all 1,189 Bible Chapters)
+export const redemptiveActs: RedemptiveAct[] = [
+  {
+    id: 1,
+    title: 'Act 1: Foundations',
+    subtitle: 'Creation, Fall, and the Seed Promise',
+    focus: 'God creates the cosmos, humanity falls into sin, and the first gospel promise (Protoevangelium) is declared.',
+    keyBooks: ['Genesis'],
+    chapterCount: 50,
+    description: 'From the light of Eden to the exile of Babel and the call of Abraham.',
+    covenantFocus: 'Adamic & Noahic Covenants'
+  },
+  {
+    id: 2,
+    title: 'Act 2: Formation',
+    subtitle: 'Exodus, Tabernacle, and the Law',
+    focus: 'God delivers Israel from bondage and forms them into a kingdom of priests under the Mosaic Law.',
+    keyBooks: ['Exodus', 'Leviticus', 'Numbers', 'Deuteronomy'],
+    chapterCount: 187,
+    description: 'Redemption at the Red Sea, wilderness wanderings, and holy worship.',
+    covenantFocus: 'Mosaic Covenant'
+  },
+  {
+    id: 3,
+    title: 'Act 3: Promised Land',
+    subtitle: 'Conquest, Judges, and the United Monarchy',
+    focus: 'Israel enters Canaan, struggles under judges, and receives King David and Solomon.',
+    keyBooks: ['Joshua', 'Judges', 'Ruth', '1 & 2 Samuel', '1 Kings'],
+    chapterCount: 220,
+    description: 'Conquest of Jericho, Boaz as kinsman-redeemer, and the Davidic Covenant.',
+    covenantFocus: 'Davidic Covenant'
+  },
+  {
+    id: 4,
+    title: 'Act 4: Exile & Prophetic Hope',
+    subtitle: 'Divided Kingdom, Babylonian Captivity, and Return',
+    focus: 'Prophets call the nation to repentance, foretell exile, and promise the New Covenant.',
+    keyBooks: ['2 Kings', 'Isaiah', 'Jeremiah', 'Ezekiel', 'Daniel', 'Minor Prophets'],
+    chapterCount: 400,
+    description: 'The temple burned, exile in Babylon, and promises of a Suffering Servant.',
+    covenantFocus: 'Prophetic Promise of New Covenant'
+  },
+  {
+    id: 5,
+    title: 'Act 5: Incarnation & Gospel',
+    subtitle: 'The Life, Death, and Resurrection of Messiah',
+    focus: 'Jesus Christ arrives as the promised Seed, fulfills the Law, and dies for our sins.',
+    keyBooks: ['Matthew', 'Mark', 'Luke', 'John'],
+    chapterCount: 89,
+    description: 'The Word made flesh, Gethsemane, Calvary, and the resurrection.',
+    covenantFocus: 'Ratification of the New Covenant'
+  },
+  {
+    id: 6,
+    title: 'Act 6: Church & Mission',
+    subtitle: 'Pentecost and the Spread of the Gospel to Nations',
+    focus: 'The Holy Spirit empowers believers to witness from Jerusalem to the ends of the earth.',
+    keyBooks: ['Acts'],
+    chapterCount: 28,
+    description: 'Pentecost, Saul’s conversion, and the gospel opening to Gentiles.',
+    covenantFocus: 'Global Outreach of New Covenant'
+  },
+  {
+    id: 7,
+    title: 'Act 7: Epistles & Kingdom Citizenship',
+    subtitle: 'Apostolic Letters for Church Doctrine and Life',
+    focus: 'The Apostles instruct churches on sound doctrine, holiness, and eschatological hope.',
+    keyBooks: ['Romans to Jude'],
+    chapterCount: 121,
+    description: 'Justification by faith, spiritual warfare, love, and body life.',
+    covenantFocus: 'New Covenant Discipleship'
+  },
+  {
+    id: 8,
+    title: 'Act 8: Consummation & New Creation',
+    subtitle: 'The Return of Christ, Final Judgment, and New Jerusalem',
+    focus: 'Christ returns in glory, banishes death and Satan, and dwells with His people forever.',
+    keyBooks: ['Revelation'],
+    chapterCount: 22,
+    description: 'The Marriage Supper of the Lamb and the New Heavens and New Earth.',
+    covenantFocus: 'Eschatological Fulfillment'
+  }
+]
+
+// 100 Essential Redemptive Bible Stories
 export const bibleStories: BibleStory[] = [
   // IN THE BEGINNING
   { id: 1, title: "Creation", reference: "Genesis 1:1–2:25", category: "IN THE BEGINNING", context: "The foundation of all things. God creates the universe, setting the stage for the Covenant of Creation." },
