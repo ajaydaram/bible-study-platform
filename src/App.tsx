@@ -47,6 +47,7 @@ import PulseResults from './pages/PulseResults'
 import SermonHub from './pages/SermonHub'
 import SermonNew from './pages/SermonNew'
 import SermonEdit from './pages/SermonEdit'
+import SacredRhetoricPage from './pages/SacredRhetoricPage'
 
 // Word Study & Interlinear
 import WordStudyPage from './pages/WordStudyPage'
@@ -122,6 +123,7 @@ function App() {
                     <Route path="/pulse/full" element={<Pulse />} />
                     <Route path="/pulse/results" element={<PulseResults />} />
                     <Route path="/sermons" element={<SermonHub />} />
+                    <Route path="/sermons/rhetoric" element={<SacredRhetoricPage />} />
                     <Route path="/sermons/new" element={<SermonNew />} />
                     <Route path="/sermons/edit/:id" element={<SermonEdit />} />
                     <Route path="/word-study" element={<WordStudyPage />} />

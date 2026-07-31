@@ -14,7 +14,8 @@ import {
   Mic,
   CheckCircle,
   Clock,
-  AlertCircle
+  AlertCircle,
+  Sparkles
 } from 'lucide-react'
 import clsx from 'clsx'
 
@@ -74,13 +75,22 @@ export default function SermonHub() {
             Craft expository sermons through exegesis, theology, and homiletics
           </p>
         </div>
-        <Link
-          to="/sermons/new"
-          className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
-        >
-          <Plus className="h-5 w-5" />
-          New Sermon
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/sermons/rhetoric"
+            className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs font-bold transition-colors shadow-md"
+          >
+            <Sparkles className="h-4 w-4" />
+            Sacred Rhetoric Engine
+          </Link>
+          <Link
+            to="/sermons/new"
+            className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-xl text-xs font-bold transition-colors shadow-md"
+          >
+            <Plus className="h-4 w-4" />
+            New Sermon
+          </Link>
+        </div>
       </div>
 
       {/* Process Overview */}
