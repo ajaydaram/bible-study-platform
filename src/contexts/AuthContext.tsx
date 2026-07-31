@@ -37,30 +37,78 @@ const formatUser = (firebaseUser: FirebaseUser): User => ({
   isGuest: firebaseUser.isAnonymous
 })
 
+const LOCAL_STORAGE_SESSION_KEY = 'scriptorium_user_session'
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_SESSION_KEY)
+      return saved ? JSON.parse(saved) : null
+    } catch {
+      return null
+    }
+  })
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    // 1. If Firebase is not configured, fallback to stored session or guest mode
     if (!firebaseEnabled) {
-      setUser(null)
+      const saved = localStorage.getItem(LOCAL_STORAGE_SESSION_KEY)
+      if (saved) {
+        try {
+          setUser(JSON.parse(saved))
+        } catch {
+          // fallback default guest
+          setUser({
+            id: 'guest',
+            email: '',
+            name: 'Guest Disciple',
+            isGuest: true,
+            createdAt: new Date().toISOString()
+          })
+        }
+      } else {
+        setUser({
+          id: 'guest',
+          email: '',
+          name: 'Guest Disciple',
+          isGuest: true,
+          createdAt: new Date().toISOString()
+        })
+      }
       setIsLoading(false)
       clearSentryUser()
       return
     }
 
-    // Listen for Firebase auth state changes
+    // 2. Listen for Firebase auth state changes
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
         const formattedUser = formatUser(firebaseUser)
         setUser(formattedUser)
+        localStorage.setItem(LOCAL_STORAGE_SESSION_KEY, JSON.stringify(formattedUser))
         
         // Set user context for analytics and error tracking
         identifyUser(firebaseUser.uid, { name: formattedUser.name })
         setSentryUser(firebaseUser.uid, formattedUser.name)
         trackEvent(AnalyticsEvents.SESSION_START)
       } else {
+        // Check if a local guest session exists before resetting
+        const saved = localStorage.getItem(LOCAL_STORAGE_SESSION_KEY)
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved)
+            if (parsed.isGuest) {
+              setUser(parsed)
+              setIsLoading(false)
+              return
+            }
+          } catch {
+            // ignore
+          }
+        }
         setUser(null)
+        localStorage.removeItem(LOCAL_STORAGE_SESSION_KEY)
         clearSentryUser()
       }
       setIsLoading(false)
@@ -147,14 +195,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const signInAsGuest = async (): Promise<{ success: boolean; error?: string }> => {
+    const guestUser: User = {
+      id: 'guest',
+      email: '',
+      name: 'Guest Disciple',
+      isGuest: true,
+      createdAt: new Date().toISOString()
+    }
+
+    localStorage.setItem(LOCAL_STORAGE_SESSION_KEY, JSON.stringify(guestUser))
+
     if (!firebaseEnabled) {
-      setUser({
-        id: 'guest',
-        email: '',
-        name: 'Guest',
-        isGuest: true,
-        createdAt: new Date().toISOString()
-      })
+      setUser(guestUser)
       setIsLoading(false)
       return { success: true }
     }
@@ -165,11 +217,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { success: true }
     } catch (error: any) {
       console.error('Guest sign in error:', error)
-      return { success: false, error: 'Failed to continue as guest. Please try again.' }
+      setUser(guestUser)
+      setIsLoading(false)
+      return { success: true }
     }
   }
 
   const signOut = async () => {
+    localStorage.removeItem(LOCAL_STORAGE_SESSION_KEY)
     if (!firebaseEnabled) {
       setUser(null)
       return
