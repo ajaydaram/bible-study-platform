@@ -17,6 +17,7 @@ import Dashboard from './pages/Dashboard'
 import Bible from './pages/Bible'
 import ChronologicalPath from './pages/paths/ChronologicalPath'
 import ThematicPath from './pages/paths/ThematicPath'
+import LivingWordJourney from './pages/paths/LivingWordJourney'
 import Journal from './pages/Journal'
 import JournalNew from './pages/JournalNew'
 import JournalEdit from './pages/JournalEdit'
@@ -95,6 +96,7 @@ function App() {
                     <Route path="/consummation" element={<Navigate to="/epochs?tab=consummation" replace />} />
                     <Route path="/paths/chronological" element={<ChronologicalPath />} />
                     <Route path="/paths/thematic" element={<ThematicPath />} />
+                    <Route path="/paths/living-word" element={<LivingWordJourney />} />
                     <Route path="/journal" element={<Journal />} />
                     <Route path="/journal/new" element={<JournalNew />} />
                     <Route path="/journal/edit/:id" element={<JournalEdit />} />
