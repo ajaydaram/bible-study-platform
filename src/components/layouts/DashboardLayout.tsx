@@ -27,7 +27,8 @@ import {
   FileText,
   Languages,
   Sparkles,
-  Layers
+  Layers,
+  Grid
 } from 'lucide-react'
 import clsx from 'clsx'
 
@@ -39,6 +40,7 @@ const navigation = [
   { name: 'Chronological', href: '/paths/chronological', icon: Calendar },
   { name: 'Thematic', href: '/paths/thematic', icon: BookMarked },
   { name: 'Genre Path', href: '/paths/genre', icon: Layers, isNew: true },
+  { name: 'Typology Matrix', href: '/typology-matrix', icon: Grid, isNew: true },
   { name: 'Pulse', href: '/pulse', icon: Activity, isNew: true },
   { name: 'Sermon Prep', href: '/sermons', icon: FileText },
   { name: 'Word Study', href: '/word-study', icon: Languages },
