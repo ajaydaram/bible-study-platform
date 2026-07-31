@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams, Link } from 'react-router-dom'
 import { redemptiveEpochs } from '../data/redemptiveEpochs'
 import OrganicRevelationTree from '../components/OrganicRevelationTree'
 import CallAndResponseModal from '../components/CallAndResponseModal'
 import { isEpochUnlocked, getSharedEcclesialResponses } from '../data/callAndResponseData'
+import TypologyTracker from './TypologyTracker'
+import ConsummationView from './ConsummationView'
 import {
   Compass,
   BookOpen,
@@ -14,13 +17,33 @@ import {
   Lock,
   Users
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
-export default function EpochProgression() {
+interface Props {
+  defaultTab?: 'epochs' | 'typology' | 'consummation'
+}
+
+export default function EpochProgression({ defaultTab }: Props) {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const tabFromQuery = searchParams.get('tab') as 'epochs' | 'typology' | 'consummation' | null
+  const [activeTab, setActiveTab] = useState<'epochs' | 'typology' | 'consummation'>(
+    defaultTab || tabFromQuery || 'epochs'
+  )
+
   const [selectedEpochId, setSelectedEpochId] = useState<string>('pre-fall')
   const [modalTargetEpochId, setModalTargetEpochId] = useState<string | null>(null)
   const [refreshKey, setRefreshKey] = useState(0)
+
+  useEffect(() => {
+    if (tabFromQuery && ['epochs', 'typology', 'consummation'].includes(tabFromQuery)) {
+      setActiveTab(tabFromQuery)
+    }
+  }, [tabFromQuery])
+
+  const handleTabChange = (tab: 'epochs' | 'typology' | 'consummation') => {
+    setActiveTab(tab)
+    setSearchParams({ tab })
+  }
 
   const currentEpoch = redemptiveEpochs.find((e) => e.id === selectedEpochId) || redemptiveEpochs[0]
 
@@ -42,6 +65,48 @@ export default function EpochProgression() {
 
   return (
     <div key={refreshKey} className="max-w-7xl mx-auto space-y-8">
+      {/* 3-IN-1 PRIMARY REDEMPTIVE-HISTORICAL TAB BAR */}
+      <div className="flex border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-2xl p-1.5 shadow-md">
+        <button
+          onClick={() => handleTabChange('epochs')}
+          className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs sm:text-sm font-bold rounded-xl transition-all ${
+            activeTab === 'epochs'
+              ? 'bg-indigo-600 text-white shadow-md'
+              : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+          }`}
+        >
+          <Compass className="w-4 h-4 text-amber-300" />
+          <span>5 Redemptive Epochs</span>
+        </button>
+
+        <button
+          onClick={() => handleTabChange('typology')}
+          className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs sm:text-sm font-bold rounded-xl transition-all ${
+            activeTab === 'typology'
+              ? 'bg-indigo-600 text-white shadow-md'
+              : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+          }`}
+        >
+          <Layers className="w-4 h-4 text-emerald-300" />
+          <span>Typology Tracker</span>
+        </button>
+
+        <button
+          onClick={() => handleTabChange('consummation')}
+          className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs sm:text-sm font-bold rounded-xl transition-all ${
+            activeTab === 'consummation'
+              ? 'bg-indigo-600 text-white shadow-md'
+              : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+          }`}
+        >
+          <Sparkles className="w-4 h-4 text-rose-300" />
+          <span>Consummation</span>
+        </button>
+      </div>
+
+      {/* TAB 1: 5 REDEMPTIVE EPOCHS */}
+      {activeTab === 'epochs' && (
+        <div className="space-y-8 animate-fade-in">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden border border-indigo-800/40">
         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -321,6 +386,22 @@ export default function EpochProgression() {
           })()}
         </div>
       </div>
+      </div>
+      )}
+
+      {/* TAB 2: TYPOLOGY TRACKER */}
+      {activeTab === 'typology' && (
+        <div className="animate-fade-in">
+          <TypologyTracker />
+        </div>
+      )}
+
+      {/* TAB 3: CONSUMMATION VIEW */}
+      {activeTab === 'consummation' && (
+        <div className="animate-fade-in">
+          <ConsummationView />
+        </div>
+      )}
 
       {/* Call and Response Modal */}
       {modalTargetEpochId && (

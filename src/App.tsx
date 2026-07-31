@@ -63,10 +63,8 @@ import DiscipleshipStudy from './pages/DiscipleshipStudy'
 // Shared Content
 import SharedNote from './pages/SharedNote'
 
-// Redemptive-Historical Architecture
+// Vosian Redemptive-Historical Architecture
 import EpochProgression from './pages/EpochProgression'
-import TypologyTracker from './pages/TypologyTracker'
-import ConsummationView from './pages/ConsummationView'
 
 // Reading Plans
 import ReadingPlans from './pages/ReadingPlans'
@@ -93,8 +91,8 @@ function App() {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/bible" element={<Bible />} />
                     <Route path="/epochs" element={<EpochProgression />} />
-                    <Route path="/typology" element={<TypologyTracker />} />
-                    <Route path="/consummation" element={<ConsummationView />} />
+                    <Route path="/typology" element={<Navigate to="/epochs?tab=typology" replace />} />
+                    <Route path="/consummation" element={<Navigate to="/epochs?tab=consummation" replace />} />
                     <Route path="/paths/chronological" element={<ChronologicalPath />} />
                     <Route path="/paths/thematic" element={<ThematicPath />} />
                     <Route path="/journal" element={<Journal />} />
