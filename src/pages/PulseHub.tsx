@@ -10,7 +10,7 @@ import {
   Loader2
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
-import { getCategoryQuestions } from '../data/pulseQuestions'
+import { getCategoryQuestions, CORE_APP_PRINCIPLES } from '../data/pulseQuestions'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../lib/firebase'
 
@@ -25,6 +25,7 @@ interface DiagnosticModule {
   questionCount: number
   estimatedTime: string
   topics: string[]
+  corePrincipleTitle: string
 }
 
 const diagnosticModules: DiagnosticModule[] = [
@@ -38,7 +39,8 @@ const diagnosticModules: DiagnosticModule[] = [
     color: "#8B5CF6",
     questionCount: 13,
     estimatedTime: "8-10 min",
-    topics: ["Human sexuality", "Gender identity", "Same-sex attraction", "Bodily stewardship", "Celibacy"]
+    topics: ["Human sexuality", "Gender identity", "Same-sex attraction", "Bodily stewardship", "Celibacy"],
+    corePrincipleTitle: "Theology of the Body & Embodied Creation"
   },
   {
     id: 'singleness',
@@ -50,7 +52,8 @@ const diagnosticModules: DiagnosticModule[] = [
     color: "#EC4899",
     questionCount: 10,
     estimatedTime: "6-8 min",
-    topics: ["Gift of singleness", "Celibacy", "Wholeness in Christ", "Kingdom service", "Spiritual family"]
+    topics: ["Gift of singleness", "Celibacy", "Wholeness in Christ", "Kingdom service", "Spiritual family"],
+    corePrincipleTitle: "Confessional & Creational Orthodoxy"
   },
   {
     id: 'marriage',
@@ -62,7 +65,8 @@ const diagnosticModules: DiagnosticModule[] = [
     color: "#F59E0B",
     questionCount: 15,
     estimatedTime: "10-12 min",
-    topics: ["Covenant marriage", "Headship & submission", "Divorce & remarriage", "Complementarity", "Christ & Church"]
+    topics: ["Covenant marriage", "Headship & submission", "Divorce & remarriage", "Complementarity", "Christ & Church"],
+    corePrincipleTitle: "Covenantal Architecture & Special Revelation"
   },
   {
     id: 'kingdom-family',
@@ -74,7 +78,8 @@ const diagnosticModules: DiagnosticModule[] = [
     color: "#10B981",
     questionCount: 3,
     estimatedTime: "2-3 min",
-    topics: ["Spiritual family", "Church community", "Kingdom priorities", "Biological vs. spiritual bonds"]
+    topics: ["Spiritual family", "Church community", "Kingdom priorities", "Biological vs. spiritual bonds"],
+    corePrincipleTitle: "Kingdom Kinship & Covenant Community"
   },
   {
     id: 'eschatology',
@@ -86,7 +91,8 @@ const diagnosticModules: DiagnosticModule[] = [
     color: "#3B82F6",
     questionCount: 8,
     estimatedTime: "5-7 min",
-    topics: ["Resurrection body", "Marriage in heaven", "New creation", "Eternal state", "Christ's return"]
+    topics: ["Resurrection body", "Marriage in heaven", "New creation", "Eternal state", "Christ's return"],
+    corePrincipleTitle: "Already & Not Yet Eschatological Citizenship"
   }
 ]
 
@@ -112,7 +118,6 @@ export default function PulseHub() {
           if (data.responses) {
             setResponses(data.responses)
             
-            // Check which modules are complete
             const completed = new Set<string>()
             diagnosticModules.forEach(module => {
               const categoryQuestions = getCategoryQuestions(module.categoryId)
@@ -158,18 +163,37 @@ export default function PulseHub() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      {/* Header */}
-      <div className="text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm mb-4">
-          <Heart className="h-4 w-4" />
-          Scriptorium Pulse
+      {/* Header Banner */}
+      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border border-indigo-800/40">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="relative z-10 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-500/20 border border-purple-500/30 rounded-full text-xs font-semibold text-purple-300">
+            <Heart className="h-3.5 w-3.5 text-purple-400" />
+            Scriptorium Pulse • Theological Diagnostics Engine
+          </div>
+          
+          <h1 className="text-3xl font-extrabold text-white tracking-tight">
+            Scriptorium Core Principles Diagnostics
+          </h1>
+          
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+            Pulse evaluates spiritual health and doctrinal alignment directly against the 5 Core Principles of Scriptorium: Covenantal Architecture, Theology of the Body, Already/Not-Yet Eschatological Citizenship, Confessional Orthodoxy, and Kingdom Kinship.
+          </p>
+
+          {/* 5 Core Principles Pills */}
+          <div className="pt-2 flex flex-wrap items-center gap-2 text-xs">
+            {CORE_APP_PRINCIPLES.map((p) => (
+              <div
+                key={p.id}
+                className="flex items-center gap-1.5 px-3 py-1 bg-slate-800/80 border border-slate-700/80 rounded-full font-medium text-slate-200"
+              >
+                <span>{p.icon}</span>
+                <span>{p.shortTitle}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-          Theological Diagnostics
-        </h1>
-        <p className="text-gray-500 dark:text-gray-400 mt-2 max-w-xl mx-auto">
-          Explore your understanding across key areas of faith, identity, sexuality, and relationships through Scripture-based questions.
-        </p>
       </div>
 
       {/* Overall Progress Card */}
@@ -256,10 +280,14 @@ export default function PulseHub() {
                           )}
                         </div>
                         
-                        <p className="text-sm text-purple-600 dark:text-purple-400 font-medium mb-2">
+                        <p className="text-sm text-purple-600 dark:text-purple-400 font-medium mb-1">
                           {module.subtitle}
                         </p>
                         
+                        <div className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 rounded-md text-xs font-semibold mb-2">
+                          <span>Core Principle: {module.corePrincipleTitle}</span>
+                        </div>
+
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
                           {module.description}
                         </p>

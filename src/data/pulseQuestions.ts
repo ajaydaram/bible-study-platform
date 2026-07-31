@@ -12,6 +12,82 @@ export interface PulseQuestion {
   isNew?: boolean
 }
 
+export interface CoreAppPrinciple {
+  id: string
+  title: string
+  shortTitle: string
+  description: string
+  icon: string
+  color: string
+  biblicalAnchor: string
+  vosianInsight: string
+}
+
+export const CORE_APP_PRINCIPLES: CoreAppPrinciple[] = [
+  {
+    id: 'covenantal-architecture',
+    title: 'Covenantal Architecture & Special Revelation',
+    shortTitle: 'Covenantal Architecture',
+    description: 'Special revelation unfolds organically across historical epochs culminating in Jesus Christ.',
+    icon: '🧭',
+    color: '#6366F1',
+    biblicalAnchor: 'Hebrews 1:1-2',
+    vosianInsight: 'Theology is historic-redemptive; truth grows like a seed into a mature tree.'
+  },
+  {
+    id: 'theology-of-body',
+    title: 'Theology of the Body & Embodied Creation',
+    shortTitle: 'Theology of the Body',
+    description: 'God’s intentional design for human embodiment, gender, and physical resurrection.',
+    icon: '🫀',
+    color: '#8B5CF6',
+    biblicalAnchor: 'Genesis 1:27',
+    vosianInsight: 'Embodiment is not an earthen prison but part of God’s very good created order.'
+  },
+  {
+    id: 'already-not-yet',
+    title: 'Already & Not Yet Eschatological Citizenship',
+    shortTitle: 'Eschatological Citizenship',
+    description: 'Living as citizens of the heavenly age-to-come in present mundane life.',
+    icon: '✨',
+    color: '#3B82F6',
+    biblicalAnchor: 'Philippians 3:20',
+    vosianInsight: 'Eschatology precedes soteriology—salvation is entry into heavenly reality now.'
+  },
+  {
+    id: 'confessional-orthodoxy',
+    title: 'Confessional & Creational Orthodoxy',
+    shortTitle: 'Confessional Orthodoxy',
+    description: 'Alignment with historic Christian creeds, reformed standards, and hermeneutical rigor.',
+    icon: '📜',
+    color: '#F59E0B',
+    biblicalAnchor: '2 Timothy 1:13',
+    vosianInsight: 'Faithful discipleship guards the pattern of sound words delivered once for all.'
+  },
+  {
+    id: 'ecclesial-kinship',
+    title: 'Kingdom Kinship & Covenant Community',
+    shortTitle: 'Kingdom Kinship',
+    description: 'The Church as the true eschatological family transcending biological ties.',
+    icon: '👥',
+    color: '#10B981',
+    biblicalAnchor: 'Mark 10:29-30',
+    vosianInsight: 'Covenant fellowship is the earthly manifestation of the heavenly age to come.'
+  }
+]
+
+export interface PulseQuestion {
+  id: number
+  text: string
+  category: string
+  categoryId: number
+  biblicalAnswer: 'agree' | 'disagree' | 'neutral'
+  scripturalInsight: string
+  references: string[]
+  isNew?: boolean
+  corePrincipleId?: string
+}
+
 export interface PulseCategory {
   id: number
   name: string
@@ -19,6 +95,8 @@ export interface PulseCategory {
   description: string
   color: string
   icon: string
+  corePrincipleId: string
+  corePrincipleTitle: string
 }
 
 export const pulseCategories: PulseCategory[] = [
@@ -28,7 +106,9 @@ export const pulseCategories: PulseCategory[] = [
     shortName: "Body & Sexuality",
     description: "Understanding God's design for human embodiment and sexuality",
     color: "#8B5CF6", // purple
-    icon: "🫀"
+    icon: "🫀",
+    corePrincipleId: "theology-of-body",
+    corePrincipleTitle: "Theology of the Body & Embodied Creation"
   },
   {
     id: 2,
@@ -36,7 +116,9 @@ export const pulseCategories: PulseCategory[] = [
     shortName: "Singleness",
     description: "The dignity and calling of the single life in God's Kingdom",
     color: "#EC4899", // pink
-    icon: "👤"
+    icon: "👤",
+    corePrincipleId: "confessional-orthodoxy",
+    corePrincipleTitle: "Confessional & Creational Orthodoxy"
   },
   {
     id: 3,
@@ -44,7 +126,9 @@ export const pulseCategories: PulseCategory[] = [
     shortName: "Marriage",
     description: "Biblical foundations for marriage and covenant relationships",
     color: "#F59E0B", // amber
-    icon: "💍"
+    icon: "💍",
+    corePrincipleId: "covenantal-architecture",
+    corePrincipleTitle: "Covenantal Architecture & Special Revelation"
   },
   {
     id: 4,
@@ -52,7 +136,9 @@ export const pulseCategories: PulseCategory[] = [
     shortName: "Kingdom Family",
     description: "Understanding spiritual vs. biological family in God's economy",
     color: "#10B981", // emerald
-    icon: "👨‍👩‍👧‍👦"
+    icon: "👨‍👩‍👧‍👦",
+    corePrincipleId: "ecclesial-kinship",
+    corePrincipleTitle: "Kingdom Kinship & Covenant Community"
   },
   {
     id: 5,
@@ -60,7 +146,9 @@ export const pulseCategories: PulseCategory[] = [
     shortName: "Eschatology",
     description: "What Scripture teaches about resurrection and the age to come",
     color: "#3B82F6", // blue
-    icon: "✨"
+    icon: "✨",
+    corePrincipleId: "already-not-yet",
+    corePrincipleTitle: "Already & Not Yet Eschatological Citizenship"
   }
 ]
 

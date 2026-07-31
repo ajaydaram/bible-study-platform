@@ -18,7 +18,8 @@ import {
   calculateScore,
   getAlignmentLabel,
   getAlignmentColor,
-  getCategoryQuestions
+  getCategoryQuestions,
+  CORE_APP_PRINCIPLES
 } from '../data/pulseQuestions'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../lib/firebase'
@@ -279,6 +280,38 @@ export default function PulseResults() {
         <p className="text-purple-200 text-sm mt-4 max-w-md mx-auto">
           This score reflects how closely your responses align with biblical teaching across all categories.
         </p>
+      </div>
+
+      {/* Core App Principles Alignment Breakdown */}
+      <div className="bg-slate-900 border border-indigo-800/50 rounded-2xl p-6 text-white space-y-4">
+        <h2 className="text-xl font-extrabold text-white flex items-center gap-2">
+          <span>📜</span>
+          <span>Core App Principles Alignment</span>
+        </h2>
+        <p className="text-slate-300 text-xs sm:text-sm">
+          Your spiritual diagnostics mapped directly against Scriptorium’s 5 Redemptive-Historical and Confessional Pillars:
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          {CORE_APP_PRINCIPLES.map((principle) => (
+            <div
+              key={principle.id}
+              className="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-2 text-xs"
+            >
+              <div className="flex items-center justify-between font-bold text-slate-200">
+                <span className="flex items-center gap-1.5 text-indigo-300">
+                  <span>{principle.icon}</span>
+                  <span>{principle.shortTitle}</span>
+                </span>
+                <span className="font-mono text-[11px] text-amber-300">Anchor: {principle.biblicalAnchor}</span>
+              </div>
+              <p className="text-slate-300">{principle.description}</p>
+              <div className="bg-indigo-950/60 p-2 rounded-lg border border-indigo-800/40 italic font-serif text-indigo-200 text-[11px]">
+                "{principle.vosianInsight}"
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Radar Chart */}
