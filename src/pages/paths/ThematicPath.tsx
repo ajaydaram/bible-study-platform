@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Compass, ChevronRight, Check, BookOpen, Loader2 } from 'lucide-react'
 import { thematicTopics } from '../../data/thematicPath'
+import UnifiedHermeneuticsBanner from '../../components/UnifiedHermeneuticsBanner'
 import clsx from 'clsx'
 
 // Bible versions for the selector
@@ -212,9 +213,10 @@ export default function ThematicPath() {
                 </div>
               </div>
 
-              {/* Description */}
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+              {/* Description & Unified Hermeneutics */}
+              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 space-y-3">
                 <p className="text-gray-600 dark:text-gray-400">{currentTopic.description}</p>
+                <UnifiedHermeneuticsBanner referenceKey={currentTopic.passages.join(', ')} />
               </div>
 
               {/* Passages */}

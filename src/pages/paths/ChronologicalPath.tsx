@@ -23,6 +23,7 @@ import {
   ChevronDown,
   ChevronUp
 } from 'lucide-react'
+import UnifiedHermeneuticsBanner from '../../components/UnifiedHermeneuticsBanner'
 import { Link } from 'react-router-dom'
 
 // Bible versions for the selector (bible-api.com translations + our API versions)
@@ -370,6 +371,9 @@ export default function ChronologicalPath() {
 
       {dayReading && (
         <>
+          {/* UNIFIED HERMENEUTICAL TRIAD BANNER */}
+          <UnifiedHermeneuticsBanner referenceKey={dayReading.scripture.join(', ')} />
+
           {/* Scripture Reference */}
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between mb-4">
