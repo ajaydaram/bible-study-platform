@@ -26,7 +26,8 @@ import {
   Activity,
   FileText,
   Languages,
-  Sparkles
+  Sparkles,
+  Layers
 } from 'lucide-react'
 import clsx from 'clsx'
 
@@ -37,6 +38,7 @@ const navigation = [
   { name: 'Living Word', href: '/paths/living-word', icon: Sparkles, isNew: true },
   { name: 'Chronological', href: '/paths/chronological', icon: Calendar },
   { name: 'Thematic', href: '/paths/thematic', icon: BookMarked },
+  { name: 'Genre Path', href: '/paths/genre', icon: Layers, isNew: true },
   { name: 'Pulse', href: '/pulse', icon: Activity, isNew: true },
   { name: 'Sermon Prep', href: '/sermons', icon: FileText },
   { name: 'Word Study', href: '/word-study', icon: Languages },
