@@ -24,11 +24,11 @@ export const BIBLE_VERSIONS = [
   { id: 'ESV', name: 'English Standard Version', abbr: 'ESV', api: 'esv' as const, local: true, localId: 'esv' as LocalVersionId },
   { id: 'de4e12af7f28f599-02', name: 'King James Version', abbr: 'KJV', api: 'apibible' as const, local: true, localId: 'kjv' as LocalVersionId },
   { id: '9879dbb7cfe39e4d-04', name: 'World English Bible', abbr: 'WEB', api: 'apibible' as const, local: true, localId: 'web' as LocalVersionId },
-  { id: '06125adad2d5898a-01', name: 'American Standard Version', abbr: 'ASV', api: 'apibible' as const, local: false },
-  { id: '65eec8e0b60e656b-01', name: 'Free Bible Version', abbr: 'FBV', api: 'apibible' as const, local: false },
-  { id: '01b29f4b342acc35-01', name: 'Literal Standard Version', abbr: 'LSV', api: 'apibible' as const, local: false },
-  { id: '66c22495370cdfc0-01', name: 'Translation for Translators', abbr: 'T4T', api: 'apibible' as const, local: false },
-  { id: 'c315fa9f71d4af3a-01', name: 'Geneva Bible', abbr: 'GNV', api: 'apibible' as const, local: false },
+  { id: '06125adad2d5898a-01', name: 'American Standard Version', abbr: 'ASV', api: 'apibible' as const, local: true, localId: 'asv' as LocalVersionId },
+  { id: '65eec8e0b60e656b-01', name: 'Free Bible Version', abbr: 'FBV', api: 'apibible' as const, local: true, localId: 'fbv' as LocalVersionId },
+  { id: '01b29f4b342acc35-01', name: 'Literal Standard Version', abbr: 'LSV', api: 'apibible' as const, local: true, localId: 'lsv' as LocalVersionId },
+  { id: '66c22495370cdfc0-01', name: 'Translation for Translators', abbr: 'T4T', api: 'apibible' as const, local: true, localId: 't4t' as LocalVersionId },
+  { id: 'c315fa9f71d4af3a-01', name: 'Geneva Bible', abbr: 'GNV', api: 'apibible' as const, local: true, localId: 'gnv' as LocalVersionId },
 ] as const
 
 export type BibleVersion = typeof BIBLE_VERSIONS[number]

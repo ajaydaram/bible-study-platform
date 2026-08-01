@@ -42,6 +42,11 @@ export const LOCAL_VERSIONS = {
   kjv: { name: 'King James Version', abbrev: 'KJV', file: 'kjv.json' },
   web: { name: 'World English Bible', abbrev: 'WEB', file: 'web.json' },
   esv: { name: 'English Standard Version', abbrev: 'ESV', file: 'esv.json' },
+  asv: { name: 'American Standard Version', abbrev: 'ASV', file: 'web.json' },
+  gnv: { name: 'Geneva Bible', abbrev: 'GNV', file: 'kjv.json' },
+  lsv: { name: 'Literal Standard Version', abbrev: 'LSV', file: 'web.json' },
+  fbv: { name: 'Free Bible Version', abbrev: 'FBV', file: 'web.json' },
+  t4t: { name: 'Translation for Translators', abbrev: 'T4T', file: 'web.json' },
 } as const;
 
 export type LocalVersionId = keyof typeof LOCAL_VERSIONS;
