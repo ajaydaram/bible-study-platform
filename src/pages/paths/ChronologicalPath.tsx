@@ -21,7 +21,9 @@ import {
   Tag,
   Loader2,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Sparkles,
+  BookMarked
 } from 'lucide-react'
 import UnifiedHermeneuticsBanner from '../../components/UnifiedHermeneuticsBanner'
 import { Link } from 'react-router-dom'
@@ -468,28 +470,39 @@ export default function ChronologicalPath() {
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
-            {dayReading.tags.map(tag => (
-              <span 
-                key={tag} 
-                className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm"
-              >
-                <Tag className="h-3 w-3" />
-                {tag}
-              </span>
-            ))}
+            {dayReading.tags.map(tag => {
+              const cleanTag = tag.replace(/^#/, '')
+              const isPassageTag = /^[1-3]?\s*[A-Za-z]+\s*\d+/.test(cleanTag)
+              const linkTarget = isPassageTag
+                ? `/bible?ref=${encodeURIComponent(cleanTag)}`
+                : `/word-study?query=${encodeURIComponent(cleanTag)}`
+
+              return (
+                <Link 
+                  key={tag}
+                  to={linkTarget}
+                  className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-primary-50 dark:hover:bg-primary-900/40 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-full text-sm font-medium transition-colors shadow-sm"
+                >
+                  <Tag className="h-3 w-3 text-primary-500" />
+                  {tag}
+                </Link>
+              )
+            })}
           </div>
 
           {/* Key Themes */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm">
             <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Key Themes</h3>
             <div className="flex flex-wrap gap-2">
               {dayReading.keyThemes.map(theme => (
-                <span 
+                <Link 
                   key={theme}
-                  className={`px-3 py-1 ${currentEra?.color || 'bg-primary-500'} text-white rounded-full text-sm`}
+                  to={`/typology-matrix?query=${encodeURIComponent(theme)}`}
+                  className={`px-3 py-1.5 ${currentEra?.color || 'bg-primary-600'} hover:brightness-110 text-white rounded-full text-sm font-medium transition-all shadow-sm hover:scale-105 inline-flex items-center gap-1.5`}
                 >
+                  <Sparkles className="w-3.5 h-3.5" />
                   {theme}
-                </span>
+                </Link>
               ))}
             </div>
           </div>
@@ -505,7 +518,7 @@ export default function ChronologicalPath() {
             </p>
             <Link 
               to="/groups" 
-              className="inline-block mt-3 text-sm text-amber-700 dark:text-amber-400 hover:underline"
+              className="inline-block mt-3 text-sm font-semibold text-amber-700 dark:text-amber-400 hover:underline"
             >
               Share in Groups →
             </Link>
@@ -521,8 +534,8 @@ export default function ChronologicalPath() {
               {dayReading.prayerFocus}
             </p>
             <Link 
-              to="/prayers" 
-              className="inline-block mt-3 text-sm text-rose-700 dark:text-rose-400 hover:underline"
+              to="/journal/new?topic=Prayer" 
+              className="inline-block mt-3 text-sm font-semibold text-rose-700 dark:text-rose-400 hover:underline"
             >
               Add to Prayer List →
             </Link>
@@ -530,16 +543,21 @@ export default function ChronologicalPath() {
 
           {/* Cross References */}
           {dayReading.crossReferences && dayReading.crossReferences.length > 0 && (
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Cross References</h3>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm">
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                <BookMarked className="w-4 h-4 text-primary-600" />
+                Cross References
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {dayReading.crossReferences.map(ref => (
-                  <span 
+                  <Link 
                     key={ref}
-                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm"
+                    to={`/bible?ref=${encodeURIComponent(ref)}`}
+                    className="px-3.5 py-1.5 bg-gray-100 dark:bg-gray-700/80 hover:bg-primary-50 dark:hover:bg-primary-900/40 text-gray-800 dark:text-gray-200 hover:text-primary-700 dark:hover:text-primary-300 rounded-lg text-sm font-medium transition-all shadow-xs border border-gray-200 dark:border-gray-600 flex items-center gap-1.5 hover:scale-105"
                   >
+                    <BookOpen className="w-3.5 h-3.5 text-primary-500" />
                     {ref}
-                  </span>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -141,9 +141,38 @@ export default function Bible() {
 
   useEffect(() => {
     const bookParam = searchParams.get('book')
-    if (bookParam && BIBLE_BOOKS.some(b => b.name === bookParam)) {
-      setSelectedBook(bookParam)
-      setSelectedChapter(1)
+    const chapterParam = searchParams.get('chapter')
+    const refParam = searchParams.get('ref') || searchParams.get('passage')
+
+    if (refParam) {
+      // Parse references like "John 1:1-3", "Colossians 1:16-17", "Genesis 2", "Genesis1"
+      const cleanRef = refParam.replace(/^#/, '')
+      const match = cleanRef.match(/^(\d?\s*[A-Za-z]+)\s*(\d+)?(?::(\d+))?/)
+      if (match) {
+        let rawBook = match[1].trim()
+        // Format book name nicely e.g. "Genesis", "1 Samuel", "Colossians"
+        const foundBook = BIBLE_BOOKS.find(
+          b => b.name.toLowerCase() === rawBook.toLowerCase() || b.name.toLowerCase().replace(/\s+/g, '') === rawBook.toLowerCase()
+        )
+        if (foundBook) {
+          setSelectedBook(foundBook.name)
+          const chapNum = match[2] ? parseInt(match[2], 10) : 1
+          setSelectedChapter(Math.min(chapNum, foundBook.chapters))
+          if (match[3]) {
+            setActiveVerse(parseInt(match[3], 10))
+          }
+        }
+      }
+    } else if (bookParam && BIBLE_BOOKS.some(b => b.name.toLowerCase() === bookParam.toLowerCase())) {
+      const found = BIBLE_BOOKS.find(b => b.name.toLowerCase() === bookParam.toLowerCase())
+      if (found) {
+        setSelectedBook(found.name)
+        if (chapterParam) {
+          setSelectedChapter(Math.min(parseInt(chapterParam, 10), found.chapters))
+        } else {
+          setSelectedChapter(1)
+        }
+      }
     }
   }, [searchParams])
 
