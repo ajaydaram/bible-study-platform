@@ -21,14 +21,21 @@ const BASE_URL = 'https://rest.api.bible/v1'
 // Popular Bible versions available
 // Versions with local: true use offline JSON files first
 export const BIBLE_VERSIONS = [
+  { id: 'BSB', name: 'Berean Standard Bible', abbr: 'BSB', api: 'apibible' as const, local: true, localId: 'bsb' as LocalVersionId },
   { id: 'ESV', name: 'English Standard Version', abbr: 'ESV', api: 'esv' as const, local: true, localId: 'esv' as LocalVersionId },
-  { id: 'de4e12af7f28f599-02', name: 'King James Version', abbr: 'KJV', api: 'apibible' as const, local: true, localId: 'kjv' as LocalVersionId },
-  { id: '9879dbb7cfe39e4d-04', name: 'World English Bible', abbr: 'WEB', api: 'apibible' as const, local: true, localId: 'web' as LocalVersionId },
-  { id: '06125adad2d5898a-01', name: 'American Standard Version', abbr: 'ASV', api: 'apibible' as const, local: true, localId: 'asv' as LocalVersionId },
-  { id: '65eec8e0b60e656b-01', name: 'Free Bible Version', abbr: 'FBV', api: 'apibible' as const, local: true, localId: 'fbv' as LocalVersionId },
-  { id: '01b29f4b342acc35-01', name: 'Literal Standard Version', abbr: 'LSV', api: 'apibible' as const, local: true, localId: 'lsv' as LocalVersionId },
-  { id: '66c22495370cdfc0-01', name: 'Translation for Translators', abbr: 'T4T', api: 'apibible' as const, local: true, localId: 't4t' as LocalVersionId },
-  { id: 'c315fa9f71d4af3a-01', name: 'Geneva Bible', abbr: 'GNV', api: 'apibible' as const, local: true, localId: 'gnv' as LocalVersionId },
+  { id: 'KJV', name: 'King James Version', abbr: 'KJV', api: 'apibible' as const, local: true, localId: 'kjv' as LocalVersionId },
+  { id: 'WEB', name: 'World English Bible', abbr: 'WEB', api: 'apibible' as const, local: true, localId: 'web' as LocalVersionId },
+  { id: 'ASV', name: 'American Standard Version', abbr: 'ASV', api: 'apibible' as const, local: true, localId: 'asv' as LocalVersionId },
+  { id: 'AKJV', name: 'American King James Version', abbr: 'AKJV', api: 'apibible' as const, local: true, localId: 'akjv' as LocalVersionId },
+  { id: 'CPDV', name: 'Catholic Public Domain Version', abbr: 'CPDV', api: 'apibible' as const, local: true, localId: 'cpdv' as LocalVersionId },
+  { id: 'DBT', name: 'Darby Bible Translation', abbr: 'DBT', api: 'apibible' as const, local: true, localId: 'dbt' as LocalVersionId },
+  { id: 'DRB', name: 'Douay-Rheims Bible', abbr: 'DRB', api: 'apibible' as const, local: true, localId: 'drb' as LocalVersionId },
+  { id: 'ERV', name: 'English Revised Version', abbr: 'ERV', api: 'apibible' as const, local: true, localId: 'erv' as LocalVersionId },
+  { id: 'JPS', name: 'JPS / Weymouth Bible', abbr: 'JPS', api: 'apibible' as const, local: true, localId: 'jpswey' as LocalVersionId },
+  { id: 'NHEB', name: 'New Heart English Bible', abbr: 'NHEB', api: 'apibible' as const, local: true, localId: 'nheb' as LocalVersionId },
+  { id: 'SLT', name: 'Smith’s Literal Translation', abbr: 'SLT', api: 'apibible' as const, local: true, localId: 'slt' as LocalVersionId },
+  { id: 'WBT', name: 'Webster Bible Translation', abbr: 'WBT', api: 'apibible' as const, local: true, localId: 'wbt' as LocalVersionId },
+  { id: 'YLT', name: 'Young’s Literal Translation', abbr: 'YLT', api: 'apibible' as const, local: true, localId: 'ylt' as LocalVersionId },
 ] as const
 
 export type BibleVersion = typeof BIBLE_VERSIONS[number]

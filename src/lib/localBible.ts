@@ -39,14 +39,21 @@ export interface LocalBibleData {
 
 // Supported local versions
 export const LOCAL_VERSIONS = {
+  bsb: { name: 'Berean Standard Bible', abbrev: 'BSB', file: 'bsb.json' },
   kjv: { name: 'King James Version', abbrev: 'KJV', file: 'kjv.json' },
+  asv: { name: 'American Standard Version', abbrev: 'ASV', file: 'asv.json' },
+  akjv: { name: 'American King James Version', abbrev: 'AKJV', file: 'akjv.json' },
+  cpdv: { name: 'Catholic Public Domain Version', abbrev: 'CPDV', file: 'cpdv.json' },
+  dbt: { name: 'Darby Bible Translation', abbrev: 'DBT', file: 'dbt.json' },
+  drb: { name: 'Douay-Rheims Bible', abbrev: 'DRB', file: 'drb.json' },
+  erv: { name: 'English Revised Version', abbrev: 'ERV', file: 'erv.json' },
+  jpswey: { name: 'JPS / Weymouth Bible', abbrev: 'JPS', file: 'jpswey.json' },
+  nheb: { name: 'New Heart English Bible', abbrev: 'NHEB', file: 'nheb.json' },
+  slt: { name: 'Smith’s Literal Translation', abbrev: 'SLT', file: 'slt.json' },
+  wbt: { name: 'Webster Bible Translation', abbrev: 'WBT', file: 'wbt.json' },
   web: { name: 'World English Bible', abbrev: 'WEB', file: 'web.json' },
+  ylt: { name: 'Young’s Literal Translation', abbrev: 'YLT', file: 'ylt.json' },
   esv: { name: 'English Standard Version', abbrev: 'ESV', file: 'esv.json' },
-  asv: { name: 'American Standard Version', abbrev: 'ASV', file: 'web.json' },
-  gnv: { name: 'Geneva Bible', abbrev: 'GNV', file: 'kjv.json' },
-  lsv: { name: 'Literal Standard Version', abbrev: 'LSV', file: 'web.json' },
-  fbv: { name: 'Free Bible Version', abbrev: 'FBV', file: 'web.json' },
-  t4t: { name: 'Translation for Translators', abbrev: 'T4T', file: 'web.json' },
 } as const;
 
 export type LocalVersionId = keyof typeof LOCAL_VERSIONS;

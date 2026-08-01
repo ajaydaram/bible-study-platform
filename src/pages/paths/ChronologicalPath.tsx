@@ -28,8 +28,14 @@ import { Link } from 'react-router-dom'
 
 // Bible versions for the selector (bible-api.com translations + our API versions)
 const READING_VERSIONS = [
+  { id: 'bsb', name: 'Berean Standard Bible', abbr: 'BSB', source: 'bible-api' as const },
   { id: 'kjv', name: 'King James Version', abbr: 'KJV', source: 'bible-api' as const },
   { id: 'web', name: 'World English Bible', abbr: 'WEB', source: 'bible-api' as const },
+  { id: 'asv', name: 'American Standard Version', abbr: 'ASV', source: 'bible-api' as const },
+  { id: 'cpdv', name: 'Catholic Public Domain Version', abbr: 'CPDV', source: 'bible-api' as const },
+  { id: 'drb', name: 'Douay-Rheims Bible', abbr: 'DRB', source: 'bible-api' as const },
+  { id: 'nheb', name: 'New Heart English Bible', abbr: 'NHEB', source: 'bible-api' as const },
+  { id: 'ylt', name: 'Young’s Literal Translation', abbr: 'YLT', source: 'bible-api' as const },
   { id: 'ESV', name: 'English Standard Version', abbr: 'ESV', source: 'esv-api' as const },
 ] as const
 
