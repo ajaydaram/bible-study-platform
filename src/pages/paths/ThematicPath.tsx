@@ -79,7 +79,12 @@ export default function ThematicPath() {
         const response = await fetch(`https://bible-api.com/${encodeURIComponent(ref)}?translation=${version}`)
         if (response.ok) {
           const data = await response.json()
-          setPassage(data.text)
+          if (data.verses && data.verses.length > 0) {
+            const formatted = data.verses.map((v: any) => `[${v.verse}] ${v.text.trim()}`).join('\n')
+            setPassage(formatted)
+          } else {
+            setPassage(data.text || '')
+          }
         }
       }
     } catch {
@@ -259,8 +264,28 @@ export default function ThematicPath() {
                     <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">Loading Scripture...</p>
                   </div>
                 ) : (
-                  <div className="scripture-text max-h-64 overflow-y-auto pr-2 animate-fade-in">
-                    <p className="leading-[2] text-gray-700 dark:text-gray-300">{passage}</p>
+                  <div className="scripture-text max-h-64 overflow-y-auto pr-2 animate-fade-in space-y-2">
+                    {passage.split('\n').map((line, idx) => {
+                      const trimmed = line.trim()
+                      if (!trimmed) return null
+                      const match = trimmed.match(/^\[(\d+)\]\s*(.*)/)
+                      if (match) {
+                        const [, verseNum, text] = match
+                        return (
+                          <p key={idx} className="text-sm leading-relaxed text-gray-800 dark:text-gray-200 flex items-start gap-2">
+                            <span className="inline-flex items-center justify-center text-[10px] font-mono font-bold text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-950/60 border border-purple-300 dark:border-purple-700/60 rounded px-1.5 py-0.5 shrink-0 select-none mt-0.5 shadow-sm">
+                              {verseNum}
+                            </span>
+                            <span>{text}</span>
+                          </p>
+                        )
+                      }
+                      return (
+                        <p key={idx} className="text-sm leading-relaxed text-gray-800 dark:text-gray-200">
+                          {line}
+                        </p>
+                      )
+                    })}
                   </div>
                 )}
               </div>

@@ -157,8 +157,11 @@ export default function ChronologicalPath() {
               
               if (response.ok) {
                 const data = await response.json()
-                if (data.text) {
-                  return { passage, reference: data.reference, text: data.text }
+                if (data.verses && data.verses.length > 0) {
+                  const formattedText = data.verses.map((v: any) => `[${v.verse}] ${v.text.trim()}`).join('\n')
+                  return { passage, reference: data.reference || cleanPassage, text: formattedText }
+                } else if (data.text) {
+                  return { passage, reference: data.reference || cleanPassage, text: data.text }
                 }
               }
             }
@@ -420,17 +423,38 @@ export default function ChronologicalPath() {
                   <p className="text-gray-500 dark:text-gray-400 font-medium">Loading Scripture...</p>
                 </div>
               ) : (
-                <div className="scripture-text animate-fade-in">
-                  {bibleText.split('\n\n').map((paragraph, idx) => (
-                    <p 
-                      key={idx} 
-                      className={paragraph.startsWith('📖') 
-                        ? 'text-lg font-semibold text-primary-700 dark:text-primary-400 mt-8 mb-4 first:mt-0' 
-                        : 'leading-[2] mb-4'}
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
+                <div className="scripture-text animate-fade-in space-y-3">
+                  {bibleText.split('\n').map((line, idx) => {
+                    const trimmed = line.trim()
+                    if (!trimmed) return null
+
+                    if (trimmed.startsWith('📖')) {
+                      return (
+                        <h4 key={idx} className="text-lg font-extrabold text-primary-700 dark:text-primary-400 mt-6 mb-3 flex items-center gap-2 border-b border-primary-200 dark:border-primary-800 pb-2">
+                          {trimmed}
+                        </h4>
+                      )
+                    }
+
+                    const match = trimmed.match(/^\[(\d+)\]\s*(.*)/)
+                    if (match) {
+                      const [, verseNum, text] = match
+                      return (
+                        <p key={idx} className="text-base leading-relaxed text-gray-800 dark:text-gray-200 flex items-start gap-2 py-0.5">
+                          <span className="inline-flex items-center justify-center text-xs font-mono font-bold text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700/60 rounded px-1.5 py-0.5 shrink-0 select-none mt-0.5 shadow-sm">
+                            {verseNum}
+                          </span>
+                          <span>{text}</span>
+                        </p>
+                      )
+                    }
+
+                    return (
+                      <p key={idx} className="text-base leading-relaxed text-gray-800 dark:text-gray-200">
+                        {line}
+                      </p>
+                    )
+                  })}
                 </div>
               )}
             </div>
