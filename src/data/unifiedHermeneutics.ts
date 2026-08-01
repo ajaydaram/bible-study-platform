@@ -125,35 +125,39 @@ export const UNIFIED_TRIAD_DATABASE: Record<string, UnifiedTriad> = {
   }
 }
 
-// Fallback generator for passages
+// Intelligent mapper for any reference or passage string
 export function getUnifiedHermeneutics(keyOrReference: string): UnifiedTriad {
-  const match = Object.keys(UNIFIED_TRIAD_DATABASE).find((k) =>
-    keyOrReference.toLowerCase().includes(k.toLowerCase())
+  const ref = keyOrReference.toLowerCase()
+
+  // 1. Direct or partial key match
+  const matchKey = Object.keys(UNIFIED_TRIAD_DATABASE).find((k) =>
+    ref.includes(k.toLowerCase()) || k.toLowerCase().includes(ref.split(' ')[0] || '')
   )
 
-  if (match) {
-    return UNIFIED_TRIAD_DATABASE[match]
+  if (matchKey) {
+    return UNIFIED_TRIAD_DATABASE[matchKey]
   }
 
-  // Generic intelligent fallback based on book name or day
-  return {
-    reference: keyOrReference || 'Scripture Passage',
-    chronologicalEra: {
-      name: 'Biblical History',
-      timeline: 'Genesis to Revelation',
-      dayNumber: 1
-    },
-    redemptiveEpoch: {
-      id: 'messianic',
-      number: 5,
-      title: 'Messianic Realization',
-      covenant: 'New Covenant',
-      icon: '✝️'
-    },
-    typologicalTheme: {
-      themeTitle: 'Redemptive Unity in Christ',
-      typeShadow: 'Old Testament Types and Promises',
-      antitypeFulfillment: 'Fulfilled in Jesus Christ'
-    }
+  // 2. Creation / Edenic (Genesis 1-11)
+  if (ref.includes('genesis 1') || ref.includes('genesis 2') || ref.includes('genesis 3') || ref.includes('genesis 4') || ref.includes('genesis 5') || ref.includes('genesis 6') || ref.includes('genesis 7') || ref.includes('genesis 8') || ref.includes('genesis 9') || ref.includes('genesis 10') || ref.includes('genesis 11')) {
+    return UNIFIED_TRIAD_DATABASE['Genesis 1-3']
   }
+
+  // 3. Patriarchal (Genesis 12-50)
+  if (ref.includes('genesis')) {
+    return UNIFIED_TRIAD_DATABASE['Genesis 22']
+  }
+
+  // 4. Mosaic & Tabernacle (Exodus, Leviticus, Numbers, Deuteronomy)
+  if (ref.includes('exodus') || ref.includes('leviticus') || ref.includes('numbers') || ref.includes('deuteronomy')) {
+    return UNIFIED_TRIAD_DATABASE['Exodus 12']
+  }
+
+  // 5. Kingdom & Monarchical (Joshua, Judges, Ruth, Samuel, Kings, Chronicles)
+  if (ref.includes('samuel') || ref.includes('kings') || ref.includes('chronicles') || ref.includes('joshua') || ref.includes('judges') || ref.includes('david') || ref.includes('psalm')) {
+    return UNIFIED_TRIAD_DATABASE['2 Samuel 7']
+  }
+
+  // 6. Messianic Realization (Gospels & NT)
+  return UNIFIED_TRIAD_DATABASE['Matthew 1']
 }
