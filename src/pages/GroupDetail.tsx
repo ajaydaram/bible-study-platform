@@ -17,6 +17,7 @@ import {
 import { format } from 'date-fns';
 import { getDayReading } from '../data/biblicalEras';
 import { getSharedEcclesialResponses, addAmenToResponse, EcclesialResponse } from '../data/callAndResponseData';
+import CohortSermonSharingPanel from '../components/CohortSermonSharingPanel';
 import type { Group, JournalEntry, Prayer } from '../types';
 
 interface GroupComment {
@@ -32,7 +33,7 @@ export default function GroupDetail() {
   const { user } = useAuth();
 
   const [group, setGroup] = useState<Group | null>(null);
-  const [activeTab, setActiveTab] = useState<'progress' | 'discussions' | 'journal' | 'prayers' | 'ecclesial'>('ecclesial');
+  const [activeTab, setActiveTab] = useState<'progress' | 'discussions' | 'journal' | 'prayers' | 'ecclesial' | 'cohort'>('ecclesial');
   const [userProgressDays, setUserProgressDays] = useState<number>(0);
   const [ecclesialResponses, setEcclesialResponses] = useState<EcclesialResponse[]>([]);
   
@@ -241,6 +242,17 @@ export default function GroupDetail() {
           <span>Ecclesial Responses</span>
         </button>
         <button
+          onClick={() => setActiveTab('cohort')}
+          className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium rounded-lg transition-all ${
+            activeTab === 'cohort'
+              ? 'bg-purple-600 text-white shadow-sm'
+              : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-55 dark:hover:bg-gray-700/50'
+          }`}
+        >
+          <PenTool className="w-4 h-4 text-purple-300" />
+          <span>Preaching Cohort</span>
+        </button>
+        <button
           onClick={() => setActiveTab('progress')}
           className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium rounded-lg transition-all ${
             activeTab === 'progress'
@@ -288,6 +300,11 @@ export default function GroupDetail() {
 
       {/* Tab Content */}
       <div className="transition-all duration-200">
+        
+        {/* PREACHING COHORT TAB */}
+        {activeTab === 'cohort' && (
+          <CohortSermonSharingPanel groupId={group.id} />
+        )}
         
         {/* PROGRESS TAB */}
         {activeTab === 'progress' && (
