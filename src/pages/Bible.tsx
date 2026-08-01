@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { BookOpen, ChevronLeft, ChevronRight, Loader2, BookMarked, Headphones, Link2, BookText, PanelRightOpen, PanelRightClose, Users, Info, Scroll, Map } from 'lucide-react'
+import { BookOpen, ChevronLeft, ChevronRight, Loader2, BookMarked, Headphones, Link2, BookText, PanelRightOpen, PanelRightClose, Users, Info, Scroll, Map, Sparkles } from 'lucide-react'
+import ScriptoriumNexusDrawer from '../components/ScriptoriumNexusDrawer'
 import { getChapter, BIBLE_VERSIONS, DEFAULT_BIBLE_ID, type ParsedPassage } from '../lib/bibleApi'
 import AudioPlayer from '../components/AudioPlayer'
 import { isBibleBrainConfigured } from '../lib/bibleBrain'
@@ -96,6 +97,7 @@ export default function Bible() {
   const [showAudioPlayer, setShowAudioPlayer] = useState(false)
   const [activeVerse, setActiveVerse] = useState<number | null>(null)
   const [showStudyPanel, setShowStudyPanel] = useState(false)
+  const [showNexusDrawer, setShowNexusDrawer] = useState(false)
   const [studyTab, setStudyTab] = useState<'crossref' | 'commentary' | 'patristic' | 'confession' | 'map'>('crossref')
   const [indexingProgress, setIndexingProgress] = useState<number | null>(null)
   const [selectedTypologyMapping, setSelectedTypologyMapping] = useState<TypologyMapping | null>(null)
@@ -260,6 +262,16 @@ export default function Bible() {
           >
             <Headphones className="h-4 w-4" />
             <span className="hidden sm:inline">Listen</span>
+          </button>
+
+          {/* Scriptorium Nexus Toggle */}
+          <button
+            onClick={() => setShowNexusDrawer(true)}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xs shadow-md hover:from-indigo-500 hover:to-purple-500 transition-all"
+            title="Scriptorium Nexus: Chiastic, Genre, FCF & Typology Engine"
+          >
+            <Sparkles className="h-4 w-4" />
+            <span className="hidden sm:inline">Scriptorium Nexus</span>
           </button>
 
           {/* Study Panel Toggle */}
@@ -519,6 +531,15 @@ export default function Bible() {
           </div>
         </div>
       )}
+
+      {/* Scriptorium Nexus Drawer */}
+      <ScriptoriumNexusDrawer
+        isOpen={showNexusDrawer}
+        onClose={() => setShowNexusDrawer(false)}
+        book={selectedBook}
+        chapter={selectedChapter}
+        verse={activeVerse}
+      />
 
       {/* Split Screen Typology Viewer Modal */}
       <TypologySplitScreenModal
