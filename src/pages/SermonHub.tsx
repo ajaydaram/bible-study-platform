@@ -18,6 +18,7 @@ import {
   Sparkles
 } from 'lucide-react'
 import clsx from 'clsx'
+import SermonPrintExport from '../components/SermonPrintExport'
 
 const stageInfo = {
   exegesis: { label: 'Exegesis', icon: BookOpen, color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/30' },
@@ -214,16 +215,19 @@ export default function SermonHub() {
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <SermonPrintExport sermon={sermon} />
                     <Link
                       to={`/sermons/edit/${sermon.id}`}
                       className="p-2 text-gray-500 hover:text-primary-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                      title="Edit Sermon"
                     >
                       <Edit className="h-5 w-5" />
                     </Link>
                     <button
                       onClick={() => setDeleteId(sermon.id)}
                       className="p-2 text-gray-500 hover:text-red-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                      title="Delete Sermon"
                     >
                       <Trash2 className="h-5 w-5" />
                     </button>

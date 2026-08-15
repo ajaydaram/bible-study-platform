@@ -16,6 +16,8 @@ import {
 } from 'lucide-react'
 import clsx from 'clsx'
 
+import SermonPrintExport from '../components/SermonPrintExport'
+
 export default function SermonEdit() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
@@ -201,7 +203,18 @@ export default function SermonEdit() {
           </button>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Edit Sermon</h1>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <SermonPrintExport 
+            sermon={{
+              title,
+              passage,
+              date,
+              exegesis,
+              theology,
+              homiletics,
+              notes
+            }}
+          />
           <button
             onClick={() => setShowDeleteModal(true)}
             className="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"

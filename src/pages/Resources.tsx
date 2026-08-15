@@ -1,7 +1,39 @@
 import { Link } from 'react-router-dom'
-import { BookMarked, Map, BookOpen, Link2, Languages, Sparkles, Church, Clock, Music, Users, Heart } from 'lucide-react'
+import { BookMarked, Map, BookOpen, Link2, Languages, Sparkles, Church, Clock, Music, Users, Heart, Scroll, Brain, GitFork } from 'lucide-react'
 
 const resources = [
+  {
+    title: 'Textual Criticism Lab',
+    description: 'Compare NA28 Critical Text, Textus Receptus & Byzantine variants',
+    icon: Scroll,
+    href: '/resources/textual-criticism',
+    color: 'bg-indigo-600',
+    ready: true
+  },
+  {
+    title: 'Gospel Harmony',
+    description: 'Synchronized 4-column chronological matrix of Christ’s life',
+    icon: BookOpen,
+    href: '/resources/gospel-harmony',
+    color: 'bg-amber-600',
+    ready: true
+  },
+  {
+    title: 'Memory Gym',
+    description: 'Spaced repetition with disappearing words & cloze testing',
+    icon: Brain,
+    href: '/resources/memory-gym',
+    color: 'bg-emerald-600',
+    ready: true
+  },
+  {
+    title: 'Typology Network',
+    description: 'Interactive atlas connecting OT shadows to Christ’s fulfillment',
+    icon: GitFork,
+    href: '/resources/typology-network',
+    color: 'bg-rose-600',
+    ready: true
+  },
   {
     title: 'Word Study',
     description: 'Explore Greek & Hebrew words with transliteration and definitions',

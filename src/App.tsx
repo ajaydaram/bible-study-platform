@@ -67,6 +67,12 @@ import People from './pages/People'
 // Discipleship & Teaching
 import DiscipleshipStudy from './pages/DiscipleshipStudy'
 
+// Textual Criticism, Gospel Harmony, Memory Gym & Typology Network
+import TextualCriticismPage from './pages/resources/TextualCriticismPage'
+import GospelHarmonyPage from './pages/resources/GospelHarmonyPage'
+import MemoryGymPage from './pages/resources/MemoryGymPage'
+import TypologyNetworkPage from './pages/resources/TypologyNetworkPage'
+
 // Shared Content
 import SharedNote from './pages/SharedNote'
 
@@ -141,6 +147,13 @@ function App() {
                     <Route path="/resources/hymnal" element={<Hymnal />} />
                     <Route path="/resources/people" element={<People />} />
                     <Route path="/resources/discipleship" element={<DiscipleshipStudy />} />
+                    <Route path="/resources/textual-criticism" element={<TextualCriticismPage />} />
+                    <Route path="/textual-criticism" element={<TextualCriticismPage />} />
+                    <Route path="/resources/gospel-harmony" element={<GospelHarmonyPage />} />
+                    <Route path="/gospel-harmony" element={<GospelHarmonyPage />} />
+                    <Route path="/resources/memory-gym" element={<MemoryGymPage />} />
+                    <Route path="/memory-gym" element={<MemoryGymPage />} />
+                    <Route path="/resources/typology-network" element={<TypologyNetworkPage />} />
                     <Route path="/reading-plans" element={<ReadingPlans />} />
                     <Route path="/reading-plans/new" element={<ReadingPlanNew />} />
                   </Route>
