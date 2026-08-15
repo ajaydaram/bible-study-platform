@@ -20,6 +20,7 @@ import ThematicPath from './pages/paths/ThematicPath'
 import LivingWordJourney from './pages/paths/LivingWordJourney'
 import GenrePath from './pages/paths/GenrePath'
 import TypologyMatrixPage from './pages/TypologyMatrixPage'
+import StoryOfScripturePage from './pages/StoryOfScripturePage'
 import Journal from './pages/Journal'
 import JournalNew from './pages/JournalNew'
 import JournalEdit from './pages/JournalEdit'
@@ -102,6 +103,7 @@ function App() {
                     <Route path="/paths/living-word" element={<LivingWordJourney />} />
                     <Route path="/paths/genre" element={<GenrePath />} />
                     <Route path="/typology-matrix" element={<TypologyMatrixPage />} />
+                    <Route path="/story-of-scripture" element={<StoryOfScripturePage />} />
                     <Route path="/journal" element={<Journal />} />
                     <Route path="/journal/new" element={<JournalNew />} />
                     <Route path="/journal/edit/:id" element={<JournalEdit />} />

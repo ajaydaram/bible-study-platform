@@ -16,6 +16,8 @@ import { addProgressListener, removeProgressListener } from '../lib/localBible'
 import { getTypologyForVerse, TypologyMapping } from '../data/typologyBibleMap'
 import TypologyMarginBadge from '../components/TypologyMarginBadge'
 import TypologySplitScreenModal from '../components/TypologySplitScreenModal'
+import { getBookTheme } from '../data/storyOfScriptureData'
+import { Link } from 'react-router-dom'
 
 const BIBLE_BOOKS = [
   { name: 'Genesis', chapters: 50 },
@@ -362,6 +364,48 @@ export default function Bible() {
           </div>
         ) : passage ? (
           <div className="animate-fade-in">
+            {/* Story of Scripture Thematic Header */}
+            {(() => {
+              const bookTheme = getBookTheme(selectedBook)
+              if (!bookTheme) return null
+              return (
+                <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-indigo-800/50 text-white shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl p-2 bg-indigo-500/20 rounded-xl border border-indigo-400/30">
+                      {bookTheme.icon}
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-300">
+                          {bookTheme.division} • {bookTheme.subdivision}
+                        </span>
+                        <span className="text-[10px] text-slate-400 font-mono">({bookTheme.date})</span>
+                      </div>
+                      <h4 className="text-sm font-bold text-slate-100 flex items-center gap-1.5 mt-0.5">
+                        <span className="text-slate-400 font-normal">Theme:</span>
+                        <span className="text-indigo-200 font-semibold">{bookTheme.theme}</span>
+                      </h4>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-800">
+                    <Link
+                      to={`/bible?ref=${encodeURIComponent(bookTheme.keyVerse)}`}
+                      className="px-2.5 py-1 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/30 text-amber-300 rounded-lg text-xs font-bold transition-colors"
+                    >
+                      Key Verse: {bookTheme.keyVerse}
+                    </Link>
+                    <Link
+                      to="/story-of-scripture"
+                      className="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold transition-colors"
+                    >
+                      Story of Scripture →
+                    </Link>
+                  </div>
+                </div>
+              )
+            })()}
+
             {/* Chapter Header */}
             <div className="text-center mb-8 pb-6 border-b border-gray-100 dark:border-gray-700">
               <h2 className="chapter-heading">

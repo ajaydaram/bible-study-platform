@@ -10,6 +10,7 @@ dist-ssr/
 .env
 .env.local
 bibles.json
+*.pdf
 .env.*.local
 
 # Logs
