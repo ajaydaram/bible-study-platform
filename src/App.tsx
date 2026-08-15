@@ -21,6 +21,7 @@ import LivingWordJourney from './pages/paths/LivingWordJourney'
 import GenrePath from './pages/paths/GenrePath'
 import TypologyMatrixPage from './pages/TypologyMatrixPage'
 import StoryOfScripturePage from './pages/StoryOfScripturePage'
+import ConfessionsHubPage from './pages/ConfessionsHubPage'
 import Journal from './pages/Journal'
 import JournalNew from './pages/JournalNew'
 import JournalEdit from './pages/JournalEdit'
@@ -104,6 +105,8 @@ function App() {
                     <Route path="/paths/genre" element={<GenrePath />} />
                     <Route path="/typology-matrix" element={<TypologyMatrixPage />} />
                     <Route path="/story-of-scripture" element={<StoryOfScripturePage />} />
+                    <Route path="/confessions" element={<ConfessionsHubPage />} />
+                    <Route path="/resources/confessions" element={<ConfessionsHubPage />} />
                     <Route path="/journal" element={<Journal />} />
                     <Route path="/journal/new" element={<JournalNew />} />
                     <Route path="/journal/edit/:id" element={<JournalEdit />} />
