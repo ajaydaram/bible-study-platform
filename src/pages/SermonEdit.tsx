@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
 import { getSermonById, updateSermon, deleteSermon } from '../lib/firestore'
 import type { Sermon, SermonExegesis, SermonTheology, SermonHomiletics, SermonMovement } from '../types'
 import {
@@ -19,7 +18,6 @@ import clsx from 'clsx'
 
 export default function SermonEdit() {
   const { id } = useParams<{ id: string }>()
-  const { user } = useAuth()
   const navigate = useNavigate()
   const [currentStage, setCurrentStage] = useState<'exegesis' | 'theology' | 'homiletics'>('exegesis')
   const [loading, setLoading] = useState(true)
@@ -109,7 +107,7 @@ export default function SermonEdit() {
   }, [id])
 
   const handleSave = async (stage?: Sermon['stage']) => {
-    if (!id || !user?.id) return
+    if (!id) return
     
     setSaving(true)
     try {

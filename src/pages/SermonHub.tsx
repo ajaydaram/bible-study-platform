@@ -28,23 +28,42 @@ const stageInfo = {
 
 export default function SermonHub() {
   const { user } = useAuth()
-  const [sermons, setSermons] = useState<Sermon[]>([])
-  const [loading, setLoading] = useState(true)
+  const [sermons, setSermons] = useState<Sermon[]>(() => {
+    try {
+      const raw = localStorage.getItem('scriptorium_sermons_cache')
+      if (raw) return JSON.parse(raw)
+    } catch {
+      // ignore
+    }
+    return []
+  })
+  const [loading, setLoading] = useState(false)
   const [deleteId, setDeleteId] = useState<string | null>(null)
 
   useEffect(() => {
+    let isMounted = true
+
     async function fetchSermons() {
-      if (!user?.id) return
+      const userId = user?.id || 'local_user'
       try {
-        const data = await getSermons(user.id)
-        setSermons(data)
+        const data = await getSermons(userId)
+        if (isMounted && data) {
+          setSermons(data)
+        }
       } catch (error) {
         console.error('Error fetching sermons:', error)
       } finally {
-        setLoading(false)
+        if (isMounted) {
+          setLoading(false)
+        }
       }
     }
+
     fetchSermons()
+
+    return () => {
+      isMounted = false
+    }
   }, [user?.id])
 
   const handleDelete = async (id: string) => {
@@ -57,7 +76,7 @@ export default function SermonHub() {
     }
   }
 
-  if (loading) {
+  if (loading && sermons.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>

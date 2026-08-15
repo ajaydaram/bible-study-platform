@@ -77,8 +77,6 @@ export default function SermonNew() {
   const [homiletics, setHomiletics] = useState<SermonHomiletics>(emptyHomiletics)
 
   const handleSave = async (stage: Sermon['stage'] = currentStage) => {
-    if (!user?.id) return
-    
     setSaving(true)
     try {
       const sermon: Omit<Sermon, 'id' | 'createdAt' | 'updatedAt'> = {
@@ -90,7 +88,7 @@ export default function SermonNew() {
         theology,
         homiletics,
         notes,
-        userId: user.id
+        userId: user?.id || 'local_user'
       }
       
       await addSermon(sermon)

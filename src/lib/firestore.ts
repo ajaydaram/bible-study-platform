@@ -12,7 +12,7 @@ import {
   serverTimestamp,
   Timestamp
 } from 'firebase/firestore'
-import { db } from './firebase'
+import { db, firebaseEnabled } from './firebase'
 import type { JournalEntry, Group, Discussion, Prayer } from '../types'
 
 // Helper to convert Firestore timestamp to ISO string
@@ -197,56 +197,185 @@ export async function saveReadingProgress(
 
 import type { Sermon } from '../types'
 
+const SERMONS_CACHE_KEY = 'scriptorium_sermons_cache'
+
+function getLocalSermons(userId?: string): Sermon[] {
+  try {
+    const raw = localStorage.getItem(SERMONS_CACHE_KEY)
+    if (!raw) return []
+    const parsed: Sermon[] = JSON.parse(raw)
+    if (userId) {
+      return parsed.filter(s => s.userId === userId || !s.userId)
+    }
+    return parsed
+  } catch {
+    return []
+  }
+}
+
+function saveLocalSermons(sermons: Sermon[]) {
+  try {
+    localStorage.setItem(SERMONS_CACHE_KEY, JSON.stringify(sermons))
+  } catch {
+    // ignore
+  }
+}
+
 export async function getSermons(userId: string): Promise<Sermon[]> {
-  const q = query(
-    collection(db, 'sermons'),
-    where('userId', '==', userId),
-    orderBy('createdAt', 'desc')
-  )
-  const snapshot = await getDocs(q)
-  return snapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data(),
-    createdAt: toISOString(doc.data().createdAt),
-    updatedAt: toISOString(doc.data().updatedAt)
-  })) as Sermon[]
+  const localList = getLocalSermons(userId)
+
+  if (!firebaseEnabled || !userId) {
+    return localList
+  }
+
+  // Fast timeout promise (1500ms max)
+  const timeoutPromise = new Promise<Sermon[]>((resolve) => {
+    setTimeout(() => resolve(localList), 1500)
+  })
+
+  const fetchPromise = (async () => {
+    try {
+      // First try standard query
+      let snapshot
+      try {
+        const q = query(
+          collection(db, 'sermons'),
+          where('userId', '==', userId),
+          orderBy('createdAt', 'desc')
+        )
+        snapshot = await getDocs(q)
+      } catch {
+        // Fallback without orderBy if composite index is pending
+        const q2 = query(
+          collection(db, 'sermons'),
+          where('userId', '==', userId)
+        )
+        snapshot = await getDocs(q2)
+      }
+
+      const remoteSermons = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+        createdAt: toISOString(doc.data().createdAt),
+        updatedAt: toISOString(doc.data().updatedAt)
+      })) as Sermon[]
+
+      // Sort in memory
+      remoteSermons.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+
+      // Merge and update local cache
+      const combined = [...remoteSermons]
+      // Preserve any local drafts
+      localList.forEach(local => {
+        if (!combined.some(r => r.id === local.id)) {
+          combined.push(local)
+        }
+      })
+
+      saveLocalSermons(combined)
+      return combined
+    } catch (err) {
+      console.warn('Could not fetch remote sermons, using local cache:', err)
+      return localList
+    }
+  })()
+
+  return Promise.race([fetchPromise, timeoutPromise])
 }
 
 export async function getSermonById(id: string): Promise<Sermon | null> {
-  const { getDoc } = await import('firebase/firestore')
-  const docRef = doc(db, 'sermons', id)
-  const docSnap = await getDoc(docRef)
-  
-  if (!docSnap.exists()) {
-    return null
+  const localList = getLocalSermons()
+  const localFound = localList.find(s => s.id === id)
+
+  if (!firebaseEnabled) {
+    return localFound || null
   }
-  
-  const data = docSnap.data()
-  return {
-    id: docSnap.id,
-    ...data,
-    createdAt: toISOString(data.createdAt),
-    updatedAt: toISOString(data.updatedAt)
-  } as Sermon
+
+  try {
+    const { getDoc } = await import('firebase/firestore')
+    const docRef = doc(db, 'sermons', id)
+    const docSnap = await getDoc(docRef)
+    
+    if (!docSnap.exists()) {
+      return localFound || null
+    }
+    
+    const data = docSnap.data()
+    return {
+      id: docSnap.id,
+      ...data,
+      createdAt: toISOString(data.createdAt),
+      updatedAt: toISOString(data.updatedAt)
+    } as Sermon
+  } catch {
+    return localFound || null
+  }
 }
 
 export async function addSermon(sermon: Omit<Sermon, 'id' | 'createdAt' | 'updatedAt'>) {
-  const docRef = await addDoc(collection(db, 'sermons'), {
+  const localId = `sermon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  const now = new Date().toISOString()
+  const fullSermon: Sermon = {
+    id: localId,
     ...sermon,
-    createdAt: serverTimestamp(),
-    updatedAt: serverTimestamp()
-  })
-  return docRef.id
+    createdAt: now,
+    updatedAt: now
+  }
+
+  // Save to local cache immediately
+  const localList = getLocalSermons()
+  saveLocalSermons([fullSermon, ...localList])
+
+  if (firebaseEnabled) {
+    try {
+      const docRef = await addDoc(collection(db, 'sermons'), {
+        ...sermon,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      })
+      // Update local ID with remote ID
+      const updated = getLocalSermons().map(s => s.id === localId ? { ...s, id: docRef.id } : s)
+      saveLocalSermons(updated)
+      return docRef.id
+    } catch (err) {
+      console.warn('Saved sermon locally (offline mode):', err)
+      return localId
+    }
+  }
+
+  return localId
 }
 
 export async function updateSermon(id: string, data: Partial<Sermon>) {
-  const docRef = doc(db, 'sermons', id)
-  await updateDoc(docRef, {
-    ...data,
-    updatedAt: serverTimestamp()
-  })
+  // Update local cache immediately
+  const localList = getLocalSermons()
+  const now = new Date().toISOString()
+  const updated = localList.map(s => s.id === id ? { ...s, ...data, updatedAt: now } : s)
+  saveLocalSermons(updated)
+
+  if (firebaseEnabled) {
+    try {
+      const docRef = doc(db, 'sermons', id)
+      await updateDoc(docRef, {
+        ...data,
+        updatedAt: serverTimestamp()
+      })
+    } catch (err) {
+      console.warn('Updated sermon locally:', err)
+    }
+  }
 }
 
 export async function deleteSermon(id: string) {
-  await deleteDoc(doc(db, 'sermons', id))
+  // Delete from local cache
+  const localList = getLocalSermons()
+  saveLocalSermons(localList.filter(s => s.id !== id))
+
+  if (firebaseEnabled) {
+    try {
+      await deleteDoc(doc(db, 'sermons', id))
+    } catch (err) {
+      console.warn('Deleted sermon locally:', err)
+    }
+  }
 }
