@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { addSermon } from '../lib/firestore'
 import type { Sermon, SermonExegesis, SermonTheology, SermonHomiletics, SermonMovement } from '../types'
@@ -177,9 +177,18 @@ export default function SermonNew() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Scripture Passage
-            </label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Scripture Passage
+              </label>
+              <Link
+                to={`/scribe`}
+                className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
+                title="Open Scribe for discourse validation and outline generator"
+              >
+                <span>✨ Scribe AI Copilot</span>
+              </Link>
+            </div>
             <input
               type="text"
               value={passage}

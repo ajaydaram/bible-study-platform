@@ -14,7 +14,10 @@ import {
   Compass, 
   Loader2,
   Lightbulb,
-  Heart
+  Heart,
+  GitCommit,
+  Scale,
+  ShieldCheck
 } from 'lucide-react'
 import { 
   getVerseExegesis, 
@@ -25,9 +28,12 @@ import {
   type ConfessionalSynthesisResponse,
   type SermonOutlineResponse
 } from '../lib/geminiApi'
+import ArgumentFlowVisualizer from '../components/ArgumentFlowVisualizer'
+import PericopeValidator from '../components/PericopeValidator'
+import PassageGlossaryBuilder from '../components/PassageGlossaryBuilder'
 
 export default function ScribePage() {
-  const [activeTab, setActiveTab] = useState<'exegesis' | 'confessional' | 'sermon' | 'chat'>('exegesis')
+  const [activeTab, setActiveTab] = useState<'exegesis' | 'confessional' | 'sermon' | 'argument' | 'pericope' | 'glossary' | 'chat'>('exegesis')
   const [loading, setLoading] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -116,14 +122,14 @@ export default function ScribePage() {
         <div className="max-w-3xl space-y-3 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/20 border border-indigo-400/30 rounded-full text-xs font-semibold text-indigo-300">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>Gemini AI Theological Assistant</span>
+            <span>Alexandria-Grade Exegetical Suite & Sermon Copilot</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
             Scriptorium Scribe
           </h1>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Your personal biblical scholar and sermon copilot. Conduct deep verse exegesis, 
-            synthesize historic confessions, and construct Christ-centered expository sermon outlines.
+          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Faithful, Christ-centered AI exegesis built with 4-tier confidence verification, 
+            Levinsohn discourse argument mapping, and pericope delimitation safeguards.
           </p>
         </div>
 
@@ -131,7 +137,7 @@ export default function ScribePage() {
         <div className="mt-8 flex flex-wrap gap-2 border-t border-slate-800 pt-6">
           <button
             onClick={() => setActiveTab('exegesis')}
-            className={`px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
+            className={`px-3.5 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
               activeTab === 'exegesis'
                 ? 'bg-indigo-600 text-white shadow-indigo-500/20'
                 : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
@@ -142,8 +148,44 @@ export default function ScribePage() {
           </button>
 
           <button
+            onClick={() => setActiveTab('argument')}
+            className={`px-3.5 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
+              activeTab === 'argument'
+                ? 'bg-indigo-600 text-white shadow-indigo-500/20'
+                : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
+            }`}
+          >
+            <GitCommit className="w-4 h-4 text-cyan-400" />
+            <span>Argument Flow</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('pericope')}
+            className={`px-3.5 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
+              activeTab === 'pericope'
+                ? 'bg-indigo-600 text-white shadow-indigo-500/20'
+                : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
+            }`}
+          >
+            <Scale className="w-4 h-4 text-amber-400" />
+            <span>Pericope Delimitation</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('glossary')}
+            className={`px-3.5 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
+              activeTab === 'glossary'
+                ? 'bg-indigo-600 text-white shadow-indigo-500/20'
+                : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
+            }`}
+          >
+            <Languages className="w-4 h-4 text-emerald-400" />
+            <span>Passage Glossary</span>
+          </button>
+
+          <button
             onClick={() => setActiveTab('confessional')}
-            className={`px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
+            className={`px-3.5 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
               activeTab === 'confessional'
                 ? 'bg-indigo-600 text-white shadow-indigo-500/20'
                 : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
@@ -155,26 +197,26 @@ export default function ScribePage() {
 
           <button
             onClick={() => setActiveTab('sermon')}
-            className={`px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
+            className={`px-3.5 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
               activeTab === 'sermon'
                 ? 'bg-indigo-600 text-white shadow-indigo-500/20'
                 : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
             }`}
           >
-            <FileText className="w-4 h-4 text-emerald-400" />
+            <FileText className="w-4 h-4 text-rose-400" />
             <span>Sermon Copilot</span>
           </button>
 
           <button
             onClick={() => setActiveTab('chat')}
-            className={`px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
+            className={`px-3.5 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm ${
               activeTab === 'chat'
                 ? 'bg-indigo-600 text-white shadow-indigo-500/20'
                 : 'bg-slate-800/80 text-slate-300 hover:bg-slate-800 hover:text-white'
             }`}
           >
             <MessageSquare className="w-4 h-4 text-sky-400" />
-            <span>Ask Scribe Consultation</span>
+            <span>Ask Scribe</span>
           </button>
         </div>
       </div>
@@ -224,10 +266,11 @@ export default function ScribePage() {
             </div>
           </div>
 
-          {/* Results Display */}
+          {/* Results Display with 4-Tier Confidence */}
           {exegesisResult && (
-            <div className="space-y-5 animate-fade-in">
-              <div className="flex items-center justify-between">
+            <div className="space-y-6 animate-fade-in">
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-indigo-600" />
                   <span>Exegetical Report for {exegesisResult.reference}</span>
@@ -242,6 +285,48 @@ export default function ScribePage() {
                 </button>
               </div>
 
+              {/* 4-Tier Confidence Bar */}
+              <div className="bg-slate-900 text-white rounded-2xl p-4 border border-indigo-800/40 shadow-lg space-y-2">
+                <div className="flex items-center gap-2 text-indigo-400 font-bold text-xs uppercase tracking-wider">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span>4-Tier Interpretive Confidence Rating</span>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-1">
+                  <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 space-y-1">
+                    <span className="text-[10px] font-extrabold uppercase text-slate-400 block">Tier 1: Linguistic</span>
+                    <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">
+                      {exegesisResult.confidenceTiers.tier1Linguistic.level}
+                    </span>
+                    <p className="text-[11px] text-slate-300">{exegesisResult.confidenceTiers.tier1Linguistic.notes}</p>
+                  </div>
+
+                  <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 space-y-1">
+                    <span className="text-[10px] font-extrabold uppercase text-slate-400 block">Tier 2: Discourse</span>
+                    <span className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-bold">
+                      {exegesisResult.confidenceTiers.tier2Discourse.level}
+                    </span>
+                    <p className="text-[11px] text-slate-300">{exegesisResult.confidenceTiers.tier2Discourse.notes}</p>
+                  </div>
+
+                  <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 space-y-1">
+                    <span className="text-[10px] font-extrabold uppercase text-slate-400 block">Tier 3: Confessional</span>
+                    <span className="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[10px] font-bold">
+                      {exegesisResult.confidenceTiers.tier3Confessional.level}
+                    </span>
+                    <p className="text-[11px] text-slate-300">{exegesisResult.confidenceTiers.tier3Confessional.notes}</p>
+                  </div>
+
+                  <div className="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 space-y-1">
+                    <span className="text-[10px] font-extrabold uppercase text-slate-400 block">Tier 4: Application</span>
+                    <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-bold">
+                      {exegesisResult.confidenceTiers.tier4Application.level}
+                    </span>
+                    <p className="text-[11px] text-slate-300">{exegesisResult.confidenceTiers.tier4Application.notes}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4 Exegetical Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Historical Background */}
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm space-y-2">
@@ -276,11 +361,14 @@ export default function ScribePage() {
                   </p>
                 </div>
 
-                {/* Practical & Pastoral Application */}
+                {/* Practical & Pastoral Application with FCF */}
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm space-y-2">
                   <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold text-xs uppercase tracking-wider">
                     <Heart className="w-4 h-4" />
-                    <span>Pastoral & Personal Application</span>
+                    <span>Pastoral Application (Fallen Condition Focus)</span>
+                  </div>
+                  <div className="p-2.5 bg-rose-50 dark:bg-rose-950/30 rounded-xl border border-rose-100 dark:border-rose-900/40 text-xs text-rose-900 dark:text-rose-200 mb-1">
+                    <strong>FCF:</strong> {exegesisResult.fallenConditionFocus}
                   </div>
                   <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
                     {exegesisResult.practicalApplication}
@@ -312,7 +400,28 @@ export default function ScribePage() {
         </div>
       )}
 
-      {/* TAB 2: CONFESSIONAL SYNTHESIS */}
+      {/* TAB 2: ARGUMENT FLOW MAPPER */}
+      {activeTab === 'argument' && (
+        <div className="animate-fade-in">
+          <ArgumentFlowVisualizer />
+        </div>
+      )}
+
+      {/* TAB 3: PERICOPE BOUNDARY VALIDATOR */}
+      {activeTab === 'pericope' && (
+        <div className="animate-fade-in">
+          <PericopeValidator />
+        </div>
+      )}
+
+      {/* TAB 4: PASSAGE LEMMA GLOSSARY */}
+      {activeTab === 'glossary' && (
+        <div className="animate-fade-in">
+          <PassageGlossaryBuilder />
+        </div>
+      )}
+
+      {/* TAB 5: CONFESSIONAL SYNTHESIS */}
       {activeTab === 'confessional' && (
         <div className="space-y-6">
           <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm space-y-4">
@@ -414,7 +523,7 @@ export default function ScribePage() {
         </div>
       )}
 
-      {/* TAB 3: EXPOSITORY SERMON COPILOT */}
+      {/* TAB 6: EXPOSITORY SERMON COPILOT */}
       {activeTab === 'sermon' && (
         <div className="space-y-6">
           <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm space-y-4">
@@ -551,7 +660,7 @@ export default function ScribePage() {
         </div>
       )}
 
-      {/* TAB 4: ASK SCRIBE CONSULTATION */}
+      {/* TAB 7: ASK SCRIBE CONSULTATION */}
       {activeTab === 'chat' && (
         <div className="bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden flex flex-col h-[650px]">
           {/* Messages Feed */}
@@ -596,7 +705,7 @@ export default function ScribePage() {
               onChange={(e) => setChatInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSendChat()}
               placeholder="Ask a theological, exegesis, or pastoral question..."
-              className="flex-1 p-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl text-xs sm:text-sm text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500"
+              className="flex-1 p-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-650 rounded-xl text-xs sm:text-sm text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500"
             />
             <button
               onClick={handleSendChat}
