@@ -77,6 +77,13 @@ export default function SermonHub() {
         </div>
         <div className="flex items-center gap-3">
           <Link
+            to="/scribe"
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 rounded-xl text-xs font-bold transition-all shadow-md"
+          >
+            <Sparkles className="h-4 w-4 fill-stone-950" />
+            AI Sermon Copilot
+          </Link>
+          <Link
             to="/sermons/rhetoric"
             className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs font-bold transition-colors shadow-md"
           >

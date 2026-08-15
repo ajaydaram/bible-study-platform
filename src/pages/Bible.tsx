@@ -295,6 +295,16 @@ export default function Bible() {
             <span className="hidden sm:inline">Listen</span>
           </button>
 
+          {/* Scriptorium Scribe AI Button */}
+          <Link
+            to={`/scribe`}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 font-bold text-xs shadow-md transition-all"
+            title="Scriptorium Scribe: AI Exegesis & Confessional Synthesis"
+          >
+            <Sparkles className="h-4 w-4 fill-stone-950" />
+            <span className="hidden sm:inline">AI Exegesis</span>
+          </Link>
+
           {/* Scriptorium Nexus Toggle */}
           <button
             onClick={() => setShowNexusDrawer(true)}
