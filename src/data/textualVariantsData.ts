@@ -4,11 +4,16 @@
  */
 
 export interface ManuscriptWitness {
+  id: string
   siglum: string
   name: string
   date: string
   type: 'Papyrus' | 'Uncial' | 'Minuscule' | 'Lectionary' | 'Early Version' | 'Church Father'
+  textType: 'Alexandrian' | 'Western' | 'Byzantine' | 'Caesarean' | 'Proto-Alexandrian'
+  locationHeld: string
+  contents: string
   description: string
+  scholarlySignificance: string
 }
 
 export interface TextualReading {
@@ -35,17 +40,159 @@ export interface TextualVariant {
   translationImpact: string
 }
 
-export const MANUSCRIPT_WITNESSES_KEY: Record<string, ManuscriptWitness> = {
-  'P45': { siglum: '𝔓⁴⁵', name: 'Chester Beatty I', date: 'c. AD 200-250', type: 'Papyrus', description: 'Early papyrus containing large portions of the Gospels and Acts.' },
-  'P66': { siglum: '𝔓⁶⁶', name: 'Papyrus Bodmer II', date: 'c. AD 200', type: 'Papyrus', description: 'One of the earliest and most complete Greek manuscripts of the Gospel of John.' },
-  'P75': { siglum: '𝔓⁷⁵', name: 'Papyrus Bodmer XIV-XV', date: 'c. AD 175-225', type: 'Papyrus', description: 'Extremely accurate early witness to Luke and John, closely matching Codex Vaticanus.' },
-  'Aleph': { siglum: 'ℵ (01)', name: 'Codex Sinaiticus', date: 'c. AD 330-360', type: 'Uncial', description: 'Complete Greek Bible discovered at St. Catherine Monastery, key Alexandrian witness.' },
-  'B': { siglum: 'B (03)', name: 'Codex Vaticanus', date: 'c. AD 325-350', type: 'Uncial', description: 'Generally considered the highest-quality single manuscript witness to the Greek New Testament.' },
-  'A': { siglum: 'A (02)', name: 'Codex Alexandrinus', date: 'c. AD 400-440', type: 'Uncial', description: 'Prime witness for Revelation and Epistles; Byzantine in the Gospels, Alexandrian in Epistles.' },
-  'C': { siglum: 'C (04)', name: 'Codex Ephraemi Rescriptus', date: 'c. AD 450', type: 'Uncial', description: 'Palimpsest manuscript containing portions of almost all NT books.' },
-  'D': { siglum: 'D (05)', name: 'Codex Bezae Cantabrigiensis', date: 'c. AD 400-450', type: 'Uncial', description: 'Primary representative of the Western text-type (Gospels and Acts) with Greek & Latin side-by-side.' },
-  'Byz': { siglum: '𝔐 / Byz', name: 'Byzantine Majority Text', date: 'AD 500-1500', type: 'Minuscule', description: 'The predominant text-form preserved in the Eastern Greek-speaking Church.' }
+export interface TextualCanon {
+  title: string
+  latin: string
+  meaning: string
+  rationale: string
+  example: string
 }
+
+export const CANONS_OF_TEXTUAL_CRITICISM: TextualCanon[] = [
+  {
+    title: 'Prefer the Harder Reading',
+    latin: 'Lectio Difficilior Potior',
+    meaning: 'The more grammatically unusual, difficult, or startling reading is more likely original.',
+    rationale: 'Ancient scribes were much more prone to smooth out grammatical anomalies or theological stumbling blocks than to create new ones.',
+    example: '1 Timothy 3:16 ("He who was manifested" vs "God was manifest").'
+  },
+  {
+    title: 'Prefer the Shorter Reading',
+    latin: 'Lectio Brevior Potior',
+    meaning: 'The shorter reading is generally more probable than an expanded reading.',
+    rationale: 'Scribes frequently conflated parallel accounts, incorporated marginal explanatory notes, and harmonized Gospels.',
+    example: 'Romans 8:1 (Omission of "who walk not after the flesh").'
+  },
+  {
+    title: 'Explain the Origin of Other Readings',
+    latin: 'Lectio Probabilior Potior',
+    meaning: 'The reading that best explains how all other competing readings arose is to be preferred.',
+    rationale: 'Textual critics evaluate genealogical development to trace the single autograph root that branched into derivative scribe edits.',
+    example: 'Lord’s Prayer Doxology added from liturgical congregational responses.'
+  },
+  {
+    title: 'Prioritize Date & Quality of Witnesses',
+    latin: 'Manuscript Weight over Number',
+    meaning: 'Manuscripts must be weighed by age and textual fidelity, not merely counted by majority vote.',
+    rationale: 'A thousand late 12th-century copies copied from the same single flawed exemplar carry less weight than 2nd/3rd-century independent papyri.',
+    example: 'Agreement of early Alexandrian papyri (𝔓⁶⁶, 𝔓⁷⁵) with 4th-century uncials (ℵ, B).'
+  }
+]
+
+export const MANUSCRIPT_WITNESSES_LIST: ManuscriptWitness[] = [
+  {
+    id: 'P45',
+    siglum: '𝔓⁴⁵',
+    name: 'Chester Beatty I',
+    date: 'c. AD 200–250',
+    type: 'Papyrus',
+    textType: 'Caesarean',
+    locationHeld: 'Chester Beatty Library, Dublin, Ireland (BP I)',
+    contents: 'Portions of Matthew, Mark, Luke, John, and Acts',
+    description: 'One of the earliest extensive surviving codices of the Gospels and Acts.',
+    scholarlySignificance: 'Demonstrates early freedom in translation and preservation of an eclectic/Caesarean text type before regional standardization.'
+  },
+  {
+    id: 'P66',
+    siglum: '𝔓⁶⁶',
+    name: 'Papyrus Bodmer II',
+    date: 'c. AD 200',
+    type: 'Papyrus',
+    textType: 'Proto-Alexandrian',
+    locationHeld: 'Bodmer Library, Cologny (Geneva), Switzerland',
+    contents: 'Nearly complete Gospel of John (1:1–6:11, 6:35–14:26, 14:29–30, 15:2–26, 16:2–4, 16:6–7, 16:10–20:20, 20:22–23, 20:25–21:9)',
+    description: 'One of the most beautifully preserved and earliest Greek New Testament papyri in existence.',
+    scholarlySignificance: 'Contains hundreds of immediate scribal self-corrections, confirming high fidelity to an early Alexandrian archetype.'
+  },
+  {
+    id: 'P75',
+    siglum: '𝔓⁷⁵',
+    name: 'Papyrus Bodmer XIV–XV',
+    date: 'c. AD 175–225',
+    type: 'Papyrus',
+    textType: 'Proto-Alexandrian',
+    locationHeld: 'Vatican Apostolic Library, Vatican City (P.Bodmer XIV-XV)',
+    contents: 'Extensive portions of Luke and John',
+    description: 'Extremely accurate early papyrus discovered in Egypt that exhibits stunning text agreement with Codex Vaticanus.',
+    scholarlySignificance: 'Disproved the theory that Codex Vaticanus was a 4th-century artificial recension; proved its text type existed by AD 175.'
+  },
+  {
+    id: 'Aleph',
+    siglum: 'ℵ (01)',
+    name: 'Codex Sinaiticus',
+    date: 'c. AD 330–360',
+    type: 'Uncial',
+    textType: 'Alexandrian',
+    locationHeld: 'British Library, London (Add MS 43725) & St Catherine Monastery',
+    contents: 'Complete Greek Bible (OT + complete NT + Epistle of Barnabas & Shepherd of Hermas)',
+    description: 'Discovered by Constantin von Tischendorf at St. Catherine’s Monastery at Mount Sinai in 1844.',
+    scholarlySignificance: 'The only surviving complete 4th-century uncial manuscript of the entire Greek New Testament.'
+  },
+  {
+    id: 'B',
+    siglum: 'B (03)',
+    name: 'Codex Vaticanus',
+    date: 'c. AD 325–350',
+    type: 'Uncial',
+    textType: 'Alexandrian',
+    locationHeld: 'Vatican Apostolic Library, Vatican City (Vat.gr.1209)',
+    contents: 'Septuagint and Greek NT (lacks 1 Tim–Philemon, Hebrews 9:14–end, and Revelation)',
+    description: 'Housed in the Vatican Library since at least 1475. One of the finest parchment codices produced in antiquity.',
+    scholarlySignificance: 'Universally recognized by modern textual scholars as the single most pristine witness to the original apostolic text.'
+  },
+  {
+    id: 'A',
+    siglum: 'A (02)',
+    name: 'Codex Alexandrinus',
+    date: 'c. AD 400–440',
+    type: 'Uncial',
+    textType: 'Alexandrian',
+    locationHeld: 'British Library, London (Royal MS 1 D. VIII)',
+    contents: 'Nearly complete Old and New Testament (with 1 & 2 Clement)',
+    description: 'Presented to King Charles I of England in 1627 by Cyril Lucar, Patriarch of Constantinople.',
+    scholarlySignificance: 'The premier witness for the text of Revelation and the earliest uncial representing the Byzantine text in the Gospels.'
+  },
+  {
+    id: 'C',
+    siglum: 'C (04)',
+    name: 'Codex Ephraemi Rescriptus',
+    date: 'c. AD 450',
+    type: 'Uncial',
+    textType: 'Alexandrian',
+    locationHeld: 'Bibliothèque nationale de France, Paris (Grec 9)',
+    contents: 'Palimpsest with portions of 64 OT leaves and 145 NT leaves',
+    description: 'In the 12th century, the original biblical text was scraped off and overwritten with treatises of Ephrem the Syrian; deciphered with chemical reagents by Tischendorf.',
+    scholarlySignificance: 'Provides an independent 5th-century witness confirming readings of Sinaiticus and Vaticanus.'
+  },
+  {
+    id: 'D',
+    siglum: 'D (05)',
+    name: 'Codex Bezae Cantabrigiensis',
+    date: 'c. AD 400–450',
+    type: 'Uncial',
+    textType: 'Western',
+    locationHeld: 'Cambridge University Library, Cambridge, UK (Nn. II. 41)',
+    contents: 'Gospels and Acts in Greek and Latin on facing pages',
+    description: 'Presented to Cambridge University in 1581 by the Protestant reformer Theodore Beza.',
+    scholarlySignificance: 'The primary uncial representative of the Western text-type, famous for its vivid narrative expansions and unique readings.'
+  },
+  {
+    id: 'Byz',
+    siglum: '𝔐 / Byz',
+    name: 'Byzantine Majority Text',
+    date: 'AD 500–1500',
+    type: 'Minuscule',
+    textType: 'Byzantine',
+    locationHeld: 'Monasteries of Mount Athos, Patmos, Jerusalem, Rome, etc.',
+    contents: 'Over 5,000 continuous-text minuscules and lectionaries',
+    description: 'The standardized ecclesiastical text copied continuously throughout the Byzantine Greek Empire.',
+    scholarlySignificance: 'Reflects the living liturgical text of Eastern Orthodoxy and served as the primary foundation for Erasmus’ Textus Receptus.'
+  }
+]
+
+export const MANUSCRIPT_WITNESSES_KEY: Record<string, ManuscriptWitness> = Object.fromEntries(
+  MANUSCRIPT_WITNESSES_LIST.map(w => [w.id, w])
+)
 
 export const TEXTUAL_VARIANTS_DATA: TextualVariant[] = [
   {
@@ -210,5 +357,31 @@ export const TEXTUAL_VARIANTS_DATA: TextualVariant[] = [
     scholarlyConsensus: 'Originated as a corporate liturgical response in early worship (as seen in the Didache) that was copied into Gospel manuscripts.',
     patristicAttestation: 'Tertullian, Cyprian, and Origen wrote commentaries on the Lord’s Prayer and make no mention of the doxology.',
     translationImpact: 'Included in KJV; placed in footnotes or brackets in ESV, NASB, NIV, CSB.'
+  },
+  {
+    id: 'luke-22-43-44',
+    reference: 'Luke 22:43–44',
+    passageTitle: 'The Bloody Sweat & Comforting Angel in Gethsemane',
+    theologicalIssue: 'Christ’s Genuine Human Agony vs. Docetic Tendencies',
+    ubsRating: 'C',
+    readings: {
+      criticalText: {
+        textLabel: 'NA28 / UBS 5 (Critical Text)',
+        greekText: '[ὤφθη δὲ αὐτῷ ἄγγελος ἀπ’ οὐρανοῦ ἐνισχύων αὐτόν... ὡσεὶ θρόμβοι αἵματος...] (Double Bracketed)',
+        englishTranslation: 'Double brackets the verses: "And there appeared to him an angel from heaven, strengthening him. And being in agony he prayed more earnestly; and his sweat became like great drops of blood..."',
+        keyWitnesses: ['𝔓⁷⁵', 'ℵ*', 'A', 'B', 'N', 'T', 'W', '579', 'Sahidic Coptic'],
+        evaluationNotes: 'Absent from the premier early Alexandrian witnesses (𝔓⁷⁵, ℵ*, B).'
+      },
+      textusReceptus: {
+        textLabel: 'Textus Receptus & Byzantine Text',
+        greekText: 'ὤφθη δὲ αὐτῷ ἄγγελος ἀπ’ οὐρανοῦ ἐνισχύων αὐτόν· καὶ γενόμενος ἐν ἀγωνίᾳ ἐκτενέστερον προσηύχετο...',
+        englishTranslation: 'And there appeared an angel unto him from heaven, strengthening him. And being in an agony he prayed more earnestly...',
+        keyWitnesses: ['ℵ²', 'D', 'K', 'L', 'Θ', 'Ψ', 'Old Latin', 'Curetonian Syriac', 'Majority of Byzantine MSS'],
+        evaluationNotes: 'Attested in Western and later Byzantine streams as well as 2nd-century patristic citations.'
+      }
+    },
+    scholarlyConsensus: 'An authentic early apostolic oral tradition that was either excised by orthodox scribes anxious about Christ needing an angel or added to combat Docetism.',
+    patristicAttestation: 'Justin Martyr (c. 160), Irenaeus (c. 180), and Hippolytus quote the passage to defend Christ’s true humanity against Gnostic Docetism.',
+    translationImpact: 'Retained in all modern translations with brackets and explanatory notes.'
   }
 ]

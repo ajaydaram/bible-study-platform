@@ -67,11 +67,12 @@ import People from './pages/People'
 // Discipleship & Teaching
 import DiscipleshipStudy from './pages/DiscipleshipStudy'
 
-// Textual Criticism, Gospel Harmony, Memory Gym & Typology Network
+// Textual Criticism, Gospel Harmony, Memory Gym, Typology Network & Genealogies
 import TextualCriticismPage from './pages/resources/TextualCriticismPage'
 import GospelHarmonyPage from './pages/resources/GospelHarmonyPage'
 import MemoryGymPage from './pages/resources/MemoryGymPage'
 import TypologyNetworkPage from './pages/resources/TypologyNetworkPage'
+import GenealogyTreePage from './pages/resources/GenealogyTreePage'
 
 // Shared Content
 import SharedNote from './pages/SharedNote'
@@ -154,6 +155,8 @@ function App() {
                     <Route path="/resources/memory-gym" element={<MemoryGymPage />} />
                     <Route path="/memory-gym" element={<MemoryGymPage />} />
                     <Route path="/resources/typology-network" element={<TypologyNetworkPage />} />
+                    <Route path="/resources/genealogies" element={<GenealogyTreePage />} />
+                    <Route path="/genealogies" element={<GenealogyTreePage />} />
                     <Route path="/reading-plans" element={<ReadingPlans />} />
                     <Route path="/reading-plans/new" element={<ReadingPlanNew />} />
                   </Route>

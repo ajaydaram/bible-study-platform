@@ -35,6 +35,14 @@ const resources = [
     ready: true
   },
   {
+    title: 'Biblical Family Trees',
+    description: 'Interactive dynasty explorer for Patriarchs, Davidic line & Priests',
+    icon: GitFork,
+    href: '/resources/genealogies',
+    color: 'bg-indigo-700',
+    ready: true
+  },
+  {
     title: 'Word Study',
     description: 'Explore Greek & Hebrew words with transliteration and definitions',
     icon: Sparkles,
