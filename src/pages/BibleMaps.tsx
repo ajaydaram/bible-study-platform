@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { Map, MapPin, Navigation, Book, ChevronRight, X, ExternalLink } from 'lucide-react'
+import { useState, useMemo } from 'react'
+import { Link } from 'react-router-dom'
+import { Map, MapPin, Navigation, Book, ChevronRight, X, ExternalLink, Sparkles } from 'lucide-react'
 
 export interface BibleLocation {
   name: string
@@ -421,16 +422,44 @@ export const bibleMaps: BibleMap[] = [
 export default function BibleMaps() {
   const [selectedMap, setSelectedMap] = useState<BibleMap | null>(null)
   const [selectedLocation, setSelectedLocation] = useState<BibleLocation | null>(null)
+  const [activeWaypointIndex, setActiveWaypointIndex] = useState<number>(0)
+
+  // Calculate SVG bounding box and projection points for selected map
+  const routePoints = useMemo(() => {
+    if (!selectedMap || selectedMap.locations.length === 0) return []
+    const locs = selectedMap.locations
+    const lats = locs.map(l => l.coordinates.lat)
+    const lngs = locs.map(l => l.coordinates.lng)
+    const minLat = Math.min(...lats)
+    const maxLat = Math.max(...lats)
+    const minLng = Math.min(...lngs)
+    const maxLng = Math.max(...lngs)
+
+    const latSpan = Math.max(maxLat - minLat, 0.5)
+    const lngSpan = Math.max(maxLng - minLng, 0.5)
+
+    const padding = 40
+    const width = 600
+    const height = 320
+
+    return locs.map((loc, idx) => {
+      const x = padding + ((loc.coordinates.lng - minLng) / lngSpan) * (width - 2 * padding)
+      const y = height - padding - ((loc.coordinates.lat - minLat) / latSpan) * (height - 2 * padding)
+      return { ...loc, x, y, index: idx }
+    })
+  }, [selectedMap])
+
+  const activeWaypoint = selectedMap ? selectedMap.locations[activeWaypointIndex] || selectedMap.locations[0] : null
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-6 pb-16">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <Map className="h-8 w-8 text-green-600" />
+        <Map className="h-8 w-8 text-emerald-600" />
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Bible Maps</h1>
-          <p className="text-gray-500 dark:text-gray-400">
-            Explore the geography and locations of Biblical events
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Biblical Atlas & GPS Journey Maps</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
+            Interactive itineraries tracing Abraham's journey, the Exodus, and Paul's missionary routes with GPS coordinates.
           </p>
         </div>
       </div>
@@ -441,28 +470,31 @@ export default function BibleMaps() {
           {bibleMaps.map((map) => (
             <button
               key={map.id}
-              onClick={() => setSelectedMap(map)}
-              className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 text-left hover:border-green-300 dark:hover:border-green-700 transition-all hover:shadow-lg group"
+              onClick={() => {
+                setSelectedMap(map)
+                setActiveWaypointIndex(0)
+              }}
+              className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 text-left hover:border-emerald-400 dark:hover:border-emerald-600 transition-all hover:shadow-lg group"
             >
               <div className="flex items-start gap-4">
                 <div className="text-4xl">{map.thumbnail}</div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                  <h3 className="font-bold text-base text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                     {map.title}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
                     {map.description}
                   </p>
                   <div className="flex items-center gap-2 mt-3">
-                    <span className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded">
+                    <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 rounded-md">
                       {map.period}
                     </span>
-                    <span className="text-xs text-gray-400">
-                      {map.locations.length} locations
+                    <span className="text-xs font-semibold text-gray-400">
+                      {map.locations.length} Waypoints
                     </span>
                   </div>
                 </div>
-                <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-green-500 transition-colors" />
+                <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-emerald-500 transition-colors" />
               </div>
             </button>
           ))}
@@ -471,62 +503,213 @@ export default function BibleMaps() {
 
       {/* Selected Map View */}
       {selectedMap && !selectedLocation && (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {/* Back Button */}
           <button
             onClick={() => setSelectedMap(null)}
-            className="flex items-center gap-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
           >
             <ChevronRight className="h-4 w-4 rotate-180" />
-            Back to all maps
+            <span>Back to all maps</span>
           </button>
 
           {/* Map Header */}
-          <div className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl p-6 text-white">
+          <div className="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 border border-emerald-800/40 rounded-3xl p-6 text-white shadow-xl flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="text-5xl">{selectedMap.thumbnail}</div>
+              <div className="text-4xl">{selectedMap.thumbnail}</div>
               <div>
-                <h2 className="text-2xl font-bold">{selectedMap.title}</h2>
-                <p className="text-green-100 mt-1">{selectedMap.description}</p>
-                <span className="inline-block mt-2 text-xs px-2 py-1 bg-white/20 rounded">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
                   {selectedMap.period}
                 </span>
+                <h2 className="text-xl sm:text-2xl font-extrabold mt-1">{selectedMap.title}</h2>
+                <p className="text-emerald-100/80 text-xs sm:text-sm mt-0.5">{selectedMap.description}</p>
               </div>
             </div>
           </div>
 
+          {/* INTERACTIVE SVG ROUTE CANVAS */}
+          <div className="bg-slate-950 rounded-3xl p-5 border border-emerald-900/50 shadow-2xl relative overflow-hidden space-y-4">
+            <div className="flex items-center justify-between text-white">
+              <div className="flex items-center gap-2 text-xs font-bold text-emerald-400">
+                <Sparkles className="w-4 h-4" />
+                <span>Interactive Route Projection ({selectedMap.locations.length} Waypoints)</span>
+              </div>
+
+              {/* Waypoint Step Controller */}
+              <div className="flex items-center gap-2 text-xs">
+                <button
+                  disabled={activeWaypointIndex === 0}
+                  onClick={() => setActiveWaypointIndex(prev => Math.max(0, prev - 1))}
+                  className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 rounded-lg font-bold transition-all text-slate-300"
+                >
+                  Prev Stop
+                </button>
+                <span className="font-mono text-emerald-400 font-bold">
+                  Stop {activeWaypointIndex + 1} of {selectedMap.locations.length}
+                </span>
+                <button
+                  disabled={activeWaypointIndex === selectedMap.locations.length - 1}
+                  onClick={() => setActiveWaypointIndex(prev => Math.min(selectedMap.locations.length - 1, prev + 1))}
+                  className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 rounded-lg font-bold transition-all text-white"
+                >
+                  Next Stop
+                </button>
+              </div>
+            </div>
+
+            {/* SVG Visualizer */}
+            <div className="w-full bg-slate-900/90 rounded-2xl border border-slate-800 p-2 overflow-x-auto flex justify-center">
+              <svg viewBox="0 0 600 320" className="w-full max-w-2xl h-auto">
+                <defs>
+                  <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#10b981" />
+                    <stop offset="100%" stopColor="#6366f1" />
+                  </linearGradient>
+                </defs>
+
+                {/* Connecting Polyline */}
+                {routePoints.length > 1 && (
+                  <path
+                    d={`M ${routePoints.map(p => `${p.x},${p.y}`).join(' L ')}`}
+                    fill="none"
+                    stroke="url(#routeGrad)"
+                    strokeWidth="3"
+                    strokeDasharray="6,4"
+                    className="opacity-75"
+                  />
+                )}
+
+                {/* Waypoint Nodes */}
+                {routePoints.map((point) => {
+                  const isActive = point.index === activeWaypointIndex
+                  return (
+                    <g 
+                      key={point.name}
+                      onClick={() => setActiveWaypointIndex(point.index)}
+                      className="cursor-pointer group"
+                    >
+                      {/* Pulse Circle on Active */}
+                      {isActive && (
+                        <circle
+                          cx={point.x}
+                          cy={point.y}
+                          r="14"
+                          className="fill-emerald-500/30 animate-ping"
+                        />
+                      )}
+
+                      <circle
+                        cx={point.x}
+                        cy={point.y}
+                        r={isActive ? "9" : "7"}
+                        fill={isActive ? "#10b981" : "#334155"}
+                        stroke="#ffffff"
+                        strokeWidth={isActive ? "2.5" : "1.5"}
+                      />
+
+                      <text
+                        x={point.x}
+                        y={point.y - 12}
+                        textAnchor="middle"
+                        className={`text-[9px] font-bold select-none ${
+                          isActive ? 'fill-emerald-300 font-extrabold text-[11px]' : 'fill-slate-400 group-hover:fill-slate-200'
+                        }`}
+                      >
+                        {point.index + 1}. {point.name}
+                      </text>
+                    </g>
+                  )
+                })}
+              </svg>
+            </div>
+
+            {/* Active Waypoint Spotlight Card */}
+            {activeWaypoint && (
+              <div className="bg-slate-900 rounded-2xl p-4 border border-emerald-800/40 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 font-extrabold text-xs flex items-center justify-center">
+                      {activeWaypointIndex + 1}
+                    </span>
+                    <h4 className="font-bold text-base text-emerald-300">
+                      {activeWaypoint.name}
+                    </h4>
+                    {activeWaypoint.modernName && (
+                      <span className="text-xs text-slate-400 font-medium">
+                        ({activeWaypoint.modernName})
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-slate-300 leading-snug">
+                    {activeWaypoint.description}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  {activeWaypoint.references[0] && (
+                    <Link
+                      to={`/bible?ref=${encodeURIComponent(activeWaypoint.references[0].split(' ')[0] + ' ' + (activeWaypoint.references[0].split(' ')[1] || '1'))}`}
+                      className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    >
+                      <Book className="w-3 h-3" />
+                      <span>{activeWaypoint.references[0]}</span>
+                      <ExternalLink className="w-2.5 h-2.5" />
+                    </Link>
+                  )}
+
+                  <button
+                    onClick={() => setSelectedLocation(activeWaypoint)}
+                    className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                  >
+                    <span>Full Details</span>
+                    <ChevronRight className="w-3 h-3" />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
           {/* Locations List */}
           <div className="space-y-3">
-            <h3 className="font-semibold text-gray-900 dark:text-white">
-              Key Locations ({selectedMap.locations.length})
+            <h3 className="font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider">
+              All Itinerary Stops ({selectedMap.locations.length})
             </h3>
             {selectedMap.locations.map((location, index) => (
               <button
                 key={location.name}
-                onClick={() => setSelectedLocation(location)}
-                className="w-full bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 text-left hover:border-green-300 dark:hover:border-green-700 transition-all hover:shadow-md group"
+                onClick={() => {
+                  setActiveWaypointIndex(index)
+                  setSelectedLocation(location)
+                }}
+                className={`w-full bg-white dark:bg-gray-800 rounded-2xl border p-4 text-left transition-all hover:shadow-md group flex items-center gap-4 ${
+                  activeWaypointIndex === index
+                    ? 'border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30'
+                    : 'border-gray-200 dark:border-gray-700 hover:border-emerald-300'
+                }`}
               >
-                <div className="flex items-center gap-4">
-                  <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-600 dark:text-green-400 font-bold text-sm">
-                    {index + 1}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400">
-                        {location.name}
-                      </h4>
-                      {location.modernName && (
-                        <span className="text-xs text-gray-400">
-                          ({location.modernName})
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">
-                      {location.description}
-                    </p>
-                  </div>
-                  <MapPin className="h-5 w-5 text-gray-400 group-hover:text-green-500" />
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                  activeWaypointIndex === index
+                    ? 'bg-emerald-600 text-white'
+                    : 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400'
+                }`}>
+                  {index + 1}
                 </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-bold text-sm text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+                      {location.name}
+                    </h4>
+                    {location.modernName && (
+                      <span className="text-xs text-gray-400">
+                        ({location.modernName})
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">
+                    {location.description}
+                  </p>
+                </div>
+                <MapPin className="h-5 w-5 text-gray-400 group-hover:text-emerald-500" />
               </button>
             ))}
           </div>

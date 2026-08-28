@@ -10,6 +10,7 @@ import CommentaryPanel from '../components/CommentaryPanel'
 import PatristicPanel from '../components/PatristicPanel'
 import CreedProofsPanel from '../components/CreedProofsPanel'
 import BibleMapSyncPanel from '../components/BibleMapSyncPanel'
+import ChapterEntitiesPanel from '../components/ChapterEntitiesPanel'
 import { getVersificationNote, hasVersificationDifference } from '../lib/versification'
 import { loadCreedProofs, getCreedsForVerseSync, getOsisRef } from '../lib/creedProofs'
 import { addProgressListener, removeProgressListener } from '../lib/localBible'
@@ -100,7 +101,7 @@ export default function Bible() {
   const [activeVerse, setActiveVerse] = useState<number | null>(null)
   const [showStudyPanel, setShowStudyPanel] = useState(false)
   const [showNexusDrawer, setShowNexusDrawer] = useState(false)
-  const [studyTab, setStudyTab] = useState<'crossref' | 'commentary' | 'patristic' | 'confession' | 'map'>('crossref')
+  const [studyTab, setStudyTab] = useState<'crossref' | 'commentary' | 'patristic' | 'confession' | 'entities' | 'map'>('crossref')
   const [indexingProgress, setIndexingProgress] = useState<number | null>(null)
   const [selectedTypologyMapping, setSelectedTypologyMapping] = useState<TypologyMapping | null>(null)
 
@@ -562,6 +563,17 @@ export default function Bible() {
               <span className="hidden sm:inline">Creeds</span>
             </button>
             <button
+              onClick={() => setStudyTab('entities')}
+              className={`flex-1 flex items-center justify-center gap-1 px-2 py-3 text-xs font-medium transition-colors ${
+                studyTab === 'entities'
+                  ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/20'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+              }`}
+            >
+              <Users className="h-4 w-4" />
+              <span className="hidden sm:inline">Entities</span>
+            </button>
+            <button
               onClick={() => setStudyTab('map')}
               className={`flex-1 flex items-center justify-center gap-1 px-2 py-3 text-xs font-medium transition-colors ${
                 studyTab === 'map'
@@ -603,6 +615,12 @@ export default function Bible() {
             ) : studyTab === 'confession' ? (
               <CreedProofsPanel
                 reference={getOsisRef(selectedBook, selectedChapter, activeVerse || 1)}
+              />
+            ) : studyTab === 'entities' ? (
+              <ChapterEntitiesPanel
+                book={selectedBook}
+                chapter={selectedChapter}
+                onNavigateToVerse={(verse) => setActiveVerse(verse)}
               />
             ) : (
               <BibleMapSyncPanel
